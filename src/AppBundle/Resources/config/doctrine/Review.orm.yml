@@ -1,0 +1,54 @@
+AppBundle\Entity\Review:
+    type: entity
+    table: review
+    indexes:
+        id_ad:
+            columns:
+                - id_ad
+        id_user:
+            columns:
+                - id_user
+    id:
+        idReview:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_review
+            generator:
+                strategy: IDENTITY
+    fields:
+        review:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        date:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    manyToOne:
+        idAd:
+            targetEntity: Ad
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ad:
+                    referencedColumnName: id_ad
+            orphanRemoval: false
+        idUser:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_user:
+                    referencedColumnName: id_user
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

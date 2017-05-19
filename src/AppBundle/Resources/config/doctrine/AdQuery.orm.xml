@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\AdQuery" table="ad_query">
+    <indexes>
+      <index name="id_ad" columns="id_ad"/>
+      <index name="id_user" columns="id_user"/>
+      <index name="id_teacher" columns="id_teacher"/>
+    </indexes>
+    <id name="idQuery" type="integer" column="id_query">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="confirm" type="integer" column="confirm" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="idAd" target-entity="Ad" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_ad" referenced-column-name="id_ad"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUser" target-entity="Users" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_user" referenced-column-name="id_user"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idTeacher" target-entity="Users" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_teacher" referenced-column-name="id_user"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

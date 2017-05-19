@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Complaints" table="сomplaints">
+    <indexes>
+      <index name="id_sender" columns="id_sender"/>
+      <index name="id_ad" columns="id_ad"/>
+      <index name="id_mes" columns="id_mes"/>
+    </indexes>
+    <id name="idComplaints" type="bigint" column="id_complaints">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idAd" type="bigint" column="id_ad" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="idMes" type="bigint" column="id_mes" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="act" type="string" column="act" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateAct" type="date" column="date_act" nullable="false"/>
+    <field name="dateEnd" type="date" column="date_end" nullable="false"/>
+    <field name="dateComplaints" type="date" column="date_complaints" nullable="false"/>
+    <many-to-one field="idSender" target-entity="Users" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_sender" referenced-column-name="id_user"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Messages" table="messages">
+    <indexes>
+      <index name="id_sender" columns="id_sender"/>
+      <index name="id_recipient" columns="id_recipient"/>
+    </indexes>
+    <id name="idMes" type="bigint" column="id_mes">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="message" type="text" column="message" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateMes" type="datetime" column="date_mes" nullable="false"/>
+    <many-to-one field="idSender" target-entity="Users" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_sender" referenced-column-name="id_user"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idRecipient" target-entity="Users" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_recipient" referenced-column-name="id_user"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

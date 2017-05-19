@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subjecttype</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Stype</th>
+                <td>{{ subjectType.stype }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% for subject in subjectType.subjects %}
+{{subject.subjects}}
+{% endfor %}
+    <ul>
+        <li>
+            <a href="{{ path('subjecttype_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('subjecttype_edit', { 'idStype': subjectType.idStype }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

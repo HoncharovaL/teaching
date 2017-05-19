@@ -1,0 +1,32 @@
+AppBundle\Entity\AdServices:
+    type: entity
+    table: ad_services
+    id:
+        idServices:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_services
+            generator:
+                strategy: IDENTITY
+    fields:
+        services:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        price:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

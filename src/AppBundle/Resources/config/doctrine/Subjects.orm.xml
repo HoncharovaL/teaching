@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Subjects" table="subjects">
+    <indexes>
+      <index name="id_stype" columns="id_stype"/>
+    </indexes>
+    <id name="idSubject" type="integer" column="id_subject">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="subject" type="string" column="subject" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idStype" target-entity="SubjectType" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_stype" referenced-column-name="id_stype"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,53 @@
+AppBundle\Entity\Messages:
+    type: entity
+    table: messages
+    indexes:
+        id_sender:
+            columns:
+                - id_sender
+        id_recipient:
+            columns:
+                - id_recipient
+    id:
+        idMes:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_mes
+            generator:
+                strategy: IDENTITY
+    fields:
+        message:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        dateMes:
+            type: datetime
+            nullable: false
+            column: date_mes
+    manyToOne:
+        idSender:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_sender:
+                    referencedColumnName: id_user
+            orphanRemoval: false
+        idRecipient:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_recipient:
+                    referencedColumnName: id_user
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
