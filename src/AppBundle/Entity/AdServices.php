@@ -2,28 +2,42 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * AdServices
+ *
+ * @ORM\Table(name="ad_services")
+ * @ORM\Entity
  */
 class AdServices
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="services", type="string", length=100, nullable=false)
      */
     private $services;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="price", type="integer")
      */
     private $price;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=3000, nullable=false)
      */
     private $description;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_services", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idServices;
 

@@ -1,38 +1,66 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Messages
+ *
+ * @ORM\Table(name="Messages", indexes={@ORM\Index(name="id_sender", columns={"id_sender"}), @ORM\Index(name="id_recipient", columns={"id_recipient"})})
+ * @ORM\Entity
  */
 class Messages
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="message", type="text", length=65535, nullable=false)
      */
     private $message;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_mes", type="date", nullable=false)
      */
     private $dateMes;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_mes", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idMes;
 
     /**
      * @var \AppBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_sender", referencedColumnName="id_user")
+     * })
      */
-    private $idSender;
+    private $sender;
 
     /**
      * @var \AppBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_recipient", referencedColumnName="id_user")
+     * })
      */
-    private $idRecipient;
+    private $recipient;
+    function getRecipient(): \AppBundle\Entity\Users {
+        return $this->recipient;
+    }
 
+    function setRecipient(\AppBundle\Entity\Users $recipient) {
+        $this->recipient = $recipient;
+    }
 
+    
     /**
      * Set message
      *
@@ -91,52 +119,12 @@ class Messages
         return $this->idMes;
     }
 
-    /**
-     * Set idSender
-     *
-     * @param \AppBundle\Entity\Users $idSender
-     *
-     * @return Messages
-     */
-    public function setIdSender(\AppBundle\Entity\Users $idSender = null)
-    {
-        $this->idSender = $idSender;
-
-        return $this;
+       function getSender(): \AppBundle\Entity\Users {
+        return $this->sender;
     }
 
-    /**
-     * Get idSender
-     *
-     * @return \AppBundle\Entity\Users
-     */
-    public function getIdSender()
-    {
-        return $this->idSender;
-    }
-
-    /**
-     * Set idRecipient
-     *
-     * @param \AppBundle\Entity\Users $idRecipient
-     *
-     * @return Messages
-     */
-    public function setIdRecipient(\AppBundle\Entity\Users $idRecipient = null)
-    {
-        $this->idRecipient = $idRecipient;
-
-        return $this;
-    }
-
-    /**
-     * Get idRecipient
-     *
-     * @return \AppBundle\Entity\Users
-     */
-    public function getIdRecipient()
-    {
-        return $this->idRecipient;
+    function setSender(\AppBundle\Entity\Users $sender) {
+        $this->sender = $sender;
     }
 }
 

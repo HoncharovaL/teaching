@@ -2,19 +2,28 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Subjects
+ *
+ * @ORM\Table(name="Subjects", indexes={@ORM\Index(name="id_stype", columns={"id_stype"})})
+ * @ORM\Entity
  */
 class Subjects
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="currency", type="string", length=100, nullable=false)
      */
     private $subject;
 
     /**
      * @var integer
      * 
+     * @ORM\Column(name="id_subject", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idSubject;
     
@@ -27,8 +36,8 @@ class Subjects
      * })
      */
     private $idStype;
-
-
+    
+   
     /**
      * Set subject
      *

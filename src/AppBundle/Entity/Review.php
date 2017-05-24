@@ -1,38 +1,62 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
- * Review
+ * Ad
+ *
+ * @ORM\Table(name="Review", indexes={@ORM\Index(name="id_ad", columns={"id_ad"}), @ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Entity
  */
 class Review
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="review", type="text", length=65535, nullable=false)
      */
     private $review;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="rdate", type="date", nullable=false)
      */
-    private $date;
+    private $rdate;
 
-    /**
+
+        /**
      * @var integer
+     *
+     * @ORM\Column(name="id_review", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idReview;
 
     /**
      * @var \AppBundle\Entity\Ad
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad", inversedBy="review")
+     * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")
      */
-    private $idAd;
+    private $ad;
+
 
     /**
      * @var \AppBundle\Entity\Users
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users", inversedBy="review")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
      */
-    private $idUser;
+    private $user;
+    function getUser(): \AppBundle\Entity\Users {
+        return $this->user;
+    }
 
+    function setUser(\AppBundle\Entity\Users $user) {
+        $this->user = $user;
+    }
 
+    
     /**
      * Set review
      *
@@ -57,28 +81,12 @@ class Review
         return $this->review;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Review
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
+       function getRdate(): \DateTime {
+        return $this->rdate;
     }
 
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
+    function setRdate(\DateTime $rdate) {
+        $this->rdate = $rdate;
     }
 
     /**
@@ -91,52 +99,13 @@ class Review
         return $this->idReview;
     }
 
-    /**
-     * Set idAd
-     *
-     * @param \AppBundle\Entity\Ad $idAd
-     *
-     * @return Review
-     */
-    public function setIdAd(\AppBundle\Entity\Ad $idAd = null)
-    {
-        $this->idAd = $idAd;
-
-        return $this;
+       function getAd(): \AppBundle\Entity\Ad {
+        return $this->ad;
     }
 
-    /**
-     * Get idAd
-     *
-     * @return \AppBundle\Entity\Ad
-     */
-    public function getIdAd()
-    {
-        return $this->idAd;
+    function setAd(\AppBundle\Entity\Ad $ad) {
+        $this->ad = $ad;
     }
 
-    /**
-     * Set idUser
-     *
-     * @param \AppBundle\Entity\Users $idUser
-     *
-     * @return Review
-     */
-    public function setIdUser(\AppBundle\Entity\Users $idUser = null)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return \AppBundle\Entity\Users
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
 }
 

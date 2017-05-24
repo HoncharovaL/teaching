@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subjects list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Idsubject</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td><a href="{{ path('subjects_show', { 'idSubject': subject.idSubject }) }}">{{ subject.subject }}</a></td>
+                <td>{{ subject.idSubject }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('subjects_show', { 'idSubject': subject.idSubject }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('subjects_edit', { 'idSubject': subject.idSubject }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subjects_new') }}">Create a new subject</a>
+        </li>
+    </ul>
+{% endblock %}

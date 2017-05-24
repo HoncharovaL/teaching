@@ -2,13 +2,20 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * SubjectType
+ *
+ * @ORM\Table(name="subject_type")
+ * @ORM\Entity
  */
 class SubjectType
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="stype", type="string", length=100, nullable=false)
      */
     private $stype;
     /**
@@ -72,20 +79,16 @@ class SubjectType
         return $this->subjects;
     }
     
-     public function __construct() {
-        $this->subjects = new ArrayCollection();
-    }
-    
-     /**
+    /**
      * Add subject
      *
      * @param \AppBundle\Entity\Subjects $subject
      *
      * @return SubjectType
      */
-    public function addSubject(\AppBundle\Entity\SubjectType $subject)
+    public function addSubject(\AppBundle\Entity\Subjects $subject)
     {
-        $subject->setIdDogs($this);
+        $subject->setIdStype($this);
         $this->subjects->add($subject);
 
         return $this;
@@ -94,11 +97,20 @@ class SubjectType
     /**
      * Remove subject
      *
-     * @param \AppBundle\Entity\SubjectType $subject
+     * @param \AppBundle\Entity\Subjects $subject
      */
-    public function removeDogtitle(\AppBundle\Entity\SubjectType $subject)
+    public function removeSubject(\AppBundle\Entity\Subjects $subject)
     {
         $this->subjects->removeElement($subject);
     }
+     public function __construct() {
+        $this->subjects = new ArrayCollection();
+    }
+    
+ 
+    public function __toString() {
+        return $this->stype;
+    }
+
 }
 

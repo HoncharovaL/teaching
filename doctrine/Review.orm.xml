@@ -13,13 +13,13 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="date" type="datetime" column="date" nullable="false"/>
-    <many-to-one field="idAd" target-entity="Ad" fetch="LAZY">
+    <field name="rdate" type="datetime" column="rdate" nullable="false"/>
+    <many-to-one field="ad" target-entity="Ad" fetch="LAZY">
       <join-columns>
         <join-column name="id_ad" referenced-column-name="id_ad"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idUser" target-entity="Users" fetch="LAZY">
+    <many-to-one field="user" target-entity="Users" fetch="LAZY">
       <join-columns>
         <join-column name="id_user" referenced-column-name="id_user"/>
       </join-columns>

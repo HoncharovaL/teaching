@@ -51,7 +51,7 @@ class SubjectTypeController extends Controller
             return $this->redirectToRoute('subjecttype_show', array('idStype' => $subjectType->getIdstype()));
         }
 
-        return $this->render('subjecttype/new.html.twig', array(
+        return $this->render('subjecttype/edit.html.twig', array(
             'subjectType' => $subjectType,
             'form' => $form->createView(),
         ));
@@ -86,6 +86,7 @@ class SubjectTypeController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->persist($subjectType);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('subjecttype_edit', array('idStype' => $subjectType->getIdstype()));
@@ -93,7 +94,7 @@ class SubjectTypeController extends Controller
 
         return $this->render('subjecttype/edit.html.twig', array(
             'subjectType' => $subjectType,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

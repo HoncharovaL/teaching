@@ -2,37 +2,71 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * AdQuery
+ *
+ * @ORM\Table(name="ad_query", indexes={@ORM\Index(name="id_ad", columns={"id_ad"}), @ORM\Index(name="id_user", columns={"id_user"}), @ORM\Index(name="id_teacher", columns={"id_teacher"})})
+ * @ORM\Entity
  */
 class AdQuery
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="confirm", type="integer")
      */
     private $confirm;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_query", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idQuery;
 
     /**
      * @var \AppBundle\Entity\Ad
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")
+     * })
      */
-    private $idAd;
+    private $ad;
 
-    /**
+
+        /**
      * @var \AppBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
      */
-    private $idUser;
+    private $user;
 
-    /**
+
+        /**
      * @var \AppBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_teacher", referencedColumnName="id_user")
+     * })
      */
-    private $idTeacher;
+    private $teacher;
+    function getTeacher(): \AppBundle\Entity\Users {
+        return $this->teacher;
+    }
 
+    function setTeacher(\AppBundle\Entity\Users $teacher) {
+        $this->teacher = $teacher;
+    }
 
+    
     /**
      * Set confirm
      *
@@ -67,76 +101,21 @@ class AdQuery
         return $this->idQuery;
     }
 
-    /**
-     * Set idAd
-     *
-     * @param \AppBundle\Entity\Ad $idAd
-     *
-     * @return AdQuery
-     */
-    public function setIdAd(\AppBundle\Entity\Ad $idAd = null)
-    {
-        $this->idAd = $idAd;
-
-        return $this;
+       function getAd(): \AppBundle\Entity\Ad {
+        return $this->ad;
     }
 
-    /**
-     * Get idAd
-     *
-     * @return \AppBundle\Entity\Ad
-     */
-    public function getIdAd()
-    {
-        return $this->idAd;
+    function setAd(\AppBundle\Entity\Ad $ad) {
+        $this->ad = $ad;
+    }
+       function getUser(): \AppBundle\Entity\Users {
+        return $this->user;
     }
 
-    /**
-     * Set idUser
-     *
-     * @param \AppBundle\Entity\Users $idUser
-     *
-     * @return AdQuery
-     */
-    public function setIdUser(\AppBundle\Entity\Users $idUser = null)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
+    function setUser(\AppBundle\Entity\Users $user) {
+        $this->user = $user;
     }
 
-    /**
-     * Get idUser
-     *
-     * @return \AppBundle\Entity\Users
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-
-    /**
-     * Set idTeacher
-     *
-     * @param \AppBundle\Entity\Users $idTeacher
-     *
-     * @return AdQuery
-     */
-    public function setIdTeacher(\AppBundle\Entity\Users $idTeacher = null)
-    {
-        $this->idTeacher = $idTeacher;
-
-        return $this;
-    }
-
-    /**
-     * Get idTeacher
-     *
-     * @return \AppBundle\Entity\Users
-     */
-    public function getIdTeacher()
-    {
-        return $this->idTeacher;
-    }
+   
 }
 

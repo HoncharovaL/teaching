@@ -5,26 +5,22 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
-
-
-class SubjectTypeType extends AbstractType
+class UsersType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('stype', null, array('label' =>'Категория'))
-                ->add('subjects', CollectionType::class, [
+        $builder->add('name')->add('patronymic')->add('surname')->add('login')->add('password')
+                ->add('email')->add('rating')->add('regdate')->add('photo')
+                ->add('phone')->add('about')
+                 ->add('photoFile', VichImageType::class, [
                     'required' => false,
-                    'by_reference' => false,
-                    'entry_type' => SubjectsType::class,
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'prototype' => true,
+                    'allow_delete' => true, // optional, default is true
+                    'download_link' => true, // optional, default is true
                 ]);
     }
     
@@ -34,7 +30,7 @@ class SubjectTypeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\SubjectType'
+            'data_class' => 'AppBundle\Entity\Users'
         ));
     }
 
@@ -43,7 +39,7 @@ class SubjectTypeType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_subjecttype';
+        return 'appbundle_users';
     }
 
 

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ad</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Adate</th>
+                <td>{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Adtext</th>
+                <td>{{ ad.adText }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ ad.price }}</td>
+            </tr>
+            <tr>
+                <th>Currency</th>
+                <td>{{ ad.currency }}</td>
+            </tr>
+            <tr>
+                <th>Durability</th>
+                <td>{{ ad.durability }}</td>
+            </tr>
+            <tr>
+                <th>Value</th>
+                <td>{{ ad.value }}</td>
+            </tr>
+            <tr>
+                <th>Dateserv</th>
+                <td>{% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idad</th>
+                <td>{{ ad.idAd }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ad_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

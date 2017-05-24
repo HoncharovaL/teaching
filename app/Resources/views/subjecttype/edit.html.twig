@@ -1,21 +1,80 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Subjecttype edit</h1>
+    <h1>Корректировка справочника дисциплин</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    {{ form_start(form) }}
+    {{ form_row(form.stype)}}
+    {# store the prototype on the data-prototype attribute #}
+    <ul class="form-collection-container" data-count="{{ form.subjects|length }}" id="titles-fields-list"
+        data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
+        {% for subject in form.subjects %}
+            <li>
+                {{ form_errors(subject) }}
+                {{ form_widget(subject) }}
+            </li>
+        {% endfor %}
+        <a href="#" class="add-new-element" >Добавить дисциплину</a>
+    </ul>
+     {% do form.subjects.setRendered %}
+    <input type="submit" value="Сохранить"/>
 
+    {{ form_end(form) }}
+
+    {% if delete_form is defined %}
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Удалить">
+        {{ form_end(delete_form) }}
+    {% endif %}
     <ul>
         <li>
-            <a href="{{ path('subjecttype_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('homepage') }}">На главную</a>
         </li>
     </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('.form-collection-container .add-new-element').on('click', function (e) {
+                e.preventDefault();
+
+                var list = $(this).parents('.form-collection-container');
+
+                // grab the prototype template
+                var newWidget = list.attr('data-prototype');
+                var count = list.data('count');
+                newWidget = newWidget.replace(/__name__/g, count);
+                count++;
+                list.data('count', count);
+
+                // create a new list element and add it to the list
+                var newLi = $('<li></li>').html(newWidget);
+                newLi.appendTo(list);
+                addDeleteLink(newLi);
+            });
+
+            // add a delete link to all of the existing tag form li elements
+            $('.form-collection-container').find('li').each(function () {
+                addDeleteLink($(this));
+            });
+
+            function addDeleteLink($formLi) {
+                var $removeLi = $('<a href="#">"Удалить"</a>');
+                $formLi.append($removeLi);
+
+                $removeLi.on('click', function (e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // remove the li for the tag form
+                    $formLi.remove();
+                });
+            }
+        });
+    </script>
 {% endblock %}

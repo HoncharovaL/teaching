@@ -1,28 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Subjecttypes list</h1>
+    <h1>Справочник дисциплин</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Stype</th>
-                <th>Idstype</th>
-                <th>Actions</th>
+                <th>Тип дисциплины</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
         {% for subjectType in subjectTypes %}
             <tr>
                 <td><a href="{{ path('subjecttype_show', { 'idStype': subjectType.idStype }) }}">{{ subjectType.stype }}</a></td>
-                <td>{{ subjectType.idStype }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('subjecttype_show', { 'idStype': subjectType.idStype }) }}">show</a>
+                            <a href="{{ path('subjecttype_show', { 'idStype': subjectType.idStype }) }}">Показать</a>
                         </li>
                         <li>
-                            <a href="{{ path('subjecttype_edit', { 'idStype': subjectType.idStype }) }}">edit</a>
+                            <a href="{{ path('subjecttype_edit', { 'idStype': subjectType.idStype }) }}">Корректировать</a>
                         </li>
                     </ul>
                 </td>
@@ -33,7 +31,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('subjecttype_new') }}">Create a new subjectType</a>
+            <a href="{{ path('subjecttype_new') }}">Новая дисциплина</a>
         </li>
     </ul>
 {% endblock %}

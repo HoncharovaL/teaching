@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Subjecttype</h1>
+    <h1>Дисциплина</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Stype</th>
+                <th>Дисциплина</th>
                 <td>{{ subjectType.stype }}</td>
             </tr>
         </tbody>
     </table>
-{% for subject in subjectType.subjects %}
-{{subject.subjects}}
+{% for subj in subjectType.subjects %}
+{{subj.subject}}
 {% endfor %}
     <ul>
         <li>
-            <a href="{{ path('subjecttype_index') }}">Back to the list</a>
+            <a href="{{ path('subjecttype_index') }}">Назад</a>
         </li>
         <li>
-            <a href="{{ path('subjecttype_edit', { 'idStype': subjectType.idStype }) }}">Edit</a>
+            <a href="{{ path('subjecttype_edit', { 'idStype': subjectType.idStype }) }}">Корректировать</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Удалить">
             {{ form_end(delete_form) }}
         </li>
     </ul>

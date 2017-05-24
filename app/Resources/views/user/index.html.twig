@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Users list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Patronymic</th>
+                <th>Surname</th>
+                <th>Photo</th>
+                <th>Phone</th>
+                <th>About</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.patronymic }}</td>
+                <td>{{ user.surname }}</td>
+                <td> <img src="{{photo_path}}{{user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.about }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

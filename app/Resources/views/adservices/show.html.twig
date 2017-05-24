@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Подробно о сервисе</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Сервис</th>
+                <td>{{ adService.services }}</td>
+            </tr>
+            <tr>
+                <th>Цена, грн</th>
+                <td>{{ adService.price }}</td>
+            </tr>
+            <tr>
+                <th>Описание</th>
+                <td>{{ adService.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('adservices_index') }}">К списку</a>
+        </li>
+        <li>
+            <a href="{{ path('adservices_edit', { 'idServices': adService.idServices }) }}">Корректировать</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Удалить">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

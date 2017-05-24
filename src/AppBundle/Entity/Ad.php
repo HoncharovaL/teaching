@@ -2,89 +2,128 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Ad
+ *
+ * @ORM\Table(name="Ad", indexes={@ORM\Index(name="id_services", columns={"id_services"}), @ORM\Index(name="id_subject", columns={"id_subject"}), @ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Entity
  */
 class Ad
 {
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="adate", type="date", nullable=false)
      */
-    private $date;
+    private $adate;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="ad_text", type="text", length=65535, nullable=false)
      */
     private $adText;
 
-    /**
+        /**
      * @var integer
+     *
+     * @ORM\Column(name="price", type="integer")
      */
     private $price;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="currency", type="string", length=100, nullable=false)
      */
     private $currency;
 
-    /**
+        /**
      * @var integer
+     *
+     * @ORM\Column(name="durability", type="integer")
      */
     private $durability;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=100, nullable=false)
      */
     private $value;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_serv", type="date", nullable=false)
      */
     private $dateServ;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_ad", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idAd;
 
     /**
      * @var \AppBundle\Entity\AdServices
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AdServices")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_services", referencedColumnName="id_services")
+     * })
      */
-    private $idServices;
+    private $services;
 
     /**
      * @var \AppBundle\Entity\Subjects
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Subjects")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_subject", referencedColumnName="id_subject")
+     * })
      */
-    private $idSubject;
+    private $subject;
+
 
     /**
      * @var \AppBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
      */
-    private $idUser;
+    private $user;
 
 
-    /**
+
+        /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \DateTime $adate
      *
      * @return Ad
      */
-    public function setDate($date)
+    public function setAdate($adate)
     {
-        $this->date = $date;
+        $this->adate = $adate;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get adate
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getAdate()
     {
-        return $this->date;
+        return $this->adate;
     }
 
     /**
@@ -241,76 +280,26 @@ class Ad
         return $this->idAd;
     }
 
-    /**
-     * Set idServices
-     *
-     * @param \AppBundle\Entity\AdServices $idServices
-     *
-     * @return Ad
-     */
-    public function setIdServices(\AppBundle\Entity\AdServices $idServices = null)
-    {
-        $this->idServices = $idServices;
-
-        return $this;
+    function getServices(): \AppBundle\Entity\AdServices  {
+        return $this->services;
     }
 
-    /**
-     * Get idServices
-     *
-     * @return \AppBundle\Entity\AdServices
-     */
-    public function getIdServices()
-    {
-        return $this->idServices;
+    function setServices(\AppBundle\Entity\AdServices $services= null) {
+        $this->services = $services;
+    }
+        function getSubject(): \AppBundle\Entity\Subjects {
+        return $this->subject;
     }
 
-    /**
-     * Set idSubject
-     *
-     * @param \AppBundle\Entity\Subjects $idSubject
-     *
-     * @return Ad
-     */
-    public function setIdSubject(\AppBundle\Entity\Subjects $idSubject = null)
-    {
-        $this->idSubject = $idSubject;
-
-        return $this;
+    function setSubject(\AppBundle\Entity\Subjects $subject) {
+        $this->subject = $subject;
+    }
+        function getUser(): \AppBundle\Entity\Users {
+        return $this->user;
     }
 
-    /**
-     * Get idSubject
-     *
-     * @return \AppBundle\Entity\Subjects
-     */
-    public function getIdSubject()
-    {
-        return $this->idSubject;
-    }
-
-    /**
-     * Set idUser
-     *
-     * @param \AppBundle\Entity\Users $idUser
-     *
-     * @return Ad
-     */
-    public function setIdUser(\AppBundle\Entity\Users $idUser = null)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return \AppBundle\Entity\Users
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
+    function setUser(\AppBundle\Entity\Users $user) {
+        $this->user = $user;
     }
 }
 

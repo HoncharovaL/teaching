@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Новая дисциплина</h1>
+    <h1>Создание сервиса</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('subjecttype_index') }}">Возврат к списку</a>
+            <a href="{{ path('adservices_index') }}">К списку</a>
         </li>
     </ul>
 {% endblock %}

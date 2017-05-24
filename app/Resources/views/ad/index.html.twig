@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ads list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Adate</th>
+                <th>Adtext</th>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>Durability</th>
+                <th>Value</th>
+                <th>Dateserv</th>
+                <th>Idad</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ad in ads %}
+            <tr>
+                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{{ ad.adate }}</a></td>
+                <td>{{ ad.adText }}</td>
+                <td>{{ ad.price }}</td>
+                <td>{{ ad.currency }}</td>
+                <td>{{ ad.durability }}</td>
+                <td>{{ ad.value }}</td>
+                <td>{% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ ad.idAd }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ad_new') }}">Create a new ad</a>
+        </li>
+    </ul>
+{% endblock %}

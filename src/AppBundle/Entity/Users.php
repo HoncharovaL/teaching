@@ -2,73 +2,190 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Users
+ *
+ * @ORM\Table(name="Users")
+ * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Users
 {
+/**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="photo_image", fileNameProperty="photo")
+     * 
+     * @var File
+     */
+   private $photoFile;
+
+   
+     /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Users
+     */
+    public function setPhotoFile(File $image = null)
+    {
+        $this->photoFile = $image;
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+/**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+    function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    function setUpdatedAt(\DateTime $updatedAt=null) {
+        $this->updatedAt = $updatedAt;
+    }
+
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="patronymic", type="string", length=100, nullable=false)
      */
     private $patronymic;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=100, nullable=false)
      */
     private $surname;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=100, nullable=false)
      */
     private $login;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=100, nullable=false)
      */
     private $password;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(name="email", type="string", length=100, nullable=false)
      */
     private $email;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="rating", type="integer")
      */
     private $rating;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="regdate", type="date", nullable=false)
      */
     private $regdate;
 
-    /**
+        /**
      * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=300, nullable=true)
      */
     private $photo;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(name="phone", type="string", length=100, nullable=false)
      */
     private $phone;
-
-    /**
+    
+        /**
      * @var string
+     * 
+     * @ORM\Column(name="role", type="string", length=100, nullable=false)
+     */
+    private $role;
+    function getRole() {
+        return $this->role;
+    }
+
+    function setRole($role) {
+        $this->role = $role;
+    }
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
      */
     private $about;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_user", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idUser;
 
+        /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_fos_user", type="bigint")
+     */
+    private $idFosUser;
+    function getIdFosUser() {
+        return $this->idFosUser;
+    }
 
-    /**
+    function setIdFosUser($idFosUser) {
+        $this->idFosUser = $idFosUser;
+    }
+
+        /**
      * Set name
      *
      * @param string $name
@@ -340,6 +457,9 @@ class Users
     public function getIdUser()
     {
         return $this->idUser;
+    }
+        public function __construct() {
+        $this->updatedAt = new \DateTime();
     }
 }
 

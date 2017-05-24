@@ -1,107 +1,78 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Complaints
+ *
+ * @ORM\Table(name="Complaints", indexes={@ORM\Index(name="id_ad", columns={"id_ad"}), @ORM\Index(name="id_mes", columns={"id_mes"}), @ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Entity
  */
 class Complaints
 {
     /**
-     * @var integer
+     * @var \AppBundle\Entity\Ad
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad", inversedBy="complaints")
+     * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")
      */
-    private $idAd;
-
+    private $ad;
     /**
-     * @var integer
+     * @var \AppBundle\Entity\Messages
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Messages", inversedBy="complaints")
+     * @ORM\JoinColumn(name="id_mes", referencedColumnName="id_mes")
      */
-    private $idMes;
+    private $mes;
 
-    /**
+        /**
      * @var string
+     *
+     * @ORM\Column(name="act", type="string", length=100, nullable=false)
      */
     private $act;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_act", type="date", nullable=false)
      */
     private $dateAct;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_end", type="date", nullable=false)
      */
     private $dateEnd;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_complaints", type="date", nullable=false)
      */
     private $dateComplaints;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_complaints", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idComplaints;
 
     /**
      * @var \AppBundle\Entity\Users
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users", inversedBy="review")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
      */
-    private $idSender;
-
-
-    /**
-     * Set idAd
-     *
-     * @param integer $idAd
-     *
-     * @return Complaints
-     */
-    public function setIdAd($idAd)
-    {
-        $this->idAd = $idAd;
-
-        return $this;
-    }
-
-    /**
-     * Get idAd
-     *
-     * @return integer
-     */
-    public function getIdAd()
-    {
-        return $this->idAd;
-    }
-
-    /**
-     * Set idMes
-     *
-     * @param integer $idMes
-     *
-     * @return уomplaints
-     */
-    public function setIdMes($idMes)
-    {
-        $this->idMes = $idMes;
-
-        return $this;
-    }
-
-    /**
-     * Get idMes
-     *
-     * @return integer
-     */
-    public function getIdMes()
-    {
-        return $this->idMes;
-    }
+    private $user;
 
     /**
      * Set act
      *
      * @param string $act
      *
-     * @return уomplaints
+     * @return Complaints
      */
     public function setAct($act)
     {
@@ -125,7 +96,7 @@ class Complaints
      *
      * @param \DateTime $dateAct
      *
-     * @return уomplaints
+     * @return Complaints
      */
     public function setDateAct($dateAct)
     {
@@ -149,7 +120,7 @@ class Complaints
      *
      * @param \DateTime $dateEnd
      *
-     * @return уomplaints
+     * @return Complaints
      */
     public function setDateEnd($dateEnd)
     {
@@ -173,7 +144,7 @@ class Complaints
      *
      * @param \DateTime $dateComplaints
      *
-     * @return уomplaints
+     * @return Complaints
      */
     public function setDateComplaints($dateComplaints)
     {
@@ -202,28 +173,31 @@ class Complaints
         return $this->idComplaints;
     }
 
-    /**
-     * Set idSender
-     *
-     * @param \AppBundle\Entity\Users $idSender
-     *
-     * @return уomplaints
-     */
-    public function setIdSender(\AppBundle\Entity\Users $idSender = null)
-    {
-        $this->idSender = $idSender;
-
-        return $this;
+   
+    
+        function getAd(): \AppBundle\Entity\Ad {
+        return $this->ad;
     }
 
-    /**
-     * Get idSender
-     *
-     * @return \AppBundle\Entity\Users
-     */
-    public function getIdSender()
-    {
-        return $this->idSender;
+    function getMes(): \AppBundle\Entity\Messages {
+        return $this->mes;
     }
+
+    function getUser(): \AppBundle\Entity\Users {
+        return $this->user;
+    }
+
+    function setAd(\AppBundle\Entity\Ad $ad) {
+        $this->ad = $ad;
+    }
+
+    function setMes(\AppBundle\Entity\Messages $mes) {
+        $this->mes = $mes;
+    }
+
+    function setUser(\AppBundle\Entity\Users $user) {
+        $this->user = $user;
+    }
+
 }
 

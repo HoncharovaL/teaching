@@ -9,7 +9,7 @@
     <id name="idAd" type="bigint" column="id_ad">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="date" type="date" column="date" nullable="false"/>
+    <field name="adate" type="date" column="adate" nullable="false"/>
     <field name="adText" type="text" column="ad_text" length="65535" nullable="false">
       <options>
         <option name="fixed"/>
@@ -36,17 +36,17 @@
       </options>
     </field>
     <field name="dateServ" type="date" column="date_serv" nullable="false"/>
-    <many-to-one field="idServices" target-entity="AdServices" fetch="LAZY">
+    <many-to-one field="services" target-entity="AdServices" fetch="LAZY">
       <join-columns>
         <join-column name="id_services" referenced-column-name="id_services"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idSubject" target-entity="Subjects" fetch="LAZY">
+    <many-to-one field="subject" target-entity="Subjects" fetch="LAZY">
       <join-columns>
         <join-column name="id_subject" referenced-column-name="id_subject"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idUser" target-entity="Users" fetch="LAZY">
+    <many-to-one field="user" target-entity="Users" fetch="LAZY">
       <join-columns>
         <join-column name="id_user" referenced-column-name="id_user"/>
       </join-columns>
