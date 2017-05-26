@@ -2,16 +2,65 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}howSmart{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/app/css/main.css') }}" rel="stylesheet">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}
-        
-        {% endblock %}
+        <div class="container"> 
+            {% block all %}
+                {% block header %}
+                    <div class="header-container">
+                        <div class="header-logo">
+                            <a href="{{path("homepage")}}">
+                                <img class="logo-header" src="{{ asset('bundles/app/img/logo-white.png') }}">
+                            </a>
+                        </div>
+                        <div class="menu-container">
+                            <div class="menu-item">
+                                <a class='menu-href'>Найти репетитора</a>
+                            </div>
+                            <div class="menu-item">
+                                <a class='menu-href'>Подать объявление</a>
+                            </div>
+                            
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <div class="dropdownbtn menu-item">
+                                    <a class='menu-href' href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
+                                    <div class="dropdown-content">
+                                        <div class=" dropdown-item">
+                                            <a class='menu-href' href="http://teaching/app_dev.php/logout">Выход</a>  
+                                        </div> 
+                                        {% if app.user.getRole()=='admin'%}
+                                            <div class="dropdown-item">
+                                                <a class='menu-href' href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <a class='menu-href' href="{{ path('adservices_index') }}">Справочник услуг</a>
+                                            </div>
+                                        {%endif%}
+                                    </div>
+                                </div> 
+                            {% else %}
+                                <div class="menu-item"><a class="menu-href" href="http://teaching/app_dev.php/login">Вход</a></div>
+                                <div class="menu-item"><a class="menu-href" href="http://teaching/app_dev.php/register/">Регистрация</a></div>
+                            {%endif%}
+                        </div>
+                    </div>
+                {% endblock %}
+                {% block body %}
+                {% endblock %}
+                {% block footer %}
+                    <div class="footer">
+                        <img class="logo-footer" src="{{ asset('bundles/app/img/logo-orange.png') }}">
+                    </div>
+                {% endblock %}
+            {%endblock%}
+        </div>
         {% block javascripts %}
-    <script type="text/javascript" src="{{asset("bundles/app/js/jquery-3.2.1.min.js")}}"></script>
-{% endblock %}
+            <script src="{{asset('bundles/app/js/jquery-3.2.1.min.js')}}"></script>
+        {% endblock %}
     </body>
 </html>

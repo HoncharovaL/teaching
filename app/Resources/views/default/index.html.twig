@@ -1,17 +1,76 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-            
-            <a href="http://teaching/app_dev.php/login">Вход</a>
-            
-            <a href="http://teaching/app_dev.php/register/">Регистрация</a>
-            
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-               <a href="http://teaching/app_dev.php/logout">Выход</a>
-               <a href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
-               {% if app.user.getRole()=='admin'%}
-               <a href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
-               <a href="{{ path('adservices_index') }}">Справочник услуг</a>
-                {%endif%}
-            {%endif%}
+    <div class="container">
+
+        <div class="header-bottom">
+            <div class="howsmart-head">
+                <div>HOWSMART.UA</div>
+                <div>Лучшие репетиторы Украины</div>                
+            </div>
+            <div class="howsmart-about">
+                <div>Нужен репетитор?</div>
+                <div>С помощью howsmart ищите репетитора в своем городе или учитесь онлайн.</div>
+                <div>Мы поможем вам стать умнее!</div>
+            </div>
+        </div>
+        <div class="serrated-yellow search-container">
+            <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
+        </div>
+        <div class="extra-search-container hidden">
+
+        </div>
+        {#            {% if name | length%}#}
+        <div class="cv-top-list serrated-gray">
+            <div class="teacher-list-item">
+                <div class="teacher-photo">
+                    <img src="{{ asset('bundles/app/img/test.jpg') }}">
+                </div>
+                <div class="teacher-info">
+                    <div class="teacher-info-head">
+                        <div class="left-col">
+                            <div class="teacher-name">victor ivanovich bubachev</div>
+                            <div class="teacher-subjects"> math english</div>
+                        </div>
+                        <div class="right-col">
+                            <div class="teacher-rating">
+                                4.3
+                            </div>
+                            <div class="teacher-reviews"> 23 отзыва</div>
+                        </div>
+                    </div>
+                    <div class="teacher-info-description">
+                        blablabla
+                    </div>
+                    <div class="teacher-info-bottom">
+                        <div class="teacher-city">
+                            <div>city</div>
+                            <div>district</div>
+                        </div>
+                        <div class="teacher-type">online</div>
+                        <div class="teacher-education">education</div>
+                        <div class="teacher-experience">experience</div>
+                        <div class="teacher-price">price</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#            {% endif %}#}
+        <div class="place-cv">
+            <div class="place-cv-text">
+                <div class="place-cv-head">
+                    Разместите своё резюме!
+                </div>
+                <div>
+                    Ученики смогут найти вас и предложить отличную работу.
+                </div>
+            </div>
+            <div class="place-cv-button">
+                <a class="green-button">Создать резюме</a>
+            </div>
+        </div>
+        <div class="cities-container">
+
+        </div>
+    </div>
 {% endblock %}
