@@ -48,7 +48,7 @@ class SubjectTypeController extends Controller
             $em->persist($subjectType);
             $em->flush();
 
-            return $this->redirectToRoute('subjecttype_show', array('idStype' => $subjectType->getIdstype()));
+            return $this->redirectToRoute('subjecttype_index');
         }
 
         return $this->render('subjecttype/edit.html.twig', array(

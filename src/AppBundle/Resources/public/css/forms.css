@@ -1,0 +1,56 @@
+input[type="text"], textarea, select, input[type="password"] {
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+select {
+    background-color: #f3f3f3;
+}
+
+textarea {
+    resize: none;
+}
+
+label {
+    padding-right: 20px;
+}
+
+.save-button {
+    background-color: #7b8e1f;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-decoration: none;
+    margin: 5px 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-button {
+    background-color: #ccc;
+    border: none;
+    color: white !important;
+    padding: 10px 32px;
+    text-decoration: none;
+    margin: 5px 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.popup-delete-button:hover {
+    background: #fcab01;
+}
+.popup-content{
+    text-align: center;
+}
+
+

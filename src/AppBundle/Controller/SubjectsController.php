@@ -88,7 +88,7 @@ class SubjectsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('subjects_edit', array('idSubject' => $subject->getIdsubject()));
+            return $this->redirectToRoute('subjecttype_index', array('idSubject' => $subject->getIdsubject()));
         }
 
         return $this->render('subjects/edit.html.twig', array(

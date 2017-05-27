@@ -5,6 +5,8 @@
         <title>{% block title %}howSmart{% endblock %}</title>
         {% block stylesheets %}
             <link href="{{ asset('bundles/app/css/main.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/app/css/colorbox.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/app/css/forms.css') }}" rel="stylesheet">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -25,7 +27,7 @@
                             <div class="menu-item">
                                 <a class='menu-href'>Подать объявление</a>
                             </div>
-                            
+
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <div class="dropdownbtn menu-item">
                                     <a class='menu-href' href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
@@ -61,6 +63,10 @@
         </div>
         {% block javascripts %}
             <script src="{{asset('bundles/app/js/jquery-3.2.1.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset("bundles/app/js/jquery.colorbox-min.js")}}"></script>
+            <script type='text/javascript'>
+                $('a.colorbox-ajax-form').colorbox({closeButton: false});
+            </script>
         {% endblock %}
     </body>
 </html>

@@ -55,6 +55,7 @@ body{
     padding: 5px 0;
 }
 a{
+    color: black;
     text-decoration: none;
     cursor: pointer;   
 }
@@ -207,7 +208,7 @@ body{
 .extra-search-button{
     color:white;
     border-bottom:  1px white dashed;
-    
+
 }
 .teacher-photo, .teacher-info{
     display: inline-block;
@@ -226,17 +227,16 @@ body{
 }
 .teacher-photo img{
     max-width:300px;
-    max-height: 400px;
+    max-height: 300px;
     object-fit: contain;
 }
-
 .teacher-info-head{
     background-color: #facb01;
     height: 40px;
     color:white;
     padding: 15px 20px;
 }
-.teacher-list-item:after{
+.teacher-list-item:after, .subjecttype-name:after, .subject-item:after, .buttons-container:after{
     content: '.';
     float: none;
     display: block;
@@ -267,11 +267,11 @@ body{
 }
 .teacher-info{
     background-color: white;
-    height: 400px;
+    height: 300px;
 }
 .teacher-info-description{
     margin: 30px 20px;
-    height: 220px;
+    height: 120px;
     color: black; 
 }
 .teacher-info-bottom{
@@ -309,3 +309,97 @@ body{
     color: #7b8e1f;
     width:75px;
 }
+.edit-image, .view-image, .delete-image, .new-image{
+    width: 15px;
+    height: 15px;
+    object-fit: contain; 
+}
+
+.subjecttype-container,
+.edit-container{
+    width: 400px;
+    margin: 30px auto;
+    background-color: white;
+}
+.edit-container{
+    text-align: center;
+}
+.orange-header{
+    height: 50px;
+    background-color: #facb01;
+    width: 100%;
+    line-height: 50px;
+    color: white;
+    font-size: 14px;
+}
+.orange-header a{
+    color: white;
+}
+.list-text-container, .list-button-container{
+    display:inline-block;
+    padding: 0 10px; 
+}
+
+.list-text-container{
+    float: left;
+}
+.list-button-container{
+    float: right;
+    text-align: right;
+}
+.subjecttype-list{
+    background-color: white;
+}
+
+.subjecttype-list .subjecttype-item{
+    padding: 10px;
+    border-bottom: 1px #f2f2f2 solid;
+}
+
+.subject-list .subject-item{
+    padding-top: 10px;
+    padding-left: 15px;
+
+}
+.popup{
+    width: 600px;
+}
+.popup-header{
+
+    background-image: url(../img/header-top.png);
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+    height: 45px;
+}
+.popup-header .text{
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 45px;
+}
+.buttons-container .left, .buttons-container .right{
+    display: inline-block;
+}
+.buttons-container .left{
+    float: left;
+}
+.buttons-container .right{
+    float: right;
+}
+.subject-edit{
+    width: 500px;
+}
+.buttons-container{
+    display: block;
+    margin: 20px 0;
+}
+.popup-content{
+    display: block;
+    margin: 20px 0;
+}
+.orange-header .text-center, .subjecttype-list .text-center{
+    text-align: center;
+}
+
