@@ -69,6 +69,15 @@
                 <td>{{ ad.currency }}</td>
                 <td>{{ ad.durability }}</td>
                 <td>{{ ad.value }}</td>
+                <td>{{ ad.region }}</td>
+                <td>{{ ad.town }}</td>
+                <td>{{ ad.area }}</td>
+                <td>{{ ad.place }}</td>
+                {% if ad.online==1%}
+                    <td>Да</td>
+                {%else%}
+                    <td>Нет</td>
+                {%endif%}
 
             </tr>
         {% endfor %}
