@@ -33,8 +33,22 @@ class Review
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idReview;
-
+    
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="rating", type="integer")
+     */
+    private $rating;
+    function getRating() {
+        return $this->rating;
+    }
+
+    function setRating($rating) {
+        $this->rating = $rating;
+    }
+
+        /**
      * @var \AppBundle\Entity\Ad
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad", inversedBy="review")
      * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")

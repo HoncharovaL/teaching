@@ -7,6 +7,18 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+                    <a href="http://teaching/app_dev.php/login">Вход</a>
+            
+            <a href="http://teaching/app_dev.php/register/">Регистрация</a>
+            
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+               <a href="http://teaching/app_dev.php/logout">Выход</a>
+               <a href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
+               {% if app.user.getRole()=='admin'%}
+               <a href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
+               <a href="{{ path('adservices_index') }}">Справочник услуг</a>
+                {%endif%}
+            {%endif%}
         {% block body %}
         
         {% endblock %}

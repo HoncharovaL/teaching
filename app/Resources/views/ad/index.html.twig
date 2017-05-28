@@ -20,7 +20,7 @@
         <tbody>
         {% for ad in ads %}
             <tr>
-                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{{ ad.adate }}</a></td>
+                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>
                 <td>{{ ad.adText }}</td>
                 <td>{{ ad.price }}</td>
                 <td>{{ ad.currency }}</td>

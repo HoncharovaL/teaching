@@ -2,16 +2,25 @@
 
 {% block body %}
             
-            <a href="http://teaching/app_dev.php/login">Вход</a>
+
             
-            <a href="http://teaching/app_dev.php/register/">Регистрация</a>
-            
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-               <a href="http://teaching/app_dev.php/logout">Выход</a>
-               <a href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
-               {% if app.user.getRole()=='admin'%}
-               <a href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
-               <a href="{{ path('adservices_index') }}">Справочник услуг</a>
-                {%endif%}
-            {%endif%}
+            <h1>Объявления</h1>
+
+    <table>
+        <tbody>
+        {% for ad in ads %}
+            <tr>
+                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>
+                <td>{{ ad.adText }}</td>
+                <td>{{ ad.price }}</td>
+                <td>{{ ad.currency }}</td>
+                <td>{{ ad.durability }}</td>
+                <td>{{ ad.value }}</td>
+                <td>{{ ad.user }}</td>
+                <td>{{ ad.subject}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}

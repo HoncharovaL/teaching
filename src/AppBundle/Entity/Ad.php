@@ -72,20 +72,113 @@ class Ad
     /**
      * @var \AppBundle\Entity\AdServices
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AdServices")
-     * @ORM\JoinColumns({
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AdServices", inversedBy="ad")
      * @ORM\JoinColumn(name="id_services", referencedColumnName="id_services")
-     * })
      */
-    private $services;
 
+    private $services;
+    
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_services", type="bigint")
+     */
+    private $id_services;
+    function getId_services() {
+        return $this->id_services;
+    }
+
+    function setId_services($id_services) {
+        $this->id_services = $id_services;
+    }
+
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=100, nullable=true)
+     */
+    private $region;
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="town", type="string", length=50, nullable=true)
+     */
+    private $town;
+  
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area", type="string", length=50, nullable=true)
+     */
+    private $area;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="place", type="string", length=50, nullable=true)
+     */
+    private $place;
+   
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="online", type="integer", nullable=true)
+     */
+     private $online;
+    
+    function getOnline() {
+        return $this->online;
+    }
+
+    function setOnline($online) {
+        $this->online = $online;
+    }
+
+        function getRegion() {
+        return $this->region;
+    }
+
+    function getTown() {
+        return $this->town;
+    }
+
+    function getArea() {
+        return $this->area;
+    }
+
+    function getPlace() {
+        return $this->place;
+    }
+
+    function setRegion($region) {
+        $this->region = $region;
+    }
+
+    function setTown($town) {
+        $this->town = $town;
+    }
+
+    function setArea($area) {
+        $this->area = $area;
+    }
+
+    function setPlace($place) {
+        $this->place = $place;
+    }
+
+        function getServices(){
+        return $this->services;
+    }
+
+    function setServices($services) {
+        $this->services = $services;
+    }
+
+        /**
      * @var \AppBundle\Entity\Subjects
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Subjects")
-     * @ORM\JoinColumns({
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Subjects", inversedBy="ad")
      * @ORM\JoinColumn(name="id_subject", referencedColumnName="id_subject")
-     * })
      */
     private $subject;
 
@@ -93,10 +186,8 @@ class Ad
     /**
      * @var \AppBundle\Entity\Users
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
-     * })
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="ad")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $user;
 
@@ -280,25 +371,18 @@ class Ad
         return $this->idAd;
     }
 
-    function getServices(): \AppBundle\Entity\AdServices  {
-        return $this->services;
-    }
-
-    function setServices(\AppBundle\Entity\AdServices $services= null) {
-        $this->services = $services;
-    }
-        function getSubject(): \AppBundle\Entity\Subjects {
+    function getSubject(): \AppBundle\Entity\Subjects {
         return $this->subject;
     }
 
     function setSubject(\AppBundle\Entity\Subjects $subject) {
         $this->subject = $subject;
     }
-        function getUser(): \AppBundle\Entity\Users {
+        function getUser(): \AppBundle\Entity\User {
         return $this->user;
     }
 
-    function setUser(\AppBundle\Entity\Users $user) {
+    function setUser(\AppBundle\Entity\User $user) {
         $this->user = $user;
     }
 }

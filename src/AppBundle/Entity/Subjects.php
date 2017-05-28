@@ -95,5 +95,9 @@ class Subjects
     {
         return $this->idStype;
     }
+    
+       public function __toString() {
+       return $this->getSubject();
+    }
 }
 
