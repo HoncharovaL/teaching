@@ -25,6 +25,7 @@
             {#{% for ad in ads %}
                 <div class="teacher-list-item">
 
+            
                     <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a>
                     <div class="teacher-photo">
                         <img src="{{ asset('bundles/app/img/test.jpg') }}">
