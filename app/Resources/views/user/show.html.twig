@@ -1,35 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>Профиль</h1>
 
     <table>
         <tbody>
-           
+
             <tr>
-                <th>Name</th>
+                <th>Имя</th>
                 <td>{{ user.name }}</td>
             </tr>
             <tr>
-                <th>Patronymic</th>
+                <th>Отчество</th>
                 <td>{{ user.patronymic }}</td>
             </tr>
             <tr>
-                <th>Surname</th>
+                <th>Фамилия</th>
                 <td>{{ user.surname }}</td>
             </tr>
 
             <tr>
-                <th>Photo</th>
+                <th>Фотография</th>
                 <td> <img src="{{photo_path}}{{user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Телефон</th>
                 <td>{{ user.phone }}</td>
             </tr>
             <tr>
-                <th>About</th>
+                <th>Обо мне</th>
                 <td>{{ user.about }}</td>
+            </tr>
+            <tr>
+                <th>Рейтинг</th>
+                <td>{{ user.rating }}</td>
+            </tr>
+            <tr>
+                <th>Образование</th>
+                <td>{{ user.education}}</td>
+            </tr>
+            <tr>
+                <th>Учебное заведение</th>
+                <td>{{ user.university }}</td>
+            </tr>
+            <tr>
+                <th>Опыт работы</th>
+                <td>{{ user.experience }}</td>
             </tr>
         </tbody>
     </table>

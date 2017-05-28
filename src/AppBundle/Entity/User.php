@@ -32,7 +32,9 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->ad = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
+        $this->rating=0;
     }
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -81,32 +83,33 @@ class User extends BaseUser
      * @var \DateTime
      */
     private $updatedAt;
+    
     function getUpdatedAt() {
         return $this->updatedAt;
     }
 
-    function setUpdatedAt(\DateTime $updatedAt=null) {
+    function setUpdatedAt(\DateTime $updatedAt) {
         $this->updatedAt = $updatedAt;
     }
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="patronymic", type="string", length=100, nullable=false)
+     * @ORM\Column(name="patronymic", type="string", length=100, nullable=true)
      */
     private $patronymic;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="surname", type="string", length=100, nullable=false)
+     * @ORM\Column(name="surname", type="string", length=100, nullable=true)
      */
     private $surname;
     
@@ -120,7 +123,7 @@ class User extends BaseUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="regdate", type="date", nullable=false)
+     * @ORM\Column(name="regdate", type="date", nullable=true)
      */
     private $regdate;
 
@@ -134,16 +137,71 @@ class User extends BaseUser
     /**
      * @var string
      * 
-     * @ORM\Column(name="phone", type="string", length=100, nullable=false)
+     * @ORM\Column(name="phone", type="string", length=100, nullable=true)
      */
     private $phone;
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="education", type="string", length=300, nullable=true)
+     */
+    private $education;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="experience", type="string", length=300, nullable=true)
+     */
+    private $experience;
+    
         /**
      * @var string
+     *
+     * @ORM\Column(name="university", type="string", length=500, nullable=true)
+     */
+    private $university;
+    function getUniversity() {
+        return $this->university;
+    }
+
+    function setUniversity($university) {
+        $this->university = $university;
+    }
+
+        function getEducation() {
+        return $this->education;
+    }
+
+    function getExperience() {
+        return $this->experience;
+    }
+
+    function setEducation($education) {
+        $this->education = $education;
+    }
+
+    function setExperience($experience) {
+        $this->experience = $experience;
+    }
+
+            /**
+     * @var string
      * 
-     * @ORM\Column(name="role", type="string", length=100, nullable=false)
+     * @ORM\Column(name="role", type="string", length=100, nullable=true)
      */
     private $role;
+    /**
+     * @var \AppBundle\Entity\User
+     * 
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ad", mappedBy="user", cascade={"ALL"}, orphanRemoval=true)
+     */
+    private $ad= [];
+    
+    function getId() {
+        return $this->id;
+    }
+
     function getRole() {
         return $this->role;
     }
@@ -155,7 +213,7 @@ class User extends BaseUser
      /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
     private $about;
     
@@ -348,6 +406,50 @@ class User extends BaseUser
     public function getAbout()
     {
         return $this->about;
+    }
+    
+    public function setAd($ad) {
+        foreach($ad as $a) {
+            $a->setIdUser($this);
+            
+        }
+        
+        $this->ad = $ad;
+    }
+        function getAd() {
+        return $this->ad;
+    }
+    
+    /**
+     * Add ad
+     *
+     * @param \AppBundle\Entity\Ad $ad
+     *
+     * @return Ad
+     */
+    public function addAd(\AppBundle\Entity\Ad $ad)
+    {
+        $ad->setIdStype($this);
+        $this->ad->add($ad);
+
+        return $this;
+    }
+
+    /**
+     * Remove ad
+     *
+     * @param \AppBundle\Entity\Ad $ad
+     */
+    public function removeAd(\AppBundle\Entity\Ad $ad)
+    {
+        $this->ad->removeElement($ad);
+    }
+
+    public function __toString() {
+       return sprintf('%s  %s  %s',
+                $this->getName() ? $this->getName()  : '',
+                $this->getPatronymic() ? $this->getPatronymic() : '',
+                $this->getSurname() ? $this->getSurname() : '');
     }
 
 }
