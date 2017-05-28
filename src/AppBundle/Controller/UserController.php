@@ -102,18 +102,12 @@ class UserController extends Controller
      * Deletes a user entity.
      *
      * @Route("/{id}", name="user_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, User $user)
     {
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
-        }
 
         return $this->redirectToRoute('user_index');
     }

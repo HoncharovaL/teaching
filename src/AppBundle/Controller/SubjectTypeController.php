@@ -89,7 +89,7 @@ class SubjectTypeController extends Controller
             $this->getDoctrine()->getManager()->persist($subjectType);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('subjecttype_edit', array('idStype' => $subjectType->getIdstype()));
+            return $this->redirectToRoute('subjecttype_index', array('idStype' => $subjectType->getIdstype()));
         }
 
         return $this->render('subjecttype/edit.html.twig', array(

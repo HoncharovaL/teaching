@@ -1,63 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Профиль</h1>
-
-    <table>
-        <tbody>
-
-            <tr>
-                <th>Имя</th>
-                <td>{{ user.name }}</td>
-            </tr>
-            <tr>
-                <th>Отчество</th>
-                <td>{{ user.patronymic }}</td>
-            </tr>
-            <tr>
-                <th>Фамилия</th>
-                <td>{{ user.surname }}</td>
-            </tr>
-
-            <tr>
-                <th>Фотография</th>
-                <td> <img src="{{photo_path}}{{user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
-            </tr>
-            <tr>
-                <th>Телефон</th>
-                <td>{{ user.phone }}</td>
-            </tr>
-            <tr>
-                <th>Обо мне</th>
-                <td>{{ user.about }}</td>
-            </tr>
-            <tr>
-                <th>Рейтинг</th>
-                <td>{{ user.rating }}</td>
-            </tr>
-            <tr>
-                <th>Образование</th>
-                <td>{{ user.education}}</td>
-            </tr>
-            <tr>
-                <th>Учебное заведение</th>
-                <td>{{ user.university }}</td>
-            </tr>
-            <tr>
-                <th>Опыт работы</th>
-                <td>{{ user.experience }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="container">
+        <div class="user-container">
+            <div class="user-photo image-with-overlay-label">
+                <span class="overlay-label">{{ user.rating }}</span>
+                <img src="{{photo_path}}{{user.photo}}" alt="user">
+            </div>
+            <div class="user-info">
+                <div class="user-description-part user-name">
+                    <div class="surname"><span class="opacity-text">Фамилия:</span>{{ user.surname }}</div>
+                    <div class="name"><span class="opacity-text">Имя:</span>{{ user.name }}</div>  
+                    <div class="patronymic"><span class="opacity-text">Отчество:</span>{{ user.patronymic }}</div>
+                    <div class="phone"><span class="opacity-text">Телефон: </span>{{ user.phone }}</div>
+                </div>
+                <div class="user-description-part user-education">
+                    <div class="education"><span class="opacity-text">Образование: </span>{{ user.education}}</div>
+                    <div class="university"><span class="opacity-text">Учебное заведение: </span>{{ user.university }}</div>
+                    <div class="experience"><span class="opacity-text">Опыт работы: </span>{{ user.experience }}</div>
+                </div>
+                <div class="user-description-part user-about">
+                    <div class="about">{{ user.about }}</div>
+                   
+                </div>
+                <div class="buttons-container">
+                    <div class="right">
+                        <a class="edit-button" href="{{ path('user_edit', { 'id': user.id }) }}">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -20,10 +20,6 @@ textarea {
     resize: none;
 }
 
-label {
-    padding-right: 20px;
-}
-
 .save-button {
     background-color: #7b8e1f;
     border: none;
@@ -45,12 +41,77 @@ label {
     cursor: pointer;
     font-size: 14px;
 }
+.edit-button{
+    background-color: #fcab01;
+    border: none;
+    color: white !important;
+    padding: 10px 32px;
+    text-decoration: none;
+    margin: 5px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 50px;
+}
 
-.popup-delete-button:hover {
+.delete-button:hover {
     background: #fcab01;
 }
 .popup-content{
     text-align: center;
 }
 
+.form-horizontal label {
+    display: inline-block;
+    width: 40%;
+}
 
+.form-horizontal .form-block {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.form-horizontal input[type="text"], .form-horizontal textarea, .form-horizontal select,  .form-horizontal input[type="password"] {
+    display: inline-block;
+    width: 60%;
+}
+
+.form-horizontal .full-size-field input[type="text"], .form-horizontal .full-size-field textarea, .form-horizontal .full-size-field select,  .form-horizontal .full-size-field input[type="password"]{
+    width: 100%;
+}
+
+.vich-image img {
+    max-height: 350px;
+    max-width: 100%;
+}
+
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+    background: #ccc;
+    color: #fff;
+    float: left;
+    border: none;
+    padding: 10px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.fileContainer:hover {
+    background: #7b8e1f;
+}
+
+.fileContainer [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}

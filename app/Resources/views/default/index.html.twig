@@ -20,87 +20,42 @@
         <div class="extra-search-container hidden">
 
         </div>
-        {#            {% if name | length%}#}
         <div class="cv-top-list serrated-gray">
-            {#{% for ad in ads %}
-                <div class="teacher-list-item">
-
-            
+            {% for ad in ads %}
+                <div class="teacher-list-item">                    
                     <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a>
                     <div class="teacher-photo">
-                        <img src="{{ asset('bundles/app/img/test.jpg') }}">
+                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">
                     </div>
                     <div class="teacher-info">
-                        <div class="teacher-info-head">
-                            <div class="left-col">
-                                <div class="teacher-name">{{ ad.user }}</div>
-                                <div class="teacher-subjects">{{ ad.subject}}</div>
-                            </div>
-                            <div class="right-col">
-                                <div class="teacher-rating">
-                                    4.3
-                                </div>
-                                <div class="teacher-reviews"> 23 отзыва</div>
-                            </div>
+                        <div class="teacher-info-head">                            
+                            <div class="teacher-name">{{ ad.user }}</div>
+                            <div class="teacher-subjects">{{ ad.subject}}</div>
                         </div>
                         <div class="teacher-info-description">
                             {{ ad.adText }}
                         </div>
                         <div class="teacher-info-bottom">
                             <div class="teacher-city">
-                                <div>city</div>
-                                <div>district</div>
+                                <div>{{ ad.town }}</div>
+                                <div>{{ ad.area }}</div>
+                            </div>                            
+                            <div class="teacher-online">
+                                Уроки online
+                                {% if ad.online==1%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                                {%else%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                                {%endif%}
                             </div>
-                            <div class="teacher-type">online</div>
-                            <div class="teacher-education">education</div>
-                            <div class="teacher-experience">experience</div>
-                            <div class="teacher-price">{{ ad.price }}{{ ad.currency }}</div>
+
+                            <div class="teacher-price">{{ ad.price }}{{ ad.currency }}/{{ ad.value }}</div>
                         </div>
-            <table>
-        <tbody>
-        {% for ad in ads %}
-            <tr>
-                <td>{{ ad.user }}</td>
-                <td>{{ ad.subject}}</td>
-                <td> <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
-                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>
-                <td>{{ ad.adText }}</td>
-                <td>{{ ad.price }}</td>
-                <td>{{ ad.currency }}</td>
-                <td>{{ ad.durability }}</td>
-                <td>{{ ad.value }}</td>
-                <td>{{ ad.region }}</td>
-                <td>{{ ad.town }}</td>
-                <td>{{ ad.area }}</td>
-                <td>{{ ad.place }}</td>
-                {% if ad.online==1%}
-                    <td>Да</td>
-                {%else%}
-                    <td>Нет</td>
-                {%endif%}
 
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
                     </div>
-
                 </div>
-            {% endfor %}#}
-            {% for ad in ads %}
-                <tr>
-                    <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>
-                    <td>{{ ad.adText }}</td>
-                    <td>{{ ad.price }}</td>
-                    <td>{{ ad.currency }}</td>
-                    <td>{{ ad.durability }}</td>
-                    <td>{{ ad.value }}</td>
-                    <td>{{ ad.user }}</td>
-                    <td>{{ ad.subject}}</td>
-                </tr>
             {% endfor %}
         </div>
-        {#            {% endif %}#}
         <div class="place-cv">
             <div class="place-cv-text">
                 <div class="place-cv-head">
