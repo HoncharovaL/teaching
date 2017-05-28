@@ -55,6 +55,24 @@
                             <div class="teacher-experience">experience</div>
                             <div class="teacher-price">{{ ad.price }}{{ ad.currency }}</div>
                         </div>
+            <table>
+        <tbody>
+        {% for ad in ads %}
+            <tr>
+                <td>{{ ad.user }}</td>
+                <td>{{ ad.subject}}</td>
+                <td> <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
+                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>
+                <td>{{ ad.adText }}</td>
+                <td>{{ ad.price }}</td>
+                <td>{{ ad.currency }}</td>
+                <td>{{ ad.durability }}</td>
+                <td>{{ ad.value }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
                     </div>
 
                 </div>
