@@ -10,6 +10,10 @@
                 <td>{{ ad.user }}</td>
             </tr>
             <tr>
+                <th>Рейтинг</th>
+                <td>{{ ad.user.rating }}</td>
+            </tr>
+            <tr>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
               <th>Телефон</th>
               <td>{{ ad.user.phone }}</td>  
@@ -79,6 +83,34 @@
         </tbody>
     </table>
 
+            <h3>Отзывы:</h3>
+            {% for comments in comments %}
+                <div class="reviews-comment-item">
+                    <div >{{comments.rdate|date("m.d.Y")}}</div>
+                    <div >{{comments.user.name}}</div>
+                    <div >{{comments.review}}</div>
+                    <div >{{comments.rating}}</div>
+                </div>
+            {% endfor %}
+             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                 {%if confirm==1 %}
+                {{ form_start(form)}}
+                <div>
+                    {{ form_widget(form.review)}}
+                    {{ form_widget(form.rating)}}
+                </div>
+                <input type="submit" value="Отправить" />
+                {{ form_end(form) }}
+                {%else%}
+            <h4>Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником </h4>
+                {{ form_start(query_form)}}
+                <div>
+                    {{ form_widget(query_form.queryText)}}
+                </div>
+                <input type="submit" value="Отправить" />
+                {{ form_end(query_form) }}  
+                 {%endif%}
+             {%endif%}
     <ul>
         <li>
             <a href="{{ path('homepage') }}">Назад</a>
