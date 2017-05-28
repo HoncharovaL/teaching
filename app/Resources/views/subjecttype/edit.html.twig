@@ -3,11 +3,11 @@
 {% block body %}
     <div class="container">
         <div class="edit-container" >
+            {{ form_start(form) }}
             <div class="orange-header">
                 <div>Редактирование</div>
             </div>
             <div class="subjecttype-item">
-                {{ form_start(form) }}
                 <div class="text-center">
                     {{ form_row(form.stype)}}
                 </div>
