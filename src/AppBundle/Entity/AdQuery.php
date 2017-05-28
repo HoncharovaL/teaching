@@ -17,8 +17,23 @@ class AdQuery
      * @ORM\Column(name="confirm", type="integer")
      */
     private $confirm;
-
+    
     /**
+     * @var string
+     *
+     * @ORM\Column(name="queryText", type="string", length=100, nullable=true)
+     */
+    private $queryText;
+
+    function getQueryText() {
+        return $this->queryText;
+    }
+
+    function setQueryText($queryText) {
+        $this->queryText = $queryText;
+    }
+
+        /**
      * @var integer
      *
      * @ORM\Column(name="id_query", type="bigint")
@@ -28,41 +43,39 @@ class AdQuery
     private $idQuery;
 
     /**
-     * @var \AppBundle\Entity\Ad
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")
-     * })
+     * @ORM\Column(name="id_ad", type="bigint")
      */
-    private $ad;
+    private $idAd;
 
+    function getIdAd() {
+        return $this->idAd;
+    }
 
-        /**
-     * @var \AppBundle\Entity\Users
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
-     * })
+    function setIdAd($idAd) {
+        $this->idAd = $idAd;
+    }
+
+    /**
+     * @var \AppBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="adQuery")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $user;
 
-
-        /**
-     * @var \AppBundle\Entity\Users
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id_teacher", referencedColumnName="id_user")
-     * })
+    /**
+     * @var \AppBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="adQuery")
+     * @ORM\JoinColumn(name="id_teacher", referencedColumnName="id")
      */
     private $teacher;
-    function getTeacher(): \AppBundle\Entity\Users {
+    
+    function getTeacher() {
         return $this->teacher;
     }
 
-    function setTeacher(\AppBundle\Entity\Users $teacher) {
+    function setTeacher($teacher) {
         $this->teacher = $teacher;
     }
 
@@ -101,21 +114,25 @@ class AdQuery
         return $this->idQuery;
     }
 
-       function getAd(): \AppBundle\Entity\Ad {
+       function getAd(){
         return $this->ad;
     }
 
-    function setAd(\AppBundle\Entity\Ad $ad) {
+    function setAd($ad) {
         $this->ad = $ad;
     }
-       function getUser(): \AppBundle\Entity\Users {
+       function getUser() {
         return $this->user;
     }
 
-    function setUser(\AppBundle\Entity\Users $user) {
+    function setUser($user) {
         $this->user = $user;
     }
-
+    public function __construct()
+    {
+        $this->queryText="Подтвердите, пожалуйста, что я являюсь Вашим учеником";
+        $this->confirm=0;
+    }
    
 }
 

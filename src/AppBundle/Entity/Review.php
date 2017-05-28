@@ -48,25 +48,47 @@ class Review
         $this->rating = $rating;
     }
 
-        /**
-     * @var \AppBundle\Entity\Ad
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad", inversedBy="review")
-     * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")
-     */
-    private $ad;
-
-
     /**
-     * @var \AppBundle\Entity\Users
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users", inversedBy="review")
-     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * @var integer
+     *
+     * @ORM\Column(name="id_ad", type="bigint")
+     */
+    private $idAd;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_teacher", type="bigint")
+     */
+    private $idTeacher;
+    
+    function getIdTeacher() {
+        return $this->idTeacher;
+    }
+
+    function setIdTeacher($idTeacher) {
+        $this->idTeacher = $idTeacher;
+    }
+
+        function getIdAd() {
+        return $this->idAd;
+    }
+
+    function setIdAd($idAd) {
+        $this->idAd = $idAd;
+    }
+
+        /**
+     * @var \AppBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="review")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $user;
-    function getUser(): \AppBundle\Entity\Users {
+    function getUser() {
         return $this->user;
     }
 
-    function setUser(\AppBundle\Entity\Users $user) {
+    function setUser($user) {
         $this->user = $user;
     }
 
@@ -95,11 +117,11 @@ class Review
         return $this->review;
     }
 
-       function getRdate(): \DateTime {
+       function getRdate() {
         return $this->rdate;
     }
 
-    function setRdate(\DateTime $rdate) {
+    function setRdate($rdate) {
         $this->rdate = $rdate;
     }
 
@@ -113,13 +135,6 @@ class Review
         return $this->idReview;
     }
 
-       function getAd(): \AppBundle\Entity\Ad {
-        return $this->ad;
-    }
-
-    function setAd(\AppBundle\Entity\Ad $ad) {
-        $this->ad = $ad;
-    }
 
 }
 

@@ -3,10 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ad;
+use AppBundle\Entity\AdQuery;
+use AppBundle\Entity\Review;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use DateTime;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 /**
  * Ad controller.
  *
@@ -61,16 +65,63 @@ class AdController extends Controller
      * Finds and displays a ad entity.
      *
      * @Route("/{idAd}", name="ad_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Ad $ad)
-    {
-        $deleteForm = $this->createDeleteForm($ad);
+    public function showAction(Ad $ad,Request $request1)
+    {   $em = $this->getDoctrine()->getManager();
+        $comments =$em->getRepository('AppBundle:Review')->findBy(['idAd' => $ad->getIdAd()]);
+        $adQuery=new AdQuery();
+        $queryForm = $this->createForm('AppBundle\Form\AdQueryUserType', $adQuery);
+        $queryForm->handleRequest($request1);
+        $comment = new Review();
+        $form = $this->createForm('AppBundle\Form\ReviewUserType', $comment);
+        $form->handleRequest($request1);
+        $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.idAd=?1 and p.user=?2');
+            $query1->setParameter(1,$ad->getIdAd());
+            $query1->setParameter(2,$this->getUser());
+            $confirm = $query1->getSingleScalarResult();
+        if ($queryForm->isSubmitted() && $queryForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $adQuery->setUser($this->getUser());
+            $adQuery->setTeacher($ad->getUser());
+            $adQuery->setIdAd($ad->getIdAd());
+            $adQuery->setConfirm(0);
+            $em->persist($adQuery);
+            $em->flush();
+            return $this->redirectToRoute('ad_show', array('idAd' => $ad->getIdad()));
+        }
+
+       if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager(); 
+            $dt = new DateTime();
+            $comment->setrdate($dt);
+            $comment->setUser($this->getUser());
+            $comment->setIdAd($ad->getIdAd());
+            $comment->setIdTeacher($ad->getUser()->getId());
+            $em->persist($comment);
+            $em->flush();
+            $comments =$em->getRepository('AppBundle:Review')->findBy(['idAd' => $ad->getIdAd()]);
+            $query = $em->createQuery('SELECT avg(p.rating) FROM AppBundle:Review p WHERE p.idTeacher=?1');
+            $query->setParameter(1,$ad->getUser()->getId());
+            $rating = $query->getSingleScalarResult();
+            $teacher =$em->getRepository('AppBundle:User')->findOneBy(['id' => $ad->getUser()->getId()]);
+            $teacher->setRating($rating);
+            $em->persist($teacher);
+            $em->flush();
+            return $this->redirectToRoute('ad_show', array('idAd' => $ad->getIdad()));
+
+        }
+
 
         return $this->render('ad/show.html.twig', array(
             'ad' => $ad,
-            'delete_form' => $deleteForm->createView(),
+            'query_form' => $queryForm->createView(),
+            'comments'=>$comments,
+            'form'=> $form->createView(),
+            'confirm'=>$confirm,
         ));
+        
+        
     }
 
     /**

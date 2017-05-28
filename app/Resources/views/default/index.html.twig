@@ -11,6 +11,7 @@
         {% for ad in ads %}
             <tr>
                 <td>{{ ad.user }}</td>
+                <td>{{ ad.user.rating}}</td>
                 <td>{{ ad.subject}}</td>
                 <td> <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
                 <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>

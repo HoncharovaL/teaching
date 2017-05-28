@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Adqueries list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Confirm</th>
+                <th>Querytext</th>
+                <th>Idquery</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adQuery in adQueries %}
+            <tr>
+                <td><a href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">{{ adQuery.confirm }}</a></td>
+                <td>{{ adQuery.queryText }}</td>
+                <td>{{ adQuery.idQuery }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('adquery_edit', { 'idQuery': adQuery.idQuery }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('adquery_new') }}">Create a new adQuery</a>
+        </li>
+    </ul>
+{% endblock %}

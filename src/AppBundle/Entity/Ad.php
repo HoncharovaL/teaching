@@ -384,5 +384,14 @@ class Ad
     function setUser(\AppBundle\Entity\User $user) {
         $this->user = $user;
     }
+    
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return sprintf('%s (%s)',
+                $this->getSubject() ? $this->getSubject()->getSubject() : '',
+                $this->adate->format('d.m.Y'));
+    }
 }
 
