@@ -336,15 +336,6 @@ class Ad
     {
         return $this->value;
     }
-     /**
-     * Get value
-     *
-     * @return string
-     */
-    public function getPhoto()
-    {
-        return $this->getUser()->getPhoto();
-    }
     /**
      * Set dateServ
      *

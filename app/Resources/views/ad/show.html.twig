@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ad</h1>
+    <h1>Просмотр объявления</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Преподаватель</th>
                 <td>{{ ad.user }}</td>
+            </tr>
+            <tr>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <th>Телефон</th>
+              <td>{{ ad.user.phone }}</td>  
+            {%endif%}
+            </tr>
+            <tr>
+            <td> <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
             </tr>
             <tr>
                 <th>Дата публикации</th>
@@ -25,12 +34,54 @@
                 <th>За</th>
                 <td>{{ ad.durability }}{{ ad.value }}</td>
             </tr>
+            <tr>
+                <th>Область</th>
+                <td>{{ ad.region }}</td>
+            </tr>
+                        <tr>
+                <th>Город</th>
+                <td>{{ ad.town }}</td>
+            </tr>
+                        <tr>
+                <th>Район</th>
+                <td>{{ ad.area }}</td>
+            </tr>
+                        <tr>
+                <th>Место проведения</th>
+                <td>{{ ad.place }}</td>
+            </tr>
+                        <tr>
+                <th>Онлайн</th>
+                {% if ad.online==1%}
+                    <td>Да</td>
+                {%else%}
+                    <td>Нет</td>
+                {%endif%}
+                
+            </tr>
+
+            <tr>
+                <th>Обо мне</th>
+                <td>{{ ad.user.about }}</td>
+            </tr>
+            <tr>
+                <th>Образование</th>
+                <td>{{ ad.user.education }}</td>
+            </tr>
+            <tr>
+                <th>Учебные заведения</th>
+                <td>{{ ad.user.university }}</td>
+            </tr>
+            <tr>
+                <th>Опыт преподавания</th>
+                <td>{{ ad.user.experience }}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('ad_index') }}">Back to the list</a>
+            <a href="{{ path('homepage') }}">Назад</a>
         </li>
     </ul>
 {% endblock %}
