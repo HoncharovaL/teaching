@@ -1,49 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Корректировка справочника дисциплин</h1>
+    <div class="container">
+        <div class="edit-container" >
+            {{ form_start(form) }}
+            <div class="orange-header">
+                <div>Редактирование</div>
+            </div>
+            <div class="subjecttype-item">
+                <div class="text-center">
+                    {{ form_row(form.stype)}}
+                </div>
+            </div>
+            <div class="subject-list embedded-form">
+                <div class="form-collection-container" data-only-input="true" data-count="{{ form.subjects|length }}" data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
+                    {% for subject in form.subjects %}
+                        <div class="form-collection-element">
+                            {{ form_errors(subject) }}
+                            {{ form_widget(subject.subject) }}   
+                        </div>                     
+                    {% endfor %}
+                </div>
+                <div>
+                    <a href="#" class="add-new-element" >Добавить дисциплину</a>
+                </div>
+            </div>
 
-    {{ form_start(form) }}
-    {{ form_row(form.stype)}}
-    {# store the prototype on the data-prototype attribute #}
-    <ul class="form-collection-container" data-count="{{ form.subjects|length }}" id="titles-fields-list"
-        data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
-        {% for subject in form.subjects %}
-            <li>
-                {{ form_errors(subject) }}
-                {{ form_widget(subject) }}
-            </li>
-        {% endfor %}
-        <a href="#" class="add-new-element" >Добавить дисциплину</a>
-    </ul>
-     {% do form.subjects.setRendered %}
-    <input type="submit" value="Сохранить"/>
+            {% do form.subjects.setRendered %}
+            <div class="buttons-container">
+                <input class="save-button right" type="submit" value="Сохранить"/>
 
-    {{ form_end(form) }}
+                {{ form_end(form) }}  
+                {% if delete_form is defined %}
+                    {{ form_start(delete_form) }}
+                    <input class="delete-button left" type="submit" value="Удалить">
+                    {{ form_end(delete_form) }}
+                {% endif %}
 
-    {% if delete_form is defined %}
-        {{ form_start(delete_form) }}
-        <input type="submit" value="Удалить">
-        {{ form_end(delete_form) }}
-    {% endif %}
-    <ul>
-        <li>
-            <a href="{{ path('homepage') }}">На главную</a>
-        </li>
-    </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+
+
 
 {% block javascripts %}
     {{parent()}}
 
     <script type="text/javascript">
         $(document).ready(function () {
-
-
-            $('.form-collection-container .add-new-element').on('click', function (e) {
+            $('.embedded-form .add-new-element').on('click', function (e) {
                 e.preventDefault();
 
-                var list = $(this).parents('.form-collection-container');
+                var list = $(this).parents('.embedded-form').find('.form-collection-container');
 
                 // grab the prototype template
                 var newWidget = list.attr('data-prototype');
@@ -53,25 +63,29 @@
                 list.data('count', count);
 
                 // create a new list element and add it to the list
-                var newLi = $('<li></li>').html(newWidget);
+                var newLi = $('<div class="form-collection-element"></div>').html(newWidget);
+                
+                if (list.data('onlyInput')) {
+                    var input = newLi.find('input');
+                    newLi.html('').append(input);
+                }
+                
                 newLi.appendTo(list);
+
                 addDeleteLink(newLi);
             });
 
             // add a delete link to all of the existing tag form li elements
-            $('.form-collection-container').find('li').each(function () {
+            $('.form-collection-container').find('.form-collection-element').each(function () {
                 addDeleteLink($(this));
             });
 
             function addDeleteLink($formLi) {
-                var $removeLi = $('<a href="#">"Удалить"</a>');
+                var $removeLi = $('<a href="#">Удалить</a>');
                 $formLi.append($removeLi);
 
                 $removeLi.on('click', function (e) {
-                    // prevent the link from creating a "#" on the URL
                     e.preventDefault();
-
-                    // remove the li for the tag form
                     $formLi.remove();
                 });
             }

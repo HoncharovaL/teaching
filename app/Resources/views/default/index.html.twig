@@ -1,38 +1,76 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-            
+    <div class="container">
 
-            
-            <h1>Объявления</h1>
+        <div class="header-bottom">
+            <div class="howsmart-head">
+                <div>HOWSMART.UA</div>
+                <div>Лучшие репетиторы Украины</div>                
+            </div>
+            <div class="howsmart-about">
+                <div>Нужен репетитор?</div>
+                <div>С помощью howsmart ищите репетитора в своем городе или учитесь онлайн.</div>
+                <div>Мы поможем вам стать умнее!</div>
+            </div>
+        </div>
+        <div class="serrated-yellow search-container">
+            <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
+        </div>
+        <div class="extra-search-container hidden">
 
-    <table>
-        <tbody>
-        {% for ad in ads %}
-            <tr>
-                <td>{{ ad.user }}</td>
-                <td>{{ ad.user.rating}}</td>
-                <td>{{ ad.subject}}</td>
-                <td> <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
-                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>
-                <td>{{ ad.adText }}</td>
-                <td>{{ ad.price }}</td>
-                <td>{{ ad.currency }}</td>
-                <td>{{ ad.durability }}</td>
-                <td>{{ ad.value }}</td>
-                <td>{{ ad.region }}</td>
-                <td>{{ ad.town }}</td>
-                <td>{{ ad.area }}</td>
-                <td>{{ ad.place }}</td>
-                {% if ad.online==1%}
-                    <td>Да</td>
-                {%else%}
-                    <td>Нет</td>
-                {%endif%}
+        </div>
+        <div class="cv-top-list serrated-gray">
+            {% for ad in ads %}
+                <div class="teacher-list-item">                    
+                    <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a>
+                    <div class="teacher-photo">
+                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-info-head">                            
+                            <div class="teacher-name">{{ ad.user }}</div>
+                            <div class="teacher-subjects">{{ ad.subject}}</div>
+                        </div>
+                        <div class="teacher-info-description">
+                            {{ ad.adText }}
+                        </div>
+                        <div class="teacher-info-bottom">
+                            <div class="teacher-city">
+                                <div>{{ ad.town }}</div>
+                                <div>{{ ad.area }}</div>
+                            </div>                            
+                            <div class="teacher-online">
+                                Уроки online
+                                {% if ad.online==1%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                                {%else%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                                {%endif%}
+                            </div>
 
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                            <div class="teacher-price">{{ ad.price }}{{ ad.currency }}/{{ ad.value }}</div>
+                        </div>
 
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="place-cv">
+            <div class="place-cv-text">
+                <div class="place-cv-head">
+                    Разместите своё резюме!
+                </div>
+                <div>
+                    Ученики смогут найти вас и предложить отличную работу.
+                </div>
+            </div>
+            <div class="place-cv-button">
+                <a class="green-button">Создать резюме</a>
+            </div>
+        </div>
+        <div class="cities-container">
+
+        </div>
+    </div>
 {% endblock %}
