@@ -26,7 +26,7 @@ class AdType extends AbstractType
                 ->add('durability', null, ['label' => 'Время'])
                 ->add('value', ChoiceType::class, ['label' => 'Ед.времени', 'choices' => ['мин.' => 'мин.', 'час.' => 'час.']])
                 ->add('subject', EntityType::class, ['label' => 'Дисциплина', 'class' => Subjects::class])
-                ->add('state', ChoiceType::class, ['label' => 'Состояние объявления', 'choices' => ['В работе' => '0', 'На подтверждение' => '1', 'Опубликовано' => '2']]);
+                ->add('state', ChoiceType::class, ['label' => 'Состояние объявления', 'choices' => ['В работе' => '0', 'Опубликовать' => '1']]);
                  
     }
     
