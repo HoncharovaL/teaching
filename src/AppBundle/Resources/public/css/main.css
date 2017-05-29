@@ -283,8 +283,11 @@ a{
 .detail-href, .black-href{
     color:black;
 }
+.ad-description{
+    margin: 20px 0;
+}
 .ad-footer{
-    height: 70px;
+    height: 52px;
     width: 100%;
 }
 .ad-footer .cell{
@@ -298,11 +301,25 @@ a{
 }
 .ad-footer .ad-place{
     line-height: 25px;
+    text-align: right;
+    width: 249px;
+    
+}
+.ad-place .ad-town, .ad-place .ad-area{
+    padding-right: 10px;
+}
+
+.ad-footer .ad-type{
+    width:150px;
+}
+.ad-footer .ad-online{
+    width: 150px;
 }
 .ad-footer .ad-price{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #7b8e1f;
+    width: 127px;
 }
 .edit-image, .view-image, .delete-image, .new-image{
     width: 15px;

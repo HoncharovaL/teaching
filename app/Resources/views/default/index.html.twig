@@ -44,9 +44,12 @@
                         </div>
                         <div class="ad-footer">
                             <div class="ad-place cell">
-                                <div>{{ ad.town }}</div>
-                                <div>{{ ad.area }}</div>
-                            </div>                            
+                                <div class='ad-town'>{{ ad.town }}</div>
+                                <div class='ad-area'>{{ ad.area }}</div>
+                            </div>     
+                            <div class="ad-type cell">
+                                {{ad.place}}
+                            </div>
                             <div class="ad-online cell">
                                 Уроки online
                                 {% if ad.online==1%}
@@ -55,9 +58,7 @@
                                     <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
                                 {%endif%}
                             </div>
-                            <div class="ad-type cell">
-                                
-                            </div>
+                           
                             <div class="ad-price cell">
                                 {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
                             </div>
