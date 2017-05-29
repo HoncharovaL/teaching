@@ -1,4 +1,4 @@
-input[type="text"], textarea, select, input[type="password"] {
+input[type="text"], textarea, select, input[type="password"], input[type="email"] {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
