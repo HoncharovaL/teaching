@@ -12,6 +12,8 @@
                 <th>Валюта</th>
                 <th>Длительность</th>
                 <th>Время</th>
+                <th>Сервис</th>
+                <th>Дата окончания</th>
                 <th>Действия</th>
             </tr>
         </thead>
@@ -24,13 +26,15 @@
                 <td>{{ ad.currency }}</td>
                 <td>{{ ad.durability }}</td>
                 <td>{{ ad.value }}</td>
+                <td>{{ ad.services }}</td>
+                <td>{% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">show</a>
+                            <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Показать</a>
                         </li>
                         <li>
-                            <a href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">edit</a>
+                            <a href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">Редактировать</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +45,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('ad_new') }}">Create a new ad</a>
+            <a href="{{ path('ad_new') }}">Создать новое объявление</a>
         </li>
     </ul>
 {% endblock %}

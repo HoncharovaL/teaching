@@ -56,7 +56,7 @@ class Ad
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_serv", type="date", nullable=false)
+     * @ORM\Column(name="date_serv", type="date", nullable=true)
      */
     private $dateServ;
 
@@ -81,7 +81,7 @@ class Ad
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_services", type="bigint")
+     * @ORM\Column(name="id_services", type="bigint", nullable=true)
      */
     private $id_services;
     function getId_services() {
@@ -136,7 +136,7 @@ class Ad
                  /**
      * @var integer
      *
-     * @ORM\Column(name="ispay", type="integer")
+     * @ORM\Column(name="ispay", type="integer", nullable=true)
      */
     private $ispay;
     function getIspay() {

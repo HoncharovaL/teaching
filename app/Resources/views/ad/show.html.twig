@@ -92,7 +92,7 @@
                     <div >{{comments.rating}}</div>
                 </div>
             {% endfor %}
-             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+             {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
                  {%if confirm==1 %}
                 {{ form_start(form)}}
                 <div>

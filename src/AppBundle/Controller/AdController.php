@@ -94,6 +94,8 @@ class AdController extends Controller
             $review = $query1->getResult();
             if (!empty($review)) $confirm=3;  
             }
+            $notuser=true;
+            if($this->getUser()==$ad->getUser()) $notuser=false;
         if ($queryForm->isSubmitted() && $queryForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $adQuery->setUser($this->getUser());
@@ -133,6 +135,7 @@ class AdController extends Controller
             'comments'=>$comments,
             'form'=> $form->createView(),
             'confirm'=>$confirm,
+            'notuser'=>$notuser,
         ));
         
         
@@ -149,17 +152,24 @@ class AdController extends Controller
         $deleteForm = $this->createDeleteForm($ad);
         $editForm = $this->createForm('AppBundle\Form\AdType', $ad);
         $editForm->handleRequest($request);
-
+        $servForm = $this->createForm('AppBundle\Form\AdType1', $ad);
+        $servForm->handleRequest($request);
+        
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('ad_edit', array('idAd' => $ad->getIdad()));
         }
-
+        if ($servForm->isSubmitted() && $servForm->isValid()) {
+            $this->getDoctrine()->getManager()->persist($ad);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('ad_edit', array('idAd' => $ad->getIdad()));
+        }
         return $this->render('ad/edit.html.twig', array(
             'ad' => $ad,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'serv_form' => $servForm->createView(),
         ));
     }
 
