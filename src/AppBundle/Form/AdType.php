@@ -21,6 +21,10 @@ class AdType extends AbstractType
     {
         $builder->add('adate', DateType::class, ['empty_data' => new \DateTime(), 'label' => 'Дата создания'])
                 ->add('adText', null, ['label' => 'Текст объявления'])
+                ->add('region', null, ['label' => 'Область'])
+                ->add('town', null, ['label' => 'Населенный пункт'])
+                ->add('area', null, ['label' => 'Район'])
+                ->add('place', ChoiceType::class, ['label' => 'Провожу занятия', 'choices' => ['У себя' => 'У себя', 'На выезде' => 'На выезде']])
                 ->add('price', null, ['label' => 'Цена'])
                 ->add('currency', ChoiceType::class, ['label' => 'Валюта', 'choices' => ['грн.' => 'грн.', 'eur' => 'eur', '$' => '$']])
                 ->add('durability', null, ['label' => 'Время'])
