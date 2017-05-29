@@ -123,5 +123,14 @@ class AdServices
     {
         return $this->idServices;
     }
+    
+        /**
+     * @return string
+     */
+    public function __toString() {
+        return sprintf('%s (%s)',
+                $this->getServices() ? $this->getServices() : '',
+                $this->getPrice()? $this->getPrice() : '');
+    }
 }
 

@@ -125,8 +125,37 @@ class Ad
      * @ORM\Column(name="online", type="integer", nullable=true)
      */
      private $online;
+     
+             /**
+     * @var integer
+     *
+     * @ORM\Column(name="stste", type="integer")
+     */
+    private $state;
     
-    function getOnline() {
+                 /**
+     * @var integer
+     *
+     * @ORM\Column(name="ispay", type="integer")
+     */
+    private $ispay;
+    function getIspay() {
+        return $this->ispay;
+    }
+
+    function setIspay($ispay) {
+        $this->ispay = $ispay;
+    }
+
+        function getState() {
+        return $this->state;
+    }
+
+    function setState($state) {
+        $this->state = $state;
+    }
+
+        function getOnline() {
         return $this->online;
     }
 
@@ -370,18 +399,18 @@ class Ad
         return $this->idAd;
     }
 
-    function getSubject(): \AppBundle\Entity\Subjects {
+    function getSubject() {
         return $this->subject;
     }
 
-    function setSubject(\AppBundle\Entity\Subjects $subject) {
+    function setSubject($subject) {
         $this->subject = $subject;
     }
-        function getUser(): \AppBundle\Entity\User {
+        function getUser() {
         return $this->user;
     }
 
-    function setUser(\AppBundle\Entity\User $user) {
+    function setUser($user) {
         $this->user = $user;
     }
     

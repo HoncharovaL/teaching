@@ -25,6 +25,8 @@ class AdType extends AbstractType
                 ->add('currency', ChoiceType::class, ['label' => 'Валюта', 'choices' => ['грн.' => 'грн.', 'eur' => 'eur', '$' => '$']])
                 ->add('durability', null, ['label' => 'Время'])
                 ->add('value', ChoiceType::class, ['label' => 'Ед.времени', 'choices' => ['мин.' => 'мин.', 'час.' => 'час.']])
+                ->add('dateServ', DateType::class, ['empty_data' => new \DateTime(), 'label' => 'Дата начала сервиса'])
+                ->add('services', EntityType::class, ['label' => 'Услуга', 'class' => AdServices::class])
                 ->add('subject', EntityType::class, ['label' => 'Дисциплина', 'class' => Subjects::class])
                 ->add('state', ChoiceType::class, ['label' => 'Состояние объявления', 'choices' => ['В работе' => '0', 'На подтверждение' => '1', 'Опубликовано' => '2']]);
                  

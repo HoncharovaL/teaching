@@ -49,6 +49,7 @@ class AdController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $ad->setUser($this->getUser());
             $em->persist($ad);
             $em->flush();
 
@@ -76,10 +77,23 @@ class AdController extends Controller
         $comment = new Review();
         $form = $this->createForm('AppBundle\Form\ReviewUserType', $comment);
         $form->handleRequest($request1);
+        //0-запрос на подтверждение отправлен, ответ не получен,1-запрос подтвержден, но оценка не оставлена,2-запрос не отправлен,3-оценка оставлена
         $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.idAd=?1 and p.user=?2');
             $query1->setParameter(1,$ad->getIdAd());
             $query1->setParameter(2,$this->getUser());
-            $confirm = $query1->getSingleScalarResult();
+            $confirm = $query1->getResult();
+            if (empty($confirm)) 
+               {
+                $confirm=2;
+                }
+            else 
+            { 
+            $query1 = $em->createQuery('SELECT p FROM AppBundle:Review p WHERE p.idAd=?1 and p.user=?2');
+            $query1->setParameter(1,$ad->getIdAd());
+            $query1->setParameter(2,$this->getUser());
+            $review = $query1->getResult();
+            if (!empty($review)) $confirm=3;  
+            }
         if ($queryForm->isSubmitted() && $queryForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $adQuery->setUser($this->getUser());

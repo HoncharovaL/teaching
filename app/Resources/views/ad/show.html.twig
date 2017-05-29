@@ -101,14 +101,18 @@
                 </div>
                 <input type="submit" value="Отправить" />
                 {{ form_end(form) }}
-                {%else%}
+                {%elseif confirm==2%}
             <h4>Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником </h4>
                 {{ form_start(query_form)}}
                 <div>
                     {{ form_widget(query_form.queryText)}}
                 </div>
                 <input type="submit" value="Отправить" />
-                {{ form_end(query_form) }}  
+                {{ form_end(query_form) }}
+                {%elseif confirm==0%}
+                <h4>Преподаватель еще не подтвердил, что Вы являетесь его учеником</h4>
+                {%else%}
+                <h4>Вы уже оставили свой отзыв</h4>
                  {%endif%}
              {%endif%}
     <ul>
