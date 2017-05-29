@@ -19,8 +19,7 @@ class AdType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('adate', DateType::class, ['empty_data' => new \DateTime(), 'label' => 'Дата создания'])
-                ->add('adText', null, ['label' => 'Текст объявления'])
+        $builder->add('adText', null, ['label' => 'Текст объявления'])
                 ->add('region', null, ['label' => 'Область'])
                 ->add('town', null, ['label' => 'Населенный пункт'])
                 ->add('area', null, ['label' => 'Район'])

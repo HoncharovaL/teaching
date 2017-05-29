@@ -15,6 +15,18 @@
             </div>
         </div>
         <div class="serrated-yellow search-container">
+               {{ form_start(form)}}
+                <div>
+                    {{ form_widget(form.search)}}
+                    {{ form_widget(form.town)}}
+                    {{ form_widget(form.area)}}
+                    {{ form_widget(form.place)}}
+                    {{ form_widget(form.pricemin)}}
+                    {{ form_widget(form.pricemax)}}
+                    {{ form_widget(form.currency)}}
+                </div>
+                <input type="submit" value="Отправить" />
+                {{ form_end(form) }}
             <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
         </div>
         <div class="extra-search-container hidden">
@@ -78,10 +90,14 @@
                 </div>
             </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-                <div class="place-cv-button">
-                    <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
-                </div>
-            {% endif %}
+            <div class="place-cv-button">
+                <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
+            </div>
+            {%else%}
+            <div class="place-cv-button">
+                <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
+            </div>
+            {%endif%}
         </div>
         <div class="cities-container">
 

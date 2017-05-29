@@ -49,6 +49,8 @@ class AdController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $dt = new DateTime();
+            $ad->setAdate($dt);
             $ad->setUser($this->getUser());
             $em->persist($ad);
             $em->flush();
@@ -152,24 +154,16 @@ class AdController extends Controller
         $deleteForm = $this->createDeleteForm($ad);
         $editForm = $this->createForm('AppBundle\Form\AdType', $ad);
         $editForm->handleRequest($request);
-        $servForm = $this->createForm('AppBundle\Form\AdType1', $ad);
-        $servForm->handleRequest($request);
         
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('ad_edit', array('idAd' => $ad->getIdad()));
         }
-        if ($servForm->isSubmitted() && $servForm->isValid()) {
-            $this->getDoctrine()->getManager()->persist($ad);
-            $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('ad_edit', array('idAd' => $ad->getIdad()));
-        }
         return $this->render('ad/edit.html.twig', array(
             'ad' => $ad,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'serv_form' => $servForm->createView(),
         ));
     }
 
