@@ -14,7 +14,7 @@ class Ad
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="adate", type="date", nullable=false)
+     * @ORM\Column(name="adate", type="date", nullable=true)
      */
     private $adate;
 
@@ -126,20 +126,35 @@ class Ad
      */
      private $online;
      
-             /**
+    /**
      * @var integer
      *
      * @ORM\Column(name="stste", type="integer")
      */
     private $state;
     
-                 /**
+    /**
      * @var integer
      *
      * @ORM\Column(name="ispay", type="integer", nullable=true)
      */
     private $ispay;
-    function getIspay() {
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="top", type="integer")
+     */
+    private $top;
+    function getTop() {
+        return $this->top;
+    }
+
+    function setTop($top) {
+        $this->top = $top;
+    }
+
+        function getIspay() {
         return $this->ispay;
     }
 

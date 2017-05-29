@@ -74,7 +74,11 @@
             <div class="place-cv-button">
                 <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
             </div>
-            {% endif %}
+            {%else%}
+            <div class="place-cv-button">
+                <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
+            </div>
+            {%endif%}
         </div>
         <div class="cities-container">
 
