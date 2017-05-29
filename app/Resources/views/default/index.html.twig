@@ -22,19 +22,25 @@
         </div>
         <div class="ad-list serrated-gray">
             {% for ad in ads %}
-                <div class="ad-container">
-                    <div class="photo-block">
-{#                        {{ ad.user.rating}}#}
-{#                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">#}
+                <div class="ad-container ">
+                    <div class="photo-block image-with-overlay-label left-block">
+                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">
                     </div>
-                    <div class="info-block ad-info">
-                        <div class="ad-head">                            
-                            <div class="teacher-name">{{ ad.user }}</div>
-                            <div class="ad-subject">{{ ad.subject}}</div>
+                    <div class="info-block ad-info right-block">
+                        <div class="ad-head">    
+                            <div class='left-col'>
+                                <div class="teacher-name">{{ ad.user }}</div>
+                                <div class="ad-subject">{{ ad.subject}}</div>
+                            </div>
+                            <div class='right-col'>
+                                <div class="teacher-rating">{{ ad.user.rating}}</div>
+                            </div>
                         </div>
                         <div class="ad-content">
-                            {{ ad.adText }}
-                            <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
+                            <div class='ad-description'>{{ ad.adText }}</div>
+                            <div class='ad-show-href opacity-text'>
+                                <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
+                            </div>
                         </div>
                         <div class="ad-footer">
                             <div class="ad-place cell">
@@ -71,9 +77,9 @@
                 </div>
             </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-            <div class="place-cv-button">
-                <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
-            </div>
+                <div class="place-cv-button">
+                    <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
+                </div>
             {% endif %}
         </div>
         <div class="cities-container">

@@ -239,7 +239,8 @@ a{
 .buttons-container:after,
 .ad-edit-container:after,
 .user-container:after,
-.user-edit-container:after{
+.user-edit-container:after,
+.ad-edit-container:after{
     content: '.';
     float: none;
     display: block;
@@ -268,9 +269,12 @@ a{
     font-size: 25px;
     margin-bottom: 5px;
 }
-.info-block, .subjecttype-container, .footer, .subjecttype-edit-container{
+.info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container{
     background-color: white;
     padding-bottom: 20px;
+}
+.ad-info {
+    padding-bottom: 0;
 }
 .ad-content{
     margin: 30px 20px;
@@ -306,8 +310,8 @@ a{
     object-fit: contain; 
 }
 .yes-no-image{
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     object-fit: contain; 
 }
 
@@ -391,6 +395,9 @@ a{
 }
 .opacity-text{
     opacity: 0.5;
+}
+.ad-show-href:hover{
+    opacity:1;
 }
 .image-with-overlay-label {
     position: relative;

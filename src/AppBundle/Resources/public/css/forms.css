@@ -75,7 +75,7 @@ textarea {
     width: 60%;
 }
 
-.form-horizontal .full-size-field input[type="text"], .form-horizontal .full-size-field textarea, .form-horizontal .full-size-field select,  .form-horizontal .full-size-field input[type="password"]{
+.form-horizontal .full-size-field input[type="text"], .form-horizontal .full-size-field textarea, .form-horizontal .full-size-field select,  .form-horizontal .full-size-field input[type="password"],.form-horizontal .full-size-field input[type="number"]{
     width: 100%;
 }
 
