@@ -218,7 +218,7 @@ a{
 .info-block{
     width: 68%;
 }
-.ad-container, .ad-edit-container, .user-container, .user-edit-container{
+.ad-container, .ad-edit-container, .user-container, .user-edit-container, .ad-full-container{
     width: 1000px;
     margin: 20px auto;
 }
@@ -240,7 +240,9 @@ a{
 .ad-edit-container:after,
 .user-container:after,
 .user-edit-container:after,
-.ad-edit-container:after{
+.ad-edit-container:after,
+.ad-full-container:after,
+.review-item:after{
     content: '.';
     float: none;
     display: block;
@@ -260,7 +262,7 @@ a{
     float: right;
     text-align: center;
 }
-.teacher-name{
+.teacher-name, .ad-date{
     font-size: 14px;
     margin-bottom: 12px; 
 }
@@ -269,14 +271,25 @@ a{
     font-size: 25px;
     margin-bottom: 5px;
 }
-.info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container{
+.info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container,
+.review-item{
     background-color: white;
     padding-bottom: 20px;
 }
 .ad-info {
     padding-bottom: 0;
 }
-.ad-content{
+.teacher-phone{
+    width: 200px;
+    height:50px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    font-size: 16px;
+    font-weight: bold; 
+    background-color: #fcab01;
+}
+.ad-content, .teacher-content{
     margin: 30px 20px;
     height: 120px;
 }
@@ -286,11 +299,17 @@ a{
 .ad-description{
     margin: 20px 0;
 }
-.ad-footer{
+.teacher-footer .cell{
+    width: 225px;
+}
+.teacher-footer .teacher-education{
+    width: 227px;
+}
+.ad-footer, .teacher-footer{
     height: 52px;
     width: 100%;
 }
-.ad-footer .cell{
+.ad-footer .cell, .teacher-footer .cell{
     display: inline-table;
     float: left;
     border: 1px #f2f2f2 solid;
@@ -454,4 +473,35 @@ a{
 .login-data{
     padding: 5px;
 }
-
+.no-review{
+    margin: 60px;
+    text-align: center;
+}
+.review-item{
+    width: 800px;
+    margin: 20px auto;
+}
+.review-photo img{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+.review-content div{
+    margin: 10px 20px;
+}
+.review-content{
+    width: 600px;
+    height: 150px;
+}
+.review-rating{
+    text-align: right;
+}
+#appbundle_review_rating{
+    display: inline-block;
+}
+.attention-header{
+    text-align: center;
+    color: #fcab01;
+    font-size: 12px;
+    padding: 20px;
+}
