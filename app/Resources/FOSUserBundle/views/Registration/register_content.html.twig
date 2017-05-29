@@ -1,0 +1,27 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="login-container">   
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+    
+    <div  class="login-data">
+        <label for="email">Email</label>
+        {{ form_widget(form.email) }}
+    </div>
+    <div  class="login-data">
+        <label for="username">Логин</label>
+        {{ form_widget(form.username) }}
+    </div>
+    <div  class="login-data">
+        <label for="password">Введите пароль</label>
+        {{ form_widget(form.plainPassword.first) }}
+    </div>
+    <div  class="login-data">
+        <label for="password_confirmation">Повторите пароль</label>
+        {{ form_widget(form.plainPassword.second) }}
+    </div>
+    <div class='buttons-container'>
+        <input class="save-button" type="submit" value="Регистрация" />
+    </div>
+
+{{ form_end(form) }}
+</div>

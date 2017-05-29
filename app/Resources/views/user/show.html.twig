@@ -3,44 +3,43 @@
 {% block body %}
     <div class="container">
         <div class="user-container">
-            <div class="user-photo image-with-overlay-label">
+            <div class="photo-block left-block image-with-overlay-label">
                 <span class="overlay-label">{{ user.rating }}</span>
                 <img src="{{photo_path}}{{user.photo}}" alt="user">
             </div>
-            <div class="user-info">
-                <div class="user-description-part user-name">
+            <div class="info-block right-block">
+                <div class="underlined-block user-name">
                     <div class="surname"><span class="opacity-text">Фамилия:</span>{{ user.surname }}</div>
                     <div class="name"><span class="opacity-text">Имя:</span>{{ user.name }}</div>  
                     <div class="patronymic"><span class="opacity-text">Отчество:</span>{{ user.patronymic }}</div>
                     <div class="phone"><span class="opacity-text">Телефон: </span>{{ user.phone }}</div>
                 </div>
-                <div class="user-description-part user-education">
+                <div class="underlined-block user-education">
                     <div class="education"><span class="opacity-text">Образование: </span>{{ user.education}}</div>
                     <div class="university"><span class="opacity-text">Учебное заведение: </span>{{ user.university }}</div>
                     <div class="experience"><span class="opacity-text">Опыт работы: </span>{{ user.experience }}</div>
                 </div>
-                <div class="user-description-part user-about">
+                <div class="underlined-block user-about">
                     <div class="about">{{ user.about }}</div>
-                   
+
                 </div>
                 <div class="buttons-container">
+                    
+
                     <div class="right">
-                        <a class="edit-button" href="{{ path('user_edit', { 'id': user.id }) }}">Редактировать</a>
+                        <a class="edit-button" href="{{ path('ad_index')}}">Объявления</a>
                     </div>
-                </div>
-                <div class="buttons-container">
+
                     <div class="right">
-                        <a class="edit-button" href="{{ path('ad_index')}}">Мои объявления</a>
+                        <a class="edit-button" href="{{ path('ad_index')}}">Запросы</a>
                     </div>
-                </div>
-                <div class="buttons-container">
-                    <div class="right">
-                        <a class="edit-button" href="{{ path('ad_index')}}">Запросі на подтверждение</a>
-                    </div>
-                </div>
-                <div class="buttons-container">
+
+
                     <div class="right">
                         <a class="edit-button" href="{{ path('ad_index')}}">Сообщения</a>
+                    </div>
+                    <div class="right">
+                        <a class="edit-button" href="{{ path('user_edit', { 'id': user.id }) }}">Редактировать</a>
                     </div>
                 </div>
             </div>
