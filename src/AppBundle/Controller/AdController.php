@@ -28,7 +28,7 @@ class AdController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ads = $em->getRepository('AppBundle:Ad')->findAll();
+        $ads = $em->getRepository('AppBundle:Ad')->findBy(['user' => $this->getUser()]);
 
         return $this->render('ad/index.html.twig', array(
             'ads' => $ads,

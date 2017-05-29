@@ -1,20 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ads list</h1>
+    <h1>Мои объявления</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Adate</th>
-                <th>Adtext</th>
-                <th>Price</th>
-                <th>Currency</th>
-                <th>Durability</th>
-                <th>Value</th>
-                <th>Dateserv</th>
-                <th>Idad</th>
-                <th>Actions</th>
+                <th>Дата</th>
+                <th>Дисциплина</th>
+                <th>Цена</th>
+                <th>Валюта</th>
+                <th>Длительность</th>
+                <th>Время</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +24,6 @@
                 <td>{{ ad.currency }}</td>
                 <td>{{ ad.durability }}</td>
                 <td>{{ ad.value }}</td>
-                <td>{% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ ad.idAd }}</td>
                 <td>
                     <ul>
                         <li>
