@@ -20,27 +20,28 @@
         <div class="extra-search-container hidden">
 
         </div>
-        <div class="cv-top-list serrated-gray">
+        <div class="ad-list serrated-gray">
             {% for ad in ads %}
-                <div class="teacher-list-item">                    
-                    <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a>
-                    <div class="teacher-photo">
-                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">
+                <div class="ad-container">                    
+                    {#<a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}"></a>#}
+                    <div class="photo-block">
+{#                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">#}
                     </div>
-                    <div class="teacher-info">
-                        <div class="teacher-info-head">                            
+                    <div class="info-block ad-info">
+                        <div class="ad-head">                            
                             <div class="teacher-name">{{ ad.user }}</div>
-                            <div class="teacher-subjects">{{ ad.subject}}</div>
+                            <div class="ad-subject">{{ ad.subject}}</div>
                         </div>
-                        <div class="teacher-info-description">
+                        <div class="ad-content">
                             {{ ad.adText }}
+                            <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
                         </div>
-                        <div class="teacher-info-bottom">
-                            <div class="teacher-city">
+                        <div class="ad-footer">
+                            <div class="ad-place cell">
                                 <div>{{ ad.town }}</div>
                                 <div>{{ ad.area }}</div>
                             </div>                            
-                            <div class="teacher-online">
+                            <div class="ad-online cell">
                                 Уроки online
                                 {% if ad.online==1%}
                                     <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
@@ -48,8 +49,12 @@
                                     <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
                                 {%endif%}
                             </div>
-
-                            <div class="teacher-price">{{ ad.price }}{{ ad.currency }}/{{ ad.value }}</div>
+                            <div class="ad-type cell">
+                                
+                            </div>
+                            <div class="ad-price cell">
+                                {{ ad.price }}{{ ad.currency }}/{{ ad.value }}
+                            </div>
                         </div>
 
                     </div>
