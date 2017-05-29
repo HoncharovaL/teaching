@@ -15,6 +15,18 @@
             </div>
         </div>
         <div class="serrated-yellow search-container">
+               {{ form_start(form)}}
+                <div>
+                    {{ form_widget(form.search)}}
+                    {{ form_widget(form.town)}}
+                    {{ form_widget(form.area)}}
+                    {{ form_widget(form.place)}}
+                    {{ form_widget(form.pricemin)}}
+                    {{ form_widget(form.pricemax)}}
+                    {{ form_widget(form.currency)}}
+                </div>
+                <input type="submit" value="Отправить" />
+                {{ form_end(form) }}
             <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
         </div>
         <div class="extra-search-container hidden">
