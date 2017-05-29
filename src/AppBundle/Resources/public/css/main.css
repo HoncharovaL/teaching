@@ -272,7 +272,7 @@ a{
     margin-bottom: 5px;
 }
 .info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container,
-.review-item{
+.review-container{
     background-color: white;
     padding-bottom: 20px;
 }
@@ -503,5 +503,5 @@ a{
     text-align: center;
     color: #fcab01;
     font-size: 12px;
-    padding: 20px;
+    margin: 20px 0;
 }
