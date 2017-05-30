@@ -27,13 +27,13 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('search', null, array('required'   => false,'empty_data' => 'Дисциплина',))
-                ->add('town', null, array('required'   => false,'empty_data' => 'Населенный пункт',))
-                ->add('area', null, array('required'   => false,'empty_data' => 'Район',))
-                ->add('place', ChoiceType::class, ['required'=> false,'empty_data' => 'Место занятий', 'choices' => ['У себя' => 'У себя', 'На выезде' => 'На выезде']])
-                ->add('pricemin', null, array('required'   => false,'empty_data' => 'Цена от',))
-                ->add('pricemax', null, array('required'   => false,'empty_data' => 'Цена до',))
-                ->add('currency', ChoiceType::class, ['required'=> false,'empty_data' => 'Валюта', 'choices' => ['грн.' => 'грн.', 'eur' => 'eur', '$' => '$']]);
+        $builder->add('search', null, array('required'   => false,))
+                ->add('town', null, array('required'   => false,))
+                ->add('area', null, array('required'   => false,))
+                ->add('place', ChoiceType::class, ['required'=> false, 'choices' => ['У себя' => 'У себя', 'На выезде' => 'На выезде']])
+                ->add('pricemin', null, array('required'   => false,))
+                ->add('pricemax', null, array('required'   => false,))
+                ->add('currency', ChoiceType::class, ['required'=> false, 'choices' => ['грн.' => 'грн.', 'eur' => 'eur', '$' => '$']]);
 
                  
     }

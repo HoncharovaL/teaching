@@ -14,24 +14,48 @@
                 <div>Мы поможем вам стать умнее!</div>
             </div>
         </div>
-        <div class="serrated-yellow search-container">
-               {{ form_start(form)}}
-                <div>
-                    {{ form_widget(form.search)}}
-                    {{ form_widget(form.town)}}
-                    {{ form_widget(form.area)}}
-                    {{ form_widget(form.place)}}
-                    {{ form_widget(form.pricemin)}}
-                    {{ form_widget(form.pricemax)}}
-                    {{ form_widget(form.currency)}}
-                </div>
-                <input type="submit" value="Отправить" />
-                {{ form_end(form) }}
-            <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
-        </div>
-        <div class="extra-search-container hidden">
+        {{ form_start(form)}}
+        <div class="serrated-yellow search-container">    
+            <div class="search-form">
+                {{ form_widget(form.search, {'attr':{'placeholder':"Предмет"}})}}
+                {{ form_widget(form.town, {'attr':{'placeholder':"Город"}})}}   
+
+                <input class="save-button" type="submit" value="Поиск" />
+                <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
+            </div>   
 
         </div>
+        <div class="extra-search-container hidden">
+            <div class="search-form">
+                <div class="col1">
+                    <div class="search-area">
+                        {{ form_widget(form.area, {'attr':{'placeholder':"Область"}})}}
+                    </div>
+                    <div class="search-place">
+                        {{ form_widget(form.place, {'placeholder':"Место проведения"})}}
+                    </div>
+                </div>
+                <div class="col2">
+                    <div class="search-price">
+                        <span class="opacity-text price-label">Цена:</span>
+                        <span class=" min">
+                            {{ form_widget(form.pricemin, {'attr':{'placeholder':"от"}})}}
+                        </span>
+                        <span class="max">
+                            {{ form_widget(form.pricemax, {'attr':{'placeholder':"до"}})}}
+                        </span>
+                    </div>
+                    <div class="search-currency">
+                        {{ form_widget(form.currency, {'placeholder':"Валюта"})}}
+                    </div>
+
+                </div>
+                <div class="col3">
+                    <input class="save-button" type="submit" value="Поиск" />
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
         <div class="ad-list serrated-gray">
             {% for ad in ads %}
                 <div class="ad-container ">
@@ -70,7 +94,7 @@
                                     <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
                                 {%endif%}
                             </div>
-                           
+
                             <div class="ad-price cell">
                                 {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
                             </div>
@@ -90,13 +114,13 @@
                 </div>
             </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-            <div class="place-cv-button">
-                <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
-            </div>
+                <div class="place-cv-button">
+                    <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
+                </div>
             {%else%}
-            <div class="place-cv-button">
-                <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
-            </div>
+                <div class="place-cv-button">
+                    <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
+                </div>
             {%endif%}
         </div>
         <div class="cities-container">

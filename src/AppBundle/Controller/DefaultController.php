@@ -22,7 +22,7 @@ class DefaultController extends Controller
         
         if ($form->isSubmitted() && $form->isValid()) {
             
-            return $this->redirectToRoute('default/index.html.twig', array(
+            return $this->render('default/index.html.twig', array(
             'ads' => $ads,
             'form' => $form->createView(),
         ));

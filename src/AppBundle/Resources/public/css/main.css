@@ -191,7 +191,7 @@ a{
     font-size: 15px;
     text-align: center;
     line-height: 50px;
-    padding: 15px 50px;
+    padding: 10px 50px;
 }
 .cities-container{
     padding: 40px 20px;
@@ -242,7 +242,9 @@ a{
 .user-edit-container:after,
 .ad-edit-container:after,
 .ad-full-container:after,
-.review-item:after{
+.review-item:after,
+.search-form:after,
+.extra-search-form:after{
     content: '.';
     float: none;
     display: block;
@@ -504,4 +506,25 @@ a{
     color: #fcab01;
     font-size: 12px;
     margin: 20px 0;
+}
+.search-form{
+    width: 800px;
+    margin: auto;
+    text-align: center;
+}
+.price-label{
+    height: 45px;
+    line-height: 45px;
+}
+.search-form .col1, .search-form .col2,.search-form .col3{
+    width: 32%;
+    display: inline-block;
+    margin-right: 10px;
+}
+.search-form .col1, .search-form .col2, .search-form .col3{
+    float: left;
+}
+.search-form .col3{
+    width: 20%;
+    line-height: 89px;
 }

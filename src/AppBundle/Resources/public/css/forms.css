@@ -8,8 +8,15 @@ input[type="text"], textarea, select, input[type="password"], input[type="email"
     box-sizing: border-box;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.search-form input[type="text"], .search-form select{
+    width: 250px;
+    margin: 5px;
+}
+.search-price input[type="text"]{
+    width: 98px;   
 }
 
 select {
@@ -24,7 +31,7 @@ textarea {
     background-color: #7b8e1f;
     border: none;
     color: white;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 5px 20px;
     cursor: pointer;
@@ -35,7 +42,7 @@ textarea {
     background-color: #ccc;
     border: none;
     color: white !important;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 5px 20px;
     cursor: pointer;
@@ -45,7 +52,7 @@ textarea {
     background-color: #fcab01;
     border: none;
     color: white !important;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 5px 20px;
     cursor: pointer;
@@ -91,11 +98,11 @@ textarea {
     color: #fff;
     float: left;
     border: none;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .fileContainer:hover {
