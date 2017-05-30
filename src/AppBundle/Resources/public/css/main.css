@@ -244,7 +244,8 @@ a{
 .ad-full-container:after,
 .review-item:after,
 .search-form:after,
-.extra-search-form:after{
+.extra-search-form:after,
+.ad-row:after{
     content: '.';
     float: none;
     display: block;
@@ -354,7 +355,8 @@ a{
 }
 
 .subjecttype-container,
-.subjecttype-edit-container{
+.subjecttype-edit-container,
+.ad-edit-container{
     width: 400px;
     margin: 30px auto;
 }
@@ -512,9 +514,13 @@ a{
     margin: auto;
     text-align: center;
 }
-.price-label{
+.price-label {
     height: 45px;
     line-height: 45px;
+}
+.ad-row .left-block{
+    height: 53px;
+    line-height: 53px;
 }
 .search-form .col1, .search-form .col2,.search-form .col3{
     width: 32%;
@@ -527,4 +533,15 @@ a{
 .search-form .col3{
     width: 20%;
     line-height: 89px;
+}
+.ad-row{
+    width: 90%;
+    margin: auto;
+}
+.ad-edit-container .underlined-block{
+    margin: 10px auto;
+    padding: 0;
+}
+.ad-edit-content{
+    margin: 20px 0;
 }
