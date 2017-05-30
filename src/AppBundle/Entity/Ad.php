@@ -143,7 +143,7 @@ class Ad
     /**
      * @var integer
      *
-     * @ORM\Column(name="top", type="integer")
+     * @ORM\Column(name="top", type="integer", nullable=true)
      */
     private $top;
     function getTop() {

@@ -41,8 +41,21 @@ class AdServices
      */
     private $idServices;
 
+     /**
+     * @var \AppBundle\Entity\Ad
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AdServices", mappedBy="idAd", cascade={"ALL"}, orphanRemoval=true)
+     */
+    private $ad = [];
+    function getAd() {
+        return $this->ad;
+    }
 
-    /**
+    function setAd($ad) {
+        $this->ad = $ad;
+    }
+
+        /**
      * Set services
      *
      * @param string $services
