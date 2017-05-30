@@ -1,17 +1,99 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-            
-            <a href="http://teaching/app_dev.php/login">Вход</a>
-            
-            <a href="http://teaching/app_dev.php/register/">Регистрация</a>
-            
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-               <a href="http://teaching/app_dev.php/logout">Выход</a>
-               <a href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
-               {% if app.user.getRole()=='admin'%}
-               <a href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
-               <a href="{{ path('adservices_index') }}">Справочник услуг</a>
-                {%endif%}
+    <div class="container">
+
+        <div class="header-bottom">
+            <div class="howsmart-head">
+                <div>HOWSMART.UA</div>
+                <div>Лучшие репетиторы Украины</div>                
+            </div>
+            <div class="howsmart-about">
+                <div>Нужен репетитор?</div>
+                <div>С помощью howsmart ищите репетитора в своем городе или учитесь онлайн.</div>
+                <div>Мы поможем вам стать умнее!</div>
+            </div>
+        </div>
+        <div class="serrated-yellow search-container">
+               {{ form_start(form)}}
+                <div>
+                    {{ form_widget(form.search)}}
+                    {{ form_widget(form.town)}}
+                    {{ form_widget(form.area)}}
+                    {{ form_widget(form.place)}}
+                    {{ form_widget(form.pricemin)}}
+                    {{ form_widget(form.pricemax)}}
+                    {{ form_widget(form.currency)}}
+                </div>
+                <input type="submit" value="Отправить" />
+                {{ form_end(form) }}
+            <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
+        </div>
+        <div class="extra-search-container hidden">
+
+        </div>
+        <div class="ad-list serrated-gray">
+            {% for ad in ads %}
+                <div class="ad-container">
+                    <div class="photo-block">
+{#                        {{ ad.user.rating}}#}
+{#                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">#}
+                    </div>
+                    <div class="info-block ad-info">
+                        <div class="ad-head">                            
+                            <div class="teacher-name">{{ ad.user }}</div>
+                            <div class="ad-subject">{{ ad.subject}}</div>
+                        </div>
+                        <div class="ad-content">
+                            {{ ad.adText }}
+                            <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
+                        </div>
+                        <div class="ad-footer">
+                            <div class="ad-place cell">
+                                <div>{{ ad.town }}</div>
+                                <div>{{ ad.area }}</div>
+                            </div>                            
+                            <div class="ad-online cell">
+                                Уроки online
+                                {% if ad.online==1%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                                {%else%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                                {%endif%}
+                            </div>
+                            <div class="ad-type cell">
+                                
+                            </div>
+                            <div class="ad-price cell">
+                                {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="place-cv">
+            <div class="place-cv-text">
+                <div class="place-cv-head">
+                    Разместите своё резюме!
+                </div>
+                <div>
+                    Ученики смогут найти вас и предложить отличную работу.
+                </div>
+            </div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+            <div class="place-cv-button">
+                <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
+            </div>
+            {%else%}
+            <div class="place-cv-button">
+                <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
+            </div>
             {%endif%}
+        </div>
+        <div class="cities-container">
+
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reviews list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Review</th>
+                <th>Rdate</th>
+                <th>Idreview</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for review in reviews %}
+            <tr>
+                <td><a href="{{ path('review_show', { 'idReview': review.idReview }) }}">{{ review.review }}</a></td>
+                <td>{% if review.rdate %}{{ review.rdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ review.idReview }}</td>
+                <td>{{ review.rating }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('review_show', { 'idReview': review.idReview }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('review_edit', { 'idReview': review.idReview }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('review_new') }}">Create a new review</a>
+        </li>
+    </ul>
+{% endblock %}

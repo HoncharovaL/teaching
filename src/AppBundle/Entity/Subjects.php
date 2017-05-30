@@ -37,8 +37,21 @@ class Subjects
      */
     private $idStype;
     
-   
-    /**
+        /**
+     * @var \AppBundle\Entity\Ad
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subjects", mappedBy="idAd", cascade={"ALL"}, orphanRemoval=true)
+     */
+    private $ad = [];
+    function getAd() {
+        return $this->ad;
+    }
+
+    function setAd($ad) {
+        $this->ad = $ad;
+    }
+
+        /**
      * Set subject
      *
      * @param string $subject
@@ -94,6 +107,10 @@ class Subjects
     public function getIdStype()
     {
         return $this->idStype;
+    }
+    
+       public function __toString() {
+       return $this->getSubject();
     }
 }
 

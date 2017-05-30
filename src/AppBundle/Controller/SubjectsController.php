@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Subjects;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Subject controller.
@@ -39,7 +40,7 @@ class SubjectsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $subject = new Subject();
+        $subject = new Subjects();
         $form = $this->createForm('AppBundle\Form\SubjectsType', $subject);
         $form->handleRequest($request);
 
@@ -88,7 +89,7 @@ class SubjectsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('subjects_edit', array('idSubject' => $subject->getIdsubject()));
+            return $this->redirectToRoute('subjecttype_index', array('idSubject' => $subject->getIdsubject()));
         }
 
         return $this->render('subjects/edit.html.twig', array(

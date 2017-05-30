@@ -1,21 +1,16 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Subject edit</h1>
-
-    {{ form_start(edit_form) }}
+<div class="popup subject-edit">
+    <div class="popup-header">
+        <div class="text">Редактировать</div>
+    </div>
+    <div class="popup-content">
+        {{ form_start(edit_form, {'action':path('subjects_edit',{'idSubject':app.request.get('idSubject')})}) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Корректировать" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('subjects_index') }}">Назад</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Удалить">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+    </div>
+    <div class="buttons-container">
+        <input class="save-button right" type="submit" value="Сохранить" />
+        {{ form_end(edit_form) }}
+        {{ form_start(delete_form) }}
+        <input class="delete-button left" type="submit" value="Удалить">
+        {{ form_end(delete_form) }}
+    </div> 
+</div>

@@ -1,56 +1,123 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ad</h1>
+    <h1>Просмотр объявления</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Adate</th>
+                <th>Преподаватель</th>
+                <td>{{ ad.user }}</td>
+            </tr>
+            <tr>
+                <th>Рейтинг</th>
+                <td>{{ ad.user.rating }}</td>
+            </tr>
+            <tr>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <th>Телефон</th>
+              <td>{{ ad.user.phone }}</td>  
+            {%endif%}
+            </tr>
+            <tr>
+            <td> <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
+            </tr>
+            <tr>
+                <th>Дата публикации</th>
                 <td>{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Adtext</th>
+                <th>Текст объявления</th>
                 <td>{{ ad.adText }}</td>
             </tr>
             <tr>
-                <th>Price</th>
-                <td>{{ ad.price }}</td>
+                <th>Цена</th>
+                <td>{{ ad.price }} {{ ad.currency }}</td>
             </tr>
             <tr>
-                <th>Currency</th>
-                <td>{{ ad.currency }}</td>
+                <th>За</th>
+                <td>{{ ad.durability }}{{ ad.value }}</td>
             </tr>
             <tr>
-                <th>Durability</th>
-                <td>{{ ad.durability }}</td>
+                <th>Область</th>
+                <td>{{ ad.region }}</td>
+            </tr>
+                        <tr>
+                <th>Город</th>
+                <td>{{ ad.town }}</td>
+            </tr>
+                        <tr>
+                <th>Район</th>
+                <td>{{ ad.area }}</td>
+            </tr>
+                        <tr>
+                <th>Место проведения</th>
+                <td>{{ ad.place }}</td>
+            </tr>
+                        <tr>
+                <th>Онлайн</th>
+                {% if ad.online==1%}
+                    <td>Да</td>
+                {%else%}
+                    <td>Нет</td>
+                {%endif%}
+                
+            </tr>
+
+            <tr>
+                <th>Обо мне</th>
+                <td>{{ ad.user.about }}</td>
             </tr>
             <tr>
-                <th>Value</th>
-                <td>{{ ad.value }}</td>
+                <th>Образование</th>
+                <td>{{ ad.user.education }}</td>
             </tr>
             <tr>
-                <th>Dateserv</th>
-                <td>{% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}</td>
+                <th>Учебные заведения</th>
+                <td>{{ ad.user.university }}</td>
             </tr>
             <tr>
-                <th>Idad</th>
-                <td>{{ ad.idAd }}</td>
+                <th>Опыт преподавания</th>
+                <td>{{ ad.user.experience }}</td>
             </tr>
         </tbody>
     </table>
 
+            <h3>Отзывы:</h3>
+            {% for comments in comments %}
+                <div class="reviews-comment-item">
+                    <div >{{comments.rdate|date("m.d.Y")}}</div>
+                    <div >{{comments.user.name}}</div>
+                    <div >{{comments.review}}</div>
+                    <div >{{comments.rating}}</div>
+                </div>
+            {% endfor %}
+             {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
+                 {%if confirm==1 %}
+                {{ form_start(form)}}
+                <div>
+                    {{ form_widget(form.review)}}
+                    {{ form_widget(form.rating)}}
+                </div>
+                <input type="submit" value="Отправить" />
+                {{ form_end(form) }}
+                {%elseif confirm==2%}
+            <h4>Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником </h4>
+                {{ form_start(query_form)}}
+                <div>
+                    {{ form_widget(query_form.queryText)}}
+                </div>
+                <input type="submit" value="Отправить" />
+                {{ form_end(query_form) }}
+                {%elseif confirm==0%}
+                <h4>Преподаватель еще не подтвердил, что Вы являетесь его учеником</h4>
+                {%else%}
+                <h4>Вы уже оставили свой отзыв</h4>
+                 {%endif%}
+             {%endif%}
     <ul>
         <li>
-            <a href="{{ path('ad_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('homepage') }}">Назад</a>
         </li>
     </ul>
 {% endblock %}

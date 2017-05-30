@@ -39,7 +39,7 @@ class AdServicesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $adService = new Adservice();
+        $adService = new Adservices();
         $form = $this->createForm('AppBundle\Form\AdServicesType', $adService);
         $form->handleRequest($request);
 

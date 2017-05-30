@@ -1,47 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
+    <div class="container">
+        <div class="user-container">
+            <div class="photo-block left-block image-with-overlay-label">
+                <span class="overlay-label">{{ user.rating }}</span>
+                <img src="{{photo_path}}{{user.photo}}" alt="user">
+            </div>
+            <div class="info-block right-block">
+                <div class="underlined-block user-name">
+                    <div class="surname"><span class="opacity-text">Фамилия:</span>{{ user.surname }}</div>
+                    <div class="name"><span class="opacity-text">Имя:</span>{{ user.name }}</div>  
+                    <div class="patronymic"><span class="opacity-text">Отчество:</span>{{ user.patronymic }}</div>
+                    <div class="phone"><span class="opacity-text">Телефон: </span>{{ user.phone }}</div>
+                </div>
+                <div class="underlined-block user-education">
+                    <div class="education"><span class="opacity-text">Образование: </span>{{ user.education}}</div>
+                    <div class="university"><span class="opacity-text">Учебное заведение: </span>{{ user.university }}</div>
+                    <div class="experience"><span class="opacity-text">Опыт работы: </span>{{ user.experience }}</div>
+                </div>
+                <div class="underlined-block user-about">
+                    <div class="about">{{ user.about }}</div>
 
-    <table>
-        <tbody>
-           
-            <tr>
-                <th>Name</th>
-                <td>{{ user.name }}</td>
-            </tr>
-            <tr>
-                <th>Patronymic</th>
-                <td>{{ user.patronymic }}</td>
-            </tr>
-            <tr>
-                <th>Surname</th>
-                <td>{{ user.surname }}</td>
-            </tr>
+                </div>
+                <div class="buttons-container">
+                    
 
-            <tr>
-                <th>Photo</th>
-                <td> <img src="{{photo_path}}{{user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ user.phone }}</td>
-            </tr>
-            <tr>
-                <th>About</th>
-                <td>{{ user.about }}</td>
-            </tr>
-        </tbody>
-    </table>
+                    <div class="right">
+                        <a class="edit-button" href="{{ path('ad_index')}}">Объявления</a>
+                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    <div class="right">
+                        <a class="edit-button" href="{{ path('ad_index')}}">Запросы</a>
+                    </div>
+
+
+                    <div class="right">
+                        <a class="edit-button" href="{{ path('ad_index')}}">Сообщения</a>
+                    </div>
+                    <div class="right">
+                        <a class="edit-button" href="{{ path('user_edit', { 'id': user.id }) }}">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

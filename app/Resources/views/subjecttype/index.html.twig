@@ -1,37 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Справочник дисциплин</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Тип дисциплины</th>
-                <th>Действие</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for subjectType in subjectTypes %}
-            <tr>
-                <td><a href="{{ path('subjecttype_show', { 'idStype': subjectType.idStype }) }}">{{ subjectType.stype }}</a></td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('subjecttype_show', { 'idStype': subjectType.idStype }) }}">Показать</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('subjecttype_edit', { 'idStype': subjectType.idStype }) }}">Корректировать</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('subjecttype_new') }}">Новая дисциплина</a>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="subjecttype-container">
+            <div class="orange-header">
+                <div class="list-text-container">Дисциплины</div>
+                <div class="list-button-container"><a href="{{ path('subjecttype_new') }}">+</a></div>
+            </div>
+            <div class="subjecttype-list">
+                {% for subjectType in subjectTypes %}  
+                    <div class="subjecttype-item" >
+                        <div class="subjecttype-name">
+                            <div class="list-text-container">
+                                <a  class="black-href" onclick="$('#subject-list-{{loop.index}}').toggleClass('hidden')">
+                                    {{ subjectType.stype }}
+                                </a>
+                            </div>
+                            <div class="list-button-container">
+                                <a href="{{ path('subjecttype_edit', { 'idStype': subjectType.idStype }) }}">
+                                    <img class="edit-image"src="{{asset('bundles/app/img/edit.png')}}">
+                                </a>
+                            </div>
+                        </div>
+                        <div id="subject-list-{{loop.index}}" class="subject-list hidden">
+                            {% for subj in subjectType.subjects %}
+                                <div class="subject-item">
+                                    <div class="list-text-container">
+                                        {{subj.subject}}
+                                    </div>
+                                    <div class="list-button-container">
+                                        <a class="colorbox-ajax-form" href="{{ path('subjects_edit', { 'idSubject': subj.idSubject })}}">
+                                            <img class="edit-image"src="{{asset('bundles/app/img/edit.png')}}">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
