@@ -17,12 +17,23 @@
         {{ form_start(form)}}
         <div class="serrated-yellow search-container">    
             <div class="search-form">
-                {{ form_widget(form.search, {'attr':{'placeholder':"Предмет"}})}}
-                {{ form_widget(form.town, {'attr':{'placeholder':"Город"}})}}   
-
-                <input class="save-button" type="submit" value="Поиск" />
-                <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
-            </div>   
+                <div class="col1">
+                    <div class="search-area">
+                        {{ form_widget(form.search, {'attr':{'placeholder':"Предмет"}})}}
+                    </div>
+                </div>
+                <div class="col2">
+                    <div class="search-area">
+                        {{ form_widget(form.town, {'attr':{'placeholder':"Город"}})}}   
+                    </div>
+                </div>
+                <div class="col3">
+                    <div class="search-area">
+                        <input class="save-button" type="submit" value="Поиск" />
+                    </div>
+                </div>              
+                <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a> 
+            </div>
 
         </div>
         <div class="extra-search-container hidden">

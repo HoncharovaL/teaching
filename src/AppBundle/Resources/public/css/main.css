@@ -200,6 +200,7 @@ a{
     display: none;
 }
 .extra-search-button{
+    display: inline-block;
     border-bottom:  1px white dashed;
 }
 .left-block, .right-block{
@@ -530,7 +531,7 @@ a{
     margin: 20px 0;
 }
 .search-form{
-    width: 800px;
+    width: 900px;
     margin: auto;
     text-align: center;
 }
@@ -543,7 +544,7 @@ a{
     line-height: 53px;
 }
 .search-form .col1, .search-form .col2,.search-form .col3{
-    width: 32%;
+    width: 300px;
     display: inline-block;
     margin-right: 10px;
 }
@@ -551,8 +552,11 @@ a{
     float: left;
 }
 .search-form .col3{
-    width: 20%;
-    line-height: 89px;
+    width: 200px;
+
+}
+.extra-search-form .search-form .col3{
+       line-height: 89px; 
 }
 .ad-row{
     width: 90%;
