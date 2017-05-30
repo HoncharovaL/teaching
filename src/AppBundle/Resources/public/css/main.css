@@ -555,8 +555,8 @@ a{
     width: 200px;
 
 }
-.extra-search-form .search-form .col3{
-       line-height: 89px; 
+.extra-search-container .col3{
+    line-height: 89px; 
 }
 .ad-row{
     width: 90%;
