@@ -60,7 +60,10 @@
             {% for ad in ads %}
                 <div class="ad-container ">
                     <div class="photo-block image-with-overlay-label left-block">
-                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">
+                        {% if ad.top==1 %}
+                            <span class="overlay-label top-label"> В ТОПе </span>                            
+                        {% endif %}
+                        <img src="{{photo_path}}{{ad.user.photo}}">
                     </div>
                     <div class="info-block ad-info right-block">
                         <div class="ad-head">    
