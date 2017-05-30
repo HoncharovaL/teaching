@@ -37,8 +37,12 @@
                                     <a class='menu-href' href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
                                     <div class="dropdown-content">
                                         <div class=" dropdown-item">
+                                            <a class="menu-href" href="{{ path('ad_index')}}">Объявления</a>
+                                        </div> 
+                                        <div class=" dropdown-item">
                                             <a class='menu-href' href="{{ path("fos_user_security_logout") }}">Выход</a> 
                                         </div> 
+                                        
                                         {% if is_granted('ROLE_ADMIN')%}
                                             <div class="dropdown-item">
                                                 <a class='menu-href' href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>

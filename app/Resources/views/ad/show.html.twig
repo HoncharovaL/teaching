@@ -68,26 +68,28 @@
     <div class='review-container'>
         <div class='orange-header text-center'> Отзывы: </div>
         {% if comments | length%}
-            {% for comments in comments %}
-                <div class="review-item underlined-block">
-                    <div class='left-block review-photo'>
-                        {% if comments.user.photo %}
-                            <img src="{{photo_path}}{{comments.user.photo}}" >
-                        {%else%}
-                            <img src="{{ asset('bundles/app/img/no-img.png') }}" >
-                        {%endif%}
+            <div class="comments-container">
+                {% for comments in comments %}
+                    <div class="review-item underlined-block">
+                        <div class='left-block review-photo'>
+                            {% if comments.user.photo %}
+                                <img src="{{photo_path}}{{comments.user.photo}}" >
+                            {%else%}
+                                <img src="{{ asset('bundles/app/img/no-img.png') }}" >
+                            {%endif%}
+
+                        </div>
+                        <div class="review-content right-block">
+                            <div >{{comments.rdate|date("m.d.Y")}}</div>
+                            <div >{{comments.user.name}}</div>
+                            <div ><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
+                            <div >{{comments.review}}</div>
+
+                        </div>
 
                     </div>
-                    <div class="review-content right-block">
-                        <div >{{comments.rdate|date("m.d.Y")}}</div>
-                        <div >{{comments.user.name}}</div>
-                        <div ><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
-                        <div >{{comments.review}}</div>
-
-                    </div>
-
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
 
         {% else %}
             <div class='no-review'>
