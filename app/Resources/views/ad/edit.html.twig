@@ -94,20 +94,21 @@
                     {{ form_widget(edit_form.services) }}
                 </div>
             </div>
+            <div class="buttons-container">
+                <div class="right">
+                    <input class="save-button" type="submit" value="Сохранить" />
+                </div>
+            </div>
 
 
         </div>
         {{ form_end(edit_form) }}
         <div class="buttons-container">
-            <div class="left">
+            <div class="right">
                 {{ form_start(delete_form) }}
                 <input class="delete-button" type="submit" value="Удалить">
                 {{ form_end(delete_form) }}
             </div>
-            <div class="right">
-                <input class="save-button" type="submit" value="Сохранить" />
-            </div>
-
         </div>
     </div>
 {% endblock %}

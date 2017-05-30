@@ -294,9 +294,10 @@ a{
 }
 .ad-content, .teacher-content{
     margin: 30px 20px;
-    height: 120px;
+    height: 200px;
 }
 .detail-href, .black-href{
+    
     color:black;
 }
 .ad-description{
@@ -326,6 +327,9 @@ a{
     text-align: right;
     width: 249px;
     
+}
+.ad-footer .ad-service, .ad-footer .ad-servdate{
+    width: 339px;
 }
 .ad-place .ad-town, .ad-place .ad-area{
     padding-right: 10px;
@@ -436,9 +440,13 @@ a{
 .opacity-text{
     opacity: 0.5;
 }
-.ad-show-href:hover{
+.ad-show-href:hover, .ad-edit-href:hover{
     opacity:1;
 }
+.ad-show-href, .ad-edit-href{
+    margin: 10px 0;
+}
+
 .image-with-overlay-label {
     position: relative;
 }

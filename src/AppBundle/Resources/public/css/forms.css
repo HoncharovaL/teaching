@@ -36,6 +36,7 @@ textarea {
 }
 
 .save-button {
+    width:150px;
     background-color: #7b8e1f;
     border: none;
     color: white;
@@ -47,6 +48,7 @@ textarea {
 }
 
 .delete-button {
+    width:150px;
     background-color: #ccc;
     border: none;
     color: white !important;
@@ -57,6 +59,7 @@ textarea {
     font-size: 14px;
 }
 .edit-button{
+    width:150px;
     background-color: #fcab01;
     border: none;
     color: white !important;
