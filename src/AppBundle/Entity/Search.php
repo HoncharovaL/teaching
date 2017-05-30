@@ -23,87 +23,33 @@ class Search {
      /**
      * @var integer
      */
-    private $pricemin;
+    public  $pricemin;
     
     
     /**
      * @var integer
      */
-    private $pricemax;
+    public  $pricemax;
 
     /**
      * @var string
      */
-    private $currency;
+    public  $currency;
     
         /**
      * @var string
      */
-    private $town;
+    public  $town;
   
     /**
      * @var string
      */
-    private $area;
+    public  $area;
     
      /**
      * @var string
      */
-    private $place;
-    function getSearch() {
-        return $this->search;
-    }
-
-    function getPricemin() {
-        return $this->pricemin;
-    }
-
-    function getPricemax() {
-        return $this->pricemax;
-    }
-
-    function getCurrency() {
-        return $this->currency;
-    }
-
-    function getTown() {
-        return $this->town;
-    }
-
-    function getArea() {
-        return $this->area;
-    }
-
-    function getPlace() {
-        return $this->place;
-    }
-
-    function setSearch($search) {
-        $this->search = $search;
-    }
-
-    function setPricemin($pricemin) {
-        $this->pricemin = $pricemin;
-    }
-
-    function setPricemax($pricemax) {
-        $this->pricemax = $pricemax;
-    }
-
-    function setCurrency($currency) {
-        $this->currency = $currency;
-    }
-
-    function setTown($town) {
-        $this->town = $town;
-    }
-
-    function setArea($area) {
-        $this->area = $area;
-    }
-
-    function setPlace($place) {
-        $this->place = $place;
-    }
+    public  $place;
+   
 
 }
