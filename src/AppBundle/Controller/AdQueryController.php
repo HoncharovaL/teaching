@@ -23,8 +23,13 @@ class AdQueryController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $adQueries = $em->getRepository('AppBundle:AdQuery')->findAll();
+        $repository = $em->getRepository('AppBundle:AdQuery');
+        $query = $repository->createQueryBuilder('p')
+        ->where('p.teacher = :user')
+        ->setParameter('user', $this->getUser())
+        ->orderBy('p.confirm', 'ASC')
+        ->getQuery();
+        $adQueries = $query->getResult();
 
         return $this->render('adquery/index.html.twig', array(
             'adQueries' => $adQueries,
