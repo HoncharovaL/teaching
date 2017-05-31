@@ -1,51 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Мои объявления</h1>
+    <div class="buttons-container">
+        <div class="right">
+            <a class="save-button" href="{{ path('ad_new') }}">Создать</a>
+        </div>
+    </div> 
+    <div>
+        {% if ads | length %}
+            {% for ad in ads %}
+                <div class="ad-container ">
+                    <div class="photo-block image-with-overlay-label left-block">
+                        {% if ad.user.photo %}
+                            <img src="{{photo_path}}{{ad.user.photo}}">
+                        {% else %}
+                            <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                        {% endif %}
+                        
+                    </div>
+                    <div class="info-block ad-info right-block">
+                        <div class="ad-head">    
+                            <div class='left-col'>
+                                <div class="teacher-name">{{ ad.user }}</div>
+                                <div class="ad-subject">{{ ad.subject}}</div>
+                            </div>
+                            <div class='right-col'>
+                                <div class="teacher-rating">{{ ad.user.rating}}</div>
+                            </div>
+                        </div>
+                        <div class="ad-content">
+                            <div class='date opacity-text'>{{ ad.adate|date('Y-m-d') }}</div>
+                            <div class='ad-description'>{{ ad.adText }}</div>
+                            <div class='show-href opacity-text'>
+                                <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
+                            </div>
+                            <div class="edit-href opacity-text">
+                                <a class="detail-href" href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">Редактировать...</a>
+                            </div>
+                        </div>
+                        <div class="ad-footer">
+                            <div class="ad-place cell">
+                                <div class='ad-town'>{{ ad.town }}</div>
+                                <div class='ad-area'>{{ ad.area }}</div>
+                            </div>     
+                            <div class="ad-type cell">
+                                {{ad.place}}
+                            </div>
+                            <div class="ad-online cell">
+                                Уроки online
+                                {% if ad.online==1%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                                {%else%}
+                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                                {%endif%}
+                            </div>
+                            <div class="ad-price cell">
+                                {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
+                            </div>
+                            <div class="cell ad-service">
+                                Тип размещения: {{ ad.services }}
+                            </div>
+                            <div class="cell ad-servdate">
+                                Действителен до: {% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {%else%}
+            <div class="messages-container">
+                <div class='no-content underlined-block'>
+                    У Вас пока нет объявлений.
+                </div>
+            {% endif %}
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Дисциплина</th>
-                <th>Цена</th>
-                <th>Валюта</th>
-                <th>Длительность</th>
-                <th>Время</th>
-                <th>Сервис</th>
-                <th>Дата окончания</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ad in ads %}
-            <tr>
-                <td><a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</a></td>
-                <td>{{ ad.adText }}</td>
-                <td>{{ ad.price }}</td>
-                <td>{{ ad.currency }}</td>
-                <td>{{ ad.durability }}</td>
-                <td>{{ ad.value }}</td>
-                <td>{{ ad.services }}</td>
-                <td>{% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Показать</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">Редактировать</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('ad_new') }}">Создать новое объявление</a>
-        </li>
-    </ul>
-{% endblock %}
+    {% endblock %}

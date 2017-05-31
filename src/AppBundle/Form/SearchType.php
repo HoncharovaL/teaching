@@ -27,12 +27,12 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('search', null, array('required'   => false))
-                ->add('town', null, array('required'   => false))
-                ->add('area', null, array('required'   => false))
+        $builder->add('search', null, array('required'   => false,))
+                ->add('town', null, array('required'   => false,))
+                ->add('area', null, array('required'   => false,))
                 ->add('place', ChoiceType::class, ['required'=> false, 'choices' => ['У себя' => 'У себя', 'На выезде' => 'На выезде']])
-                ->add('pricemin', null, array('required'   => false))
-                ->add('pricemax', null, array('required'   => false))
+                ->add('pricemin', null, array('required'   => false,))
+                ->add('pricemax', null, array('required'   => false,))
                 ->add('currency', ChoiceType::class, ['required'=> false, 'choices' => ['грн.' => 'грн.', 'eur' => 'eur', '$' => '$']]);
 
                  

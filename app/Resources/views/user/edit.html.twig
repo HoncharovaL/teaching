@@ -5,6 +5,10 @@
         <div class="user-edit-container">
             {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
             <div class="photo-block left-block">
+                {% if user.photo %}
+                {% else %}
+                    <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                {% endif %}
                 {{ form_widget(edit_form.photoFile)}}
             </div>
             <div class="info-block right-block">

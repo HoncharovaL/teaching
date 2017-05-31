@@ -27,19 +27,19 @@ class DefaultController extends Controller
         } ;
         if ($search->town) {
             if($i==0) {
-                $qb->Where($qb->expr()->like($field, $qb->expr()->literal('%' . $search->town . '%')));
+                $qb->Where($qb->expr()->like('n.town', $qb->expr()->literal('%' . $search->town . '%')));
                 $i++;
             }
-                else  $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $search->town . '%')));
+                else  $qb->andWhere($qb->expr()->like('n.town', $qb->expr()->literal('%' . $search->town . '%')));
         }
       
         if ($search->area) {
             if($i==0) {
-                $qb->Where($qb->expr()->like($field, $qb->expr()->literal('%' . $search->area . '%')));
+                $qb->Where($qb->expr()->like('n.area', $qb->expr()->literal('%' . $search->area . '%')));
                 $i++;
             }
                 else 
-                $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $search->area . '%')));
+                $qb->andWhere($qb->expr()->like('n.area', $qb->expr()->literal('%' . $search->area . '%')));
         }
           
         if ($search->place) 

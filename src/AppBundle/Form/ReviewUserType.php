@@ -15,9 +15,8 @@ class ReviewUserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('rdate', DateType::class, ['empty_data' => new \DateTime(), 'label' => 'Дата создания'])
-                ->add('review', null, ['label' => 'Отзыв'])
-                ->add('rating', ChoiceType::class, ['label' => 'Оценка', 'choices' => ['2' => '2', '3' => '3', '4' => '4', '5' => '5']]);
+        $builder->add('review', null, ['label' => 'Отзыв'])
+                ->add('rating', ChoiceType::class, ['label' => 'Оценка','expanded'=>true ,'choices' => ['1'=>'1', '2' => '2', '3' => '3', '4' => '4', '5' => '5']]);
     }
     
     /**
