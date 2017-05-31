@@ -287,6 +287,7 @@ a{
 .ad-info, .messages-container {
     padding-bottom: 0;
 }
+
 .teacher-phone{
     width: 300px;
     height:50px;
@@ -495,7 +496,8 @@ a{
     padding: 5px;
 }
 .no-review{
-    margin: 60px;
+    margin:  0;
+    padding: 60px 0;
     text-align: center;
 }
 .messages-item{
@@ -504,7 +506,8 @@ a{
 }
 .messages-container{
     width: 987px;
-    margin: 40px auto;
+    margin: 20px auto;
+    padding-top: 20px;
 }
 .messages-photo img{
     width: 150px;

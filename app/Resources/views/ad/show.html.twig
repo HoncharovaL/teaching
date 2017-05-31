@@ -67,8 +67,9 @@
 
     <div class='review-container'>
         <div class='orange-header text-center'> Отзывы: </div>
-        {% if comments | length%}
-            <div class="messages-container">
+        <div class="messages-container">
+            {% if comments | length%}
+
                 {% for comments in comments %}
                     <div class="messages-item underlined-block">
                         <div class='left-block messages-photo'>
@@ -89,62 +90,63 @@
 
                     </div>
                 {% endfor %}
-            </div>
 
-        {% else %}
-            <div class='no-review'>
-                Пока что нет отзывов об этом преподавателе или уроках, которые он проводит.
-            </div>
-        {%endif%}
-        {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
-            {% if confirm==1 %}
-                {{ form_start(form)}}
-                <div class='review-form messages-item underlined-block'>
-                    <div class="review-rating">
-                        <span class="opacity-text">Оценка:</span>
-                        {{ form_widget(form.rating)}}
-                    </div>
-                    <div class="form-horizontal">
-                        <div class="opacity-text">Комментарий:</div>
-                        <div class="review-comment full-size-field">{{ form_widget(form.review)}}</div>
-                    </div>
-                    <div class="buttons-container">
-                        <div class="right">
-                            <input class="save-button" type="submit" value="Отправить" />
-                        </div>
-                    </div>
-                </div>
 
-                {{ form_end(form) }}
-            {%elseif confirm==2%}
-                <div class="messages-item form-horizontal">
-                    <div class="attention-header">
-                        ! Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником !
-                    </div>
-                    {{ form_start(query_form)}}
-                    <div class="full-size-field">
-                        {{ form_widget(query_form.queryText)}}
-                    </div>
-                    <div class="buttons-container">
-                        <div class="right">
-                            <input class="save-button" type="submit" value="Отправить" />
-                        </div>
-                    </div>
-                    {{ form_end(query_form) }}
-                </div>
-            {%elseif confirm==0%}
-                <div class="messages-item">
-                    <div class="attention-header">
-                        Преподаватель еще не подтвердил, что Вы являетесь его учеником.
-                    </div>
-                </div>
-            {%else%}
-                <div class="messages-item">
-                    <div class="attention-header">
-                        Вы уже оставили свой отзыв.
-                    </div>
+            {% else %}
+                <div class='no-review underlined-block'>
+                    Пока что нет отзывов об этом преподавателе или уроках, которые он проводит.
                 </div>
             {%endif%}
-        {%endif%}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
+                {% if confirm==1 %}
+                    {{ form_start(form)}}
+                    <div class='review-form messages-item underlined-block'>
+                        <div class="review-rating">
+                            <span class="opacity-text">Оценка:</span>
+                            {{ form_widget(form.rating)}}
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="opacity-text">Комментарий:</div>
+                            <div class="review-comment full-size-field">{{ form_widget(form.review)}}</div>
+                        </div>
+                        <div class="buttons-container">
+                            <div class="right">
+                                <input class="save-button" type="submit" value="Отправить" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                {%elseif confirm==2%}
+                    <div class="messages-item underlined-block form-horizontal">
+                        <div class="attention-header">
+                            ! Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником !
+                        </div>
+                        {{ form_start(query_form)}}
+                        <div class="full-size-field">
+                            {{ form_widget(query_form.queryText)}}
+                        </div>
+                        <div class="buttons-container">
+                            <div class="right">
+                                <input class="save-button" type="submit" value="Отправить" />
+                            </div>
+                        </div>
+                        {{ form_end(query_form) }}
+                    </div>
+                {%elseif confirm==0%}
+                    <div class="messages-item underlined-block">
+                        <div class="attention-header">
+                            Преподаватель еще не подтвердил, что Вы являетесь его учеником.
+                        </div>
+                    </div>
+                {%else%}
+                    <div class="messages-item underlined-block">
+                        <div class="attention-header">
+                            Вы уже оставили свой отзыв.
+                        </div>
+                    </div>
+                {%endif%}
+            {%endif%}
+        </div>
     </div>
 {% endblock %}
