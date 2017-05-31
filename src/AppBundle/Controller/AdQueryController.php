@@ -147,7 +147,7 @@ class AdQueryController extends Controller
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('adquery_confirm', array('idQuery' => $adQuery->getIdquery())))
-            ->setMethod('CONFIRM')
+            ->setMethod('POST')
             ->getForm()
         ;
     }
@@ -156,7 +156,7 @@ class AdQueryController extends Controller
      * Confirms a adQuery entity.
      *
      * @Route("/{idQuery}", name="adquery_confirm")
-     * @Method("CONFIRM")
+     * @Method({"GET", "POST"})
      */
     public function confirmAction(Request $request, AdQuery $adQuery)
     {
@@ -166,6 +166,7 @@ class AdQueryController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $adQuery->setConfirm(1);
+            $em->persist($adQuery);
             $em->flush();
         }
 
