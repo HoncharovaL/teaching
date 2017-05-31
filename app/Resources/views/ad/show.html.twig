@@ -4,7 +4,11 @@
     <div class='ad-full-container'>
         <div class='photo-block left-block image-with-overlay-label'>
             <span class="overlay-label">{{ ad.user.rating }}</span>
-            <img src="{{photo_path}}{{ad.user.photo}}" alt="user">
+            {% if ad.user.photo %}
+                <img src="{{photo_path}}{{ad.user.photo}}">
+            {% else %}
+                <img src="{{ asset('bundles/app/img/no-img.png') }}">
+            {% endif %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <div class='teacher-phone'>{{ ad.user.phone }}</div>
             {%endif%}
@@ -93,7 +97,7 @@
 
 
             {% else %}
-                <div class='no-review underlined-block'>
+                <div class='no-content underlined-block'>
                     Пока что нет отзывов об этом преподавателе или уроках, которые он проводит.
                 </div>
             {%endif%}
