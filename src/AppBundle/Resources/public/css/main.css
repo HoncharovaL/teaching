@@ -247,7 +247,7 @@ a{
 .user-edit-container:after,
 .ad-edit-container:after,
 .ad-full-container:after,
-.review-item:after,
+.messages-item:after,
 .search-form:after,
 .extra-search-form:after,
 .ad-row:after{
@@ -280,11 +280,11 @@ a{
     margin-bottom: 5px;
 }
 .info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container,
-.comments-container{
+.messages-container{
     background-color: white;
     padding-bottom: 20px;
 }
-.ad-info, .comments-container {
+.ad-info, .messages-container {
     padding-bottom: 0;
 }
 .teacher-phone{
@@ -445,10 +445,10 @@ a{
 .opacity-text{
     opacity: 0.5;
 }
-.ad-show-href:hover, .ad-edit-href:hover{
+.show-href:hover, .edit-href:hover{
     opacity:1;
 }
-.ad-show-href, .ad-edit-href{
+.show-href, .edit-href{
     margin: 10px 0;
 }
 
@@ -498,23 +498,23 @@ a{
     margin: 60px;
     text-align: center;
 }
-.review-item{
+.messages-item{
     width: 80%;
     margin: auto;
 }
-.comments-container{
+.messages-container{
     width: 987px;
     margin: 40px auto;
 }
-.review-photo img{
+.messages-photo img{
     width: 150px;
     height: 150px;
     object-fit: contain;
 }
-.review-content div{
+.messages-content div{
     margin: 10px 20px;
 }
-.review-content{
+.messages-content{
     width: 600px;
     height: 150px;
 }

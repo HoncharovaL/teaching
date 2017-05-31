@@ -25,10 +25,10 @@
                     <div class="ad-content">
                         <div class='date opacity-text'>{{ ad.adate|date('Y-m-d') }}</div>
                         <div class='ad-description'>{{ ad.adText }}</div>
-                        <div class='ad-show-href opacity-text'>
+                        <div class='show-href opacity-text'>
                             <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
                         </div>
-                        <div class="ad-edit-href opacity-text">
+                        <div class="edit-href opacity-text">
                             <a class="detail-href" href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">Редактировать...</a>
                         </div>
                     </div>

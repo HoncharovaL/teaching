@@ -68,10 +68,10 @@
     <div class='review-container'>
         <div class='orange-header text-center'> Отзывы: </div>
         {% if comments | length%}
-            <div class="comments-container">
+            <div class="messages-container">
                 {% for comments in comments %}
-                    <div class="review-item underlined-block">
-                        <div class='left-block review-photo'>
+                    <div class="messages-item underlined-block">
+                        <div class='left-block messages-photo'>
                             {% if comments.user.photo %}
                                 <img src="{{photo_path}}{{comments.user.photo}}" >
                             {%else%}
@@ -79,7 +79,7 @@
                             {%endif%}
 
                         </div>
-                        <div class="review-content right-block">
+                        <div class="messages-content right-block">
                             <div >{{comments.rdate|date("m.d.Y")}}</div>
                             <div >{{comments.user.name}}</div>
                             <div ><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
@@ -99,7 +99,7 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
             {% if confirm==1 %}
                 {{ form_start(form)}}
-                <div class='review-form review-item underlined-block'>
+                <div class='review-form messages-item underlined-block'>
                     <div class="review-rating">
                         <span class="opacity-text">Оценка:</span>
                         {{ form_widget(form.rating)}}
@@ -117,7 +117,7 @@
 
                 {{ form_end(form) }}
             {%elseif confirm==2%}
-                <div class="review-item form-horizontal">
+                <div class="messages-item form-horizontal">
                     <div class="attention-header">
                         ! Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником !
                     </div>
@@ -133,13 +133,13 @@
                     {{ form_end(query_form) }}
                 </div>
             {%elseif confirm==0%}
-                <div class="review-item">
+                <div class="messages-item">
                     <div class="attention-header">
                         Преподаватель еще не подтвердил, что Вы являетесь его учеником.
                     </div>
                 </div>
             {%else%}
-                <div class="review-item">
+                <div class="messages-item">
                     <div class="attention-header">
                         Вы уже оставили свой отзыв.
                     </div>
