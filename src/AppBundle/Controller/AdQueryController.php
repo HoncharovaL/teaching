@@ -18,7 +18,7 @@ class AdQueryController extends Controller
      * Lists all adQuery entities.
      *
      * @Route("/", name="adquery_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function indexAction()
     {
@@ -66,10 +66,12 @@ class AdQueryController extends Controller
     public function showAction(AdQuery $adQuery)
     {
         $deleteForm = $this->createDeleteForm($adQuery);
+        $confirmForm = $this->createDeleteForm($adQuery);
 
         return $this->render('adquery/show.html.twig', array(
             'adQuery' => $adQuery,
             'delete_form' => $deleteForm->createView(),
+            'confirm_form' => $confirmForm->createView(),
         ));
     }
 
@@ -132,5 +134,41 @@ class AdQueryController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+        /**
+     * Creates a form to confirm a adQuery entity.
+     *
+     * @param AdQuery $adQuery The adQuery entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createConfirmForm(AdQuery $adQuery)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('adquery_confirm', array('idQuery' => $adQuery->getIdquery())))
+            ->setMethod('CONFIRM')
+            ->getForm()
+        ;
+    }
+    
+        /**
+     * Confirms a adQuery entity.
+     *
+     * @Route("/{idQuery}", name="adquery_confirm")
+     * @Method("CONFIRM")
+     */
+    public function confirmAction(Request $request, AdQuery $adQuery)
+    {
+        $form = $this->createConfirmForm($adQuery);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $adQuery->setConfirm(1);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('adquery_index');
     }
 }
