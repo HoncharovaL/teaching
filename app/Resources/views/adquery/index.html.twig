@@ -1,30 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Adqueries list</h1>
+    <h1>Запросы на подтверждение</h1>
+    <h4>Если Вы подтвердите, что это действительно Ваш ученик, то он сможет оставить отзыв о Вас</h4>
 
     <table>
-        <thead>
-            <tr>
-                <th>Confirm</th>
-                <th>Querytext</th>
-                <th>Idquery</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+
         <tbody>
         {% for adQuery in adQueries %}
             <tr>
-                <td><a href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">{{ adQuery.confirm }}</a></td>
+                <td>{{ adQuery.user }}</td>
                 <td>{{ adQuery.queryText }}</td>
-                <td>{{ adQuery.idQuery }}</td>
+                
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('adquery_edit', { 'idQuery': adQuery.idQuery }) }}">edit</a>
+                            <a href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">Показать</a>
                         </li>
                     </ul>
                 </td>
