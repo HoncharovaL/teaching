@@ -510,6 +510,9 @@ a{
     width: 80%;
     margin: auto;
 }
+.subject-list a{
+    color: black;
+}
 .messages-container{
     width: 987px;
     margin: 20px auto;
