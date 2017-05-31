@@ -7,23 +7,29 @@
             <div class="orange-header text-center">
                 Запросы на подтверждение
             </div>
-            {% for adQuery in adQueries %}
-                <div class="query-item messages-item underlined-block">
-                    <div class="left-block messages-photo">
-                        {% if adQuery.user.photo %}
-                            <img src="{{photo_path}}{{adQuery.user.photo}}" >
-                        {%else%}
-                            <img src="{{ asset('bundles/app/img/no-img.png') }}" >
-                        {%endif%}
+            {% if adQueries | length%}
+                {% for adQuery in adQueries %}
+                    <div class="query-item messages-item underlined-block">
+                        <div class="left-block messages-photo">
+                            {% if adQuery.user.photo %}
+                                <img src="{{photo_path}}{{adQuery.user.photo}}" >
+                            {%else%}
+                                <img src="{{ asset('bundles/app/img/no-img.png') }}" >
+                            {%endif%}
+                        </div>
+                        <div class="right-block messages-content">
+                            <div class="user-name">{{ adQuery.user }}</div>
+                            {#                                                <div class="theme"><span class="opacity-text">Тема:</span>{{ adQuery.Ad.subjest }}</div>#}
+                            <div class="query-text">{{ adQuery.queryText }}</div>
+                            <div class="show-href opacity-text"><a class="detail-href colorbox-ajax-form" href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">Подробнее...</a></div>
+                        </div>
                     </div>
-                    <div class="right-block messages-content">
-                        <div class="user-name">{{ adQuery.user }}</div>
-{#                                                <div class="theme"><span class="opacity-text">Тема:</span>{{ adQuery.Ad.subjest }}</div>#}
-                        <div class="query-text">{{ adQuery.queryText }}</div>
-                        <div class="show-href opacity-text"><a class="detail-href colorbox-ajax-form" href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">Подробнее...</a></div>
-                    </div>
+                {% endfor%}
+            {% else %}
+                <div class="no-review underlined-block">
+                    У вас пока нет новых запросов на подтверждение.
                 </div>
-            {% endfor%}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
