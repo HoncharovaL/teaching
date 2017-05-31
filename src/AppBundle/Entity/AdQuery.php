@@ -114,13 +114,6 @@ class AdQuery
         return $this->idQuery;
     }
 
-       function getAd(){
-        return $this->ad;
-    }
-
-    function setAd($ad) {
-        $this->ad = $ad;
-    }
        function getUser() {
         return $this->user;
     }

@@ -61,13 +61,12 @@ class AdQueryController extends Controller
      * Finds and displays a adQuery entity.
      *
      * @Route("/{idQuery}", name="adquery_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function showAction(AdQuery $adQuery)
     {
         $deleteForm = $this->createDeleteForm($adQuery);
-        $confirmForm = $this->createDeleteForm($adQuery);
-
+        $confirmForm = $this->createConfirmForm($adQuery);
         return $this->render('adquery/show.html.twig', array(
             'adQuery' => $adQuery,
             'delete_form' => $deleteForm->createView(),
@@ -155,8 +154,8 @@ class AdQueryController extends Controller
     /**
      * Displays a form to edit an existing adQuery entity.
      *
-     * @Route("/{idQuery}/edit", name="adquery_confirm")
-     * @Method({"GET", "POST"})
+     * @Route("/{idQuery}/confirm", name="adquery_confirm")
+     * @Method("POST")
      */
     public function confirmAction(Request $request, AdQuery $adQuery)
     {
@@ -167,9 +166,8 @@ class AdQueryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $adQuery->setConfirm(1);
             $em->flush($adQuery);
-            return $this->redirectToRoute('adquery_show', array('idQuery' => $adQuery->getIdquery()));
         }
 
-            return $this->redirectToRoute('adquery_show', array('idQuery' => $adQuery->getIdquery()));
+            return $this->redirectToRoute('adquery_index');
     }
 }

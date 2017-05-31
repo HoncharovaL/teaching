@@ -13,7 +13,7 @@ class AdQueryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('confirm')->add('queryText')->add('ad')->add('user')->add('teacher');
+        $builder->add('confirm')->add('queryText')->add('user')->add('teacher');
     }
     
     /**
