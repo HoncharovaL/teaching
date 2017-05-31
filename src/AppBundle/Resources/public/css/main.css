@@ -226,11 +226,14 @@ a{
 
 .photo-block img{
     width: 100%;
-    height: 380px;
+    max-height: 380px;
     object-fit: contain; 
     -o-object-fit: contain; /* Fit logo fro opera browser */
     object-position: top; /* Set logo position */
     -o-object-position: top;
+}
+.user-about{
+    height: 100px;
 }
 .ad-head{
     background-color: #facb01;
@@ -257,6 +260,9 @@ a{
     height: 0;
     clear: both;
     visibility: hidden;
+}
+.ad-full-container .teacher-content, .ad-full-container .ad-content{
+    height: 125px;
 }
 .left-col, .right-col{
     display: inline-block;
@@ -507,7 +513,6 @@ a{
 .messages-container{
     width: 987px;
     margin: 20px auto;
-    padding-top: 20px;
 }
 .messages-photo img{
     width: 150px;
