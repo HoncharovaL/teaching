@@ -152,24 +152,24 @@ class AdQueryController extends Controller
         ;
     }
     
-        /**
-     * Confirms a adQuery entity.
+    /**
+     * Displays a form to edit an existing adQuery entity.
      *
-     * @Route("/{idQuery}", name="adquery_confirm")
+     * @Route("/{idQuery}/edit", name="adquery_confirm")
      * @Method({"GET", "POST"})
      */
     public function confirmAction(Request $request, AdQuery $adQuery)
     {
-        $form = $this->createConfirmForm($adQuery);
-        $form->handleRequest($request);
+       $createform = $this->createConfirmForm($adQuery);
+       $createform->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($createform->isSubmitted() && $createform->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $adQuery->setConfirm(1);
-            $em->persist($adQuery);
-            $em->flush();
+            $em->flush($adQuery);
+            return $this->redirectToRoute('adquery_show', array('idQuery' => $adQuery->getIdquery()));
         }
 
-        return $this->redirectToRoute('adquery_index');
+            return $this->redirectToRoute('adquery_show', array('idQuery' => $adQuery->getIdquery()));
     }
 }
