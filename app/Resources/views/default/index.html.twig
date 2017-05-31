@@ -14,45 +14,97 @@
                 <div>Мы поможем вам стать умнее!</div>
             </div>
         </div>
-        <div class="serrated-yellow search-container">
-               {{ form_start(form)}}
-                <div>
-                    {{ form_widget(form.search)}}
-                    {{ form_widget(form.town)}}
-                    {{ form_widget(form.area)}}
-                    {{ form_widget(form.place)}}
-                    {{ form_widget(form.pricemin)}}
-                    {{ form_widget(form.pricemax)}}
-                    {{ form_widget(form.currency)}}
+        {{ form_start(form)}}
+        <div class="serrated-yellow search-container">    
+            <div class="search-form">
+                <div class="col1">
+                    <div class="search-area">
+                        {{ form_widget(form.search, {'attr':{'placeholder':"Предмет"}})}}
+                    </div>
                 </div>
-                <input type="submit" value="Отправить" />
-                {{ form_end(form) }}
-            <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a>
-        </div>
-        <div class="extra-search-container hidden">
+                <div class="col2">
+                    <div class="search-area">
+                        {{ form_widget(form.town, {'attr':{'placeholder':"Город"}})}}   
+                    </div>
+                </div>
+                <div class="col3">
+                    <div class="search-area">
+                        <input class="save-button" type="submit" value="Поиск" />
+                    </div>
+                </div>              
+                <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a> 
+            </div>
 
         </div>
+        <div class="extra-search-container hidden">
+            <div class="search-form">
+                <div class="col1">
+                    <div class="search-area">
+                        {{ form_widget(form.area, {'attr':{'placeholder':"Область"}})}}
+                    </div>
+                    <div class="search-place">
+                        {{ form_widget(form.place, {'placeholder':"Место проведения"})}}
+                    </div>
+                </div>
+                <div class="col2">
+                    <div class="search-price">
+                        <span class="opacity-text price-label">Цена:</span>
+                        <span class=" min">
+                            {{ form_widget(form.pricemin, {'attr':{'placeholder':"от"}})}}
+                        </span>
+                        <span class="max">
+                            {{ form_widget(form.pricemax, {'attr':{'placeholder':"до"}})}}
+                        </span>
+                    </div>
+                    <div class="search-currency">
+                        {{ form_widget(form.currency, {'placeholder':"Валюта"})}}
+                    </div>
+
+                </div>
+                <div class="col3">
+                    <input class="save-button" type="submit" value="Поиск" />
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
         <div class="ad-list serrated-gray">
             {% for ad in ads %}
-                <div class="ad-container">
-                    <div class="photo-block">
-{#                        {{ ad.user.rating}}#}
-{#                        <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;">#}
+                <div class="ad-container ">
+                    <div class="photo-block image-with-overlay-label left-block">
+                        {% if ad.top==1 %}
+                            <span class="overlay-label top-label"> В ТОПе </span>                            
+                        {% endif %}
+                        {% if ad.user.photo %}
+                            <img src="{{photo_path}}{{ad.user.photo}}">
+                        {% else %}
+                            <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                        {% endif %}
                     </div>
-                    <div class="info-block ad-info">
-                        <div class="ad-head">                            
-                            <div class="teacher-name">{{ ad.user }}</div>
-                            <div class="ad-subject">{{ ad.subject}}</div>
+                    <div class="info-block ad-info right-block">
+                        <div class="ad-head">    
+                            <div class='left-col'>
+                                <div class="teacher-name">{{ ad.user }}</div>
+                                <div class="ad-subject">{{ ad.subject}}</div>
+                            </div>
+                            <div class='right-col'>
+                                <div class="teacher-rating">{{ ad.user.rating}}</div>
+                            </div>
                         </div>
                         <div class="ad-content">
-                            {{ ad.adText }}
-                            <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
+                            <div class='date opacity-text'>{{ ad.adate|date('Y-m-d') }}</div>
+                            <div class='ad-description'>{{ ad.adText }}</div>
+                            <div class='show-href opacity-text'>
+                                <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
+                            </div>
                         </div>
                         <div class="ad-footer">
                             <div class="ad-place cell">
-                                <div>{{ ad.town }}</div>
-                                <div>{{ ad.area }}</div>
-                            </div>                            
+                                <div class='ad-town'>{{ ad.town }}</div>
+                                <div class='ad-area'>{{ ad.area }}</div>
+                            </div>     
+                            <div class="ad-type cell">
+                                {{ad.place}}
+                            </div>
                             <div class="ad-online cell">
                                 Уроки online
                                 {% if ad.online==1%}
@@ -61,9 +113,7 @@
                                     <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
                                 {%endif%}
                             </div>
-                            <div class="ad-type cell">
-                                
-                            </div>
+
                             <div class="ad-price cell">
                                 {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
                             </div>
@@ -83,13 +133,13 @@
                 </div>
             </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-            <div class="place-cv-button">
-                <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
-            </div>
+                <div class="place-cv-button">
+                    <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
+                </div>
             {%else%}
-            <div class="place-cv-button">
-                <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
-            </div>
+                <div class="place-cv-button">
+                    <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
+                </div>
             {%endif%}
         </div>
         <div class="cities-container">

@@ -1,4 +1,4 @@
-input[type="text"], textarea, select, input[type="password"], input[type="email"] {
+input[type="text"], textarea, select, input[type="password"], input[type="email"], input[type="number"] {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -8,8 +8,23 @@ input[type="text"], textarea, select, input[type="password"], input[type="email"
     box-sizing: border-box;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.search-form input[type="text"], .search-form select {
+    width: 250px;
+    margin: 5px;
+}
+.ad-row select {
+    width: 194px;   
+}
+.edit-price input[type="number"], .edit-price select,
+.edit-durability input[type="number"], .edit-durability select {
+    width: 97px;
+    height: 37px;
+}
+.search-price input[type="text"]{
+    width: 98px;   
 }
 
 select {
@@ -21,10 +36,11 @@ textarea {
 }
 
 .save-button {
+    width:150px;
     background-color: #7b8e1f;
     border: none;
     color: white;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 5px 20px;
     cursor: pointer;
@@ -32,20 +48,22 @@ textarea {
 }
 
 .delete-button {
+    width:150px;
     background-color: #ccc;
     border: none;
     color: white !important;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 5px 20px;
     cursor: pointer;
     font-size: 14px;
 }
 .edit-button{
+    width:150px;
     background-color: #fcab01;
     border: none;
     color: white !important;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 5px 20px;
     cursor: pointer;
@@ -75,7 +93,7 @@ textarea {
     width: 60%;
 }
 
-.form-horizontal .full-size-field input[type="text"], .form-horizontal .full-size-field textarea, .form-horizontal .full-size-field select,  .form-horizontal .full-size-field input[type="password"]{
+.form-horizontal .full-size-field input[type="text"], .form-horizontal .full-size-field textarea, .form-horizontal .full-size-field select,  .form-horizontal .full-size-field input[type="password"],.form-horizontal .full-size-field input[type="number"]{
     width: 100%;
 }
 
@@ -91,11 +109,11 @@ textarea {
     color: #fff;
     float: left;
     border: none;
-    padding: 10px 32px;
+    padding: 8px 32px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .fileContainer:hover {

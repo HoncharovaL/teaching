@@ -1,22 +1,114 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Редактирование объявления</h1>
+    <div class="ad-edit-container">
+        {{ form_start(edit_form) }}
+        <div class="orange-header text-center">
+            Редактирование
+        </div>
+        <div class="ad-edit-content">
+            <div class="ad-row">
+                <div class="left-block">
+                    Предмет
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.subject) }}
+                </div>
+            </div>
+            <div class="ad-row form-horizontal underlined-block">                
+                <div class="full-size-field">
+                    {{ form_widget(edit_form.adText) }}
+                </div>
+            </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Сохранить" />
-    {{ form_end(edit_form) }}
+            <div class="ad-row">
+                <div class="left-block">
+                    Область
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.region) }}
+                </div>
+            </div>
+            <div class="ad-row">
+                <div class="left-block">
+                    Город
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.town) }}
+                </div>
+            </div>
+            <div class="ad-row underlined-block">
+                <div class="left-block">
+                    Район
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.area) }}
+                </div>
+            </div>
+            <div class="ad-row">
+                <div class="left-block">
+                    Место проведения
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.place) }}
+                </div>
+            </div>
+            <div class="ad-row underlined-block">
+                <div class="left-block">
+                    Онлайн-уроки
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.online) }}
+                </div>
+            </div>
+            <div class="ad-row">
+                <div class="left-block">
+                    Цена
+                </div>
+                <div class="right-block edit-price">
+                    {{ form_widget(edit_form.price) }}{{ form_widget(edit_form.currency) }}
+                </div>
+            </div>
+            <div class="ad-row underlined-block">
+                <div class="left-block">
+                    Время
+                </div>
+                <div class="right-block edit-durability">
+                    {{ form_widget(edit_form.durability) }}{{ form_widget(edit_form.value) }}
+                </div>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('ad_index') }}">Назад</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Удалить">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <div class="ad-row">
+                <div class="left-block">
+                    Состояние объявления
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.state) }}
+                </div>
+            </div>
+            <div class="ad-row underlined-block">
+                <div class="left-block">
+                    Тип размещения
+                </div>
+                <div class="right-block">
+                    {{ form_widget(edit_form.services) }}
+                </div>
+            </div>
+            <div class="buttons-container">
+                <div class="right">
+                    <input class="save-button" type="submit" value="Сохранить" />
+                </div>
+            </div>
 
+
+        </div>
+        {{ form_end(edit_form) }}
+        <div class="buttons-container">
+            <div class="right">
+                {{ form_start(delete_form) }}
+                <input class="delete-button" type="submit" value="Удалить">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

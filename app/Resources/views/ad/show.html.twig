@@ -1,123 +1,156 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Просмотр объявления</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Преподаватель</th>
-                <td>{{ ad.user }}</td>
-            </tr>
-            <tr>
-                <th>Рейтинг</th>
-                <td>{{ ad.user.rating }}</td>
-            </tr>
-            <tr>
+    <div class='ad-full-container'>
+        <div class='photo-block left-block image-with-overlay-label'>
+            <span class="overlay-label">{{ ad.user.rating }}</span>
+            {% if ad.user.photo %}
+                <img src="{{photo_path}}{{ad.user.photo}}">
+            {% else %}
+                <img src="{{ asset('bundles/app/img/no-img.png') }}">
+            {% endif %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-              <th>Телефон</th>
-              <td>{{ ad.user.phone }}</td>  
+                <div class='teacher-phone'>{{ ad.user.phone }}</div>
             {%endif%}
-            </tr>
-            <tr>
-            <td> <img src="{{photo_path}}{{ad.user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
-            </tr>
-            <tr>
-                <th>Дата публикации</th>
-                <td>{% if ad.adate %}{{ ad.adate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Текст объявления</th>
-                <td>{{ ad.adText }}</td>
-            </tr>
-            <tr>
-                <th>Цена</th>
-                <td>{{ ad.price }} {{ ad.currency }}</td>
-            </tr>
-            <tr>
-                <th>За</th>
-                <td>{{ ad.durability }}{{ ad.value }}</td>
-            </tr>
-            <tr>
-                <th>Область</th>
-                <td>{{ ad.region }}</td>
-            </tr>
-                        <tr>
-                <th>Город</th>
-                <td>{{ ad.town }}</td>
-            </tr>
-                        <tr>
-                <th>Район</th>
-                <td>{{ ad.area }}</td>
-            </tr>
-                        <tr>
-                <th>Место проведения</th>
-                <td>{{ ad.place }}</td>
-            </tr>
-                        <tr>
-                <th>Онлайн</th>
-                {% if ad.online==1%}
-                    <td>Да</td>
-                {%else%}
-                    <td>Нет</td>
-                {%endif%}
-                
-            </tr>
-
-            <tr>
-                <th>Обо мне</th>
-                <td>{{ ad.user.about }}</td>
-            </tr>
-            <tr>
-                <th>Образование</th>
-                <td>{{ ad.user.education }}</td>
-            </tr>
-            <tr>
-                <th>Учебные заведения</th>
-                <td>{{ ad.user.university }}</td>
-            </tr>
-            <tr>
-                <th>Опыт преподавания</th>
-                <td>{{ ad.user.experience }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-            <h3>Отзывы:</h3>
-            {% for comments in comments %}
-                <div class="reviews-comment-item">
-                    <div >{{comments.rdate|date("m.d.Y")}}</div>
-                    <div >{{comments.user.name}}</div>
-                    <div >{{comments.review}}</div>
-                    <div >{{comments.rating}}</div>
+        </div>
+        <div class='info-block right-block ad-info'>
+            <div class='ad-head'>
+                <div class='left-col'>
+                    <div class="teacher-name">{{ ad.user }}</div>
+                    <div class="ad-subject">{{ ad.subject}}</div>
                 </div>
-            {% endfor %}
-             {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
-                 {%if confirm==1 %}
-                {{ form_start(form)}}
-                <div>
-                    {{ form_widget(form.review)}}
-                    {{ form_widget(form.rating)}}
+                <div class='right-col'>
+                    <div class='ad-date'>{% if ad.adate %}{{ ad.adate|date('d-m-Y') }}{% endif %}</div>
                 </div>
-                <input type="submit" value="Отправить" />
-                {{ form_end(form) }}
+            </div>
+            <div>
+                <div class='teacher-content'>
+                    {{ ad.user.about }}
+                </div>
+                <div class='teacher-footer'>
+                    <div class='teacher-education cell'>
+                        {{ ad.user.education }}
+                    </div>
+                    <div class='teacher-university cell'>
+                        {{ ad.user.university }}
+                    </div>
+                    <div class='teacher-experience cell'>
+                        {{ ad.user.experience }}
+                    </div>
+                </div>
+
+                <div class='ad-content'>
+                    {{ ad.adText }}
+                </div>
+                <div class='ad-footer'>
+                    <div class='ad-place cell'>
+                        <div class='ad-town'>{{ ad.town }}</div>
+                        <div class='ad-area'>{{ ad.area }}</div>
+                    </div>
+                    <div class='ad-type cell'>
+                        {{ ad.place }}
+                    </div>
+                    <div class='ad-online cell'>
+                        Уроки online
+                        {% if ad.online==1%}
+                            <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                        {%else%}
+                            <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                        {%endif%}
+                    </div>
+                    <div class='ad-price cell'>
+                        {{ ad.price }} {{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class='review-container'>
+        <div class='orange-header text-center'> Отзывы: </div>
+        <div class="messages-container">
+            {% if comments | length%}
+
+                {% for comments in comments %}
+                    <div class="messages-item underlined-block">
+                        <div class='left-block messages-photo'>
+                            {% if comments.user.photo %}
+                                <img src="{{photo_path}}{{comments.user.photo}}" >
+                            {%else%}
+                                <img src="{{ asset('bundles/app/img/no-img.png') }}" >
+                            {%endif%}
+
+                        </div>
+                        <div class="messages-content right-block">
+                            <div >{{comments.rdate|date("m.d.Y")}}</div>
+                            <div >{{comments.user.name}}</div>
+                            <div ><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
+                            <div >{{comments.review}}</div>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+
+            {% else %}
+                <div class='no-content underlined-block'>
+                    Пока что нет отзывов об этом преподавателе или уроках, которые он проводит.
+                </div>
+            {%endif%}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
+                {% if confirm==1 %}
+                    {{ form_start(form)}}
+                    <div class='review-form messages-item underlined-block'>
+                        <div class="review-rating">
+                            <span class="opacity-text">Оценка:</span>
+                            {{ form_widget(form.rating)}}
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="opacity-text">Комментарий:</div>
+                            <div class="review-comment full-size-field">{{ form_widget(form.review)}}</div>
+                        </div>
+                        <div class="buttons-container">
+                            <div class="right">
+                                <input class="save-button" type="submit" value="Отправить" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
                 {%elseif confirm==2%}
-            <h4>Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником </h4>
-                {{ form_start(query_form)}}
-                <div>
-                    {{ form_widget(query_form.queryText)}}
-                </div>
-                <input type="submit" value="Отправить" />
-                {{ form_end(query_form) }}
+                    <div class="messages-item underlined-block form-horizontal">
+                        <div class="attention-header">
+                            ! Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником !
+                        </div>
+                        {{ form_start(query_form)}}
+                        <div class="full-size-field">
+                            {{ form_widget(query_form.queryText)}}
+                        </div>
+                        <div class="buttons-container">
+                            <div class="right">
+                                <input class="save-button" type="submit" value="Отправить" />
+                            </div>
+                        </div>
+                        {{ form_end(query_form) }}
+                    </div>
                 {%elseif confirm==0%}
-                <h4>Преподаватель еще не подтвердил, что Вы являетесь его учеником</h4>
+                    <div class="messages-item underlined-block">
+                        <div class="attention-header">
+                            Преподаватель еще не подтвердил, что Вы являетесь его учеником.
+                        </div>
+                    </div>
                 {%elseif confirm==3%}
-                <h4>Вы уже оставили свой отзыв</h4>
-                 {%endif%}
-             {%endif%}
-    <ul>
-        <li>
-            <a href="{{ path('homepage') }}">Назад</a>
-        </li>
-    </ul>
+                    <div class="messages-item underlined-block">
+                        <div class="attention-header">
+                            Вы уже оставили свой отзыв.
+                        </div>
+                    </div>
+                {%endif%}
+            {%endif%}
+        </div>
+    </div>
 {% endblock %}

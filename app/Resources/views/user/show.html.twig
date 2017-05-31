@@ -5,7 +5,11 @@
         <div class="user-container">
             <div class="photo-block left-block image-with-overlay-label">
                 <span class="overlay-label">{{ user.rating }}</span>
-                <img src="{{photo_path}}{{user.photo}}" alt="user">
+                {% if user.photo %}
+                    <img src="{{photo_path}}{{user.photo}}">
+                {% else %}
+                    <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                {% endif %}
             </div>
             <div class="info-block right-block">
                 <div class="underlined-block user-name">
@@ -24,17 +28,6 @@
 
                 </div>
                 <div class="buttons-container">
-                    
-
-                    <div class="right">
-                        <a class="edit-button" href="{{ path('ad_index')}}">Объявления</a>
-                    </div>
-
-                    <div class="right">
-                        <a class="edit-button" href="{{ path('adquery_index')}}">Запросы</a>
-                    </div>
-
-
                     <div class="right">
                         <a class="edit-button" href="{{ path('messages_index')}}">Сообщения</a>
                     </div>

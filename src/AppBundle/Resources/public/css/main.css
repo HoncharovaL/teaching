@@ -191,7 +191,7 @@ a{
     font-size: 15px;
     text-align: center;
     line-height: 50px;
-    padding: 15px 50px;
+    padding: 10px 50px;
 }
 .cities-container{
     padding: 40px 20px;
@@ -200,6 +200,7 @@ a{
     display: none;
 }
 .extra-search-button{
+    display: inline-block;
     border-bottom:  1px white dashed;
 }
 .left-block, .right-block{
@@ -218,14 +219,21 @@ a{
 .info-block{
     width: 68%;
 }
-.ad-container, .ad-edit-container, .user-container, .user-edit-container{
+.ad-container, .ad-edit-container, .user-container, .user-edit-container, .ad-full-container{
     width: 1000px;
     margin: 20px auto;
 }
+
 .photo-block img{
-    max-width:300px;
-    max-height: 300px;
-    object-fit: contain;
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain; 
+    -o-object-fit: contain; /* Fit logo fro opera browser */
+    object-position: top; /* Set logo position */
+    -o-object-position: top;
+}
+.user-about{
+    height: 100px;
 }
 .ad-head{
     background-color: #facb01;
@@ -239,13 +247,22 @@ a{
 .buttons-container:after,
 .ad-edit-container:after,
 .user-container:after,
-.user-edit-container:after{
+.user-edit-container:after,
+.ad-edit-container:after,
+.ad-full-container:after,
+.messages-item:after,
+.search-form:after,
+.extra-search-form:after,
+.ad-row:after{
     content: '.';
     float: none;
     display: block;
     height: 0;
     clear: both;
     visibility: hidden;
+}
+.ad-full-container .teacher-content, .ad-full-container .ad-content{
+    height: 125px;
 }
 .left-col, .right-col{
     display: inline-block;
@@ -259,7 +276,7 @@ a{
     float: right;
     text-align: center;
 }
-.teacher-name{
+.teacher-name, .ad-date{
     font-size: 14px;
     margin-bottom: 12px; 
 }
@@ -268,22 +285,47 @@ a{
     font-size: 25px;
     margin-bottom: 5px;
 }
-.info-block, .subjecttype-container, .footer, .subjecttype-edit-container{
+.info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container,
+.messages-container{
     background-color: white;
     padding-bottom: 20px;
 }
-.ad-content{
+.ad-info, .messages-container {
+    padding-bottom: 0;
+}
+
+.teacher-phone{
+    width: 300px;
+    height:50px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    font-size: 16px;
+    font-weight: bold; 
+    background-color: #fcab01;
+}
+.ad-content, .teacher-content{
     margin: 30px 20px;
-    height: 120px;
+    height: 200px;
 }
 .detail-href, .black-href{
+
     color:black;
 }
-.ad-footer{
-    height: 70px;
+.ad-description{
+    margin: 20px 0;
+}
+.teacher-footer .cell{
+    width: 225px;
+}
+.teacher-footer .teacher-education{
+    width: 227px;
+}
+.ad-footer, .teacher-footer{
+    height: 52px;
     width: 100%;
 }
-.ad-footer .cell{
+.ad-footer .cell, .teacher-footer .cell{
     display: inline-table;
     float: left;
     border: 1px #f2f2f2 solid;
@@ -294,11 +336,28 @@ a{
 }
 .ad-footer .ad-place{
     line-height: 25px;
+    text-align: right;
+    width: 249px;
+
+}
+.ad-footer .ad-service, .ad-footer .ad-servdate{
+    width: 339px;
+}
+.ad-place .ad-town, .ad-place .ad-area{
+    padding-right: 10px;
+}
+
+.ad-footer .ad-type{
+    width:150px;
+}
+.ad-footer .ad-online{
+    width: 150px;
 }
 .ad-footer .ad-price{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #7b8e1f;
+    width: 127px;
 }
 .edit-image, .view-image, .delete-image, .new-image{
     width: 15px;
@@ -306,13 +365,14 @@ a{
     object-fit: contain; 
 }
 .yes-no-image{
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     object-fit: contain; 
 }
 
 .subjecttype-container,
-.subjecttype-edit-container{
+.subjecttype-edit-container,
+.ad-edit-container{
     width: 400px;
     margin: 30px auto;
 }
@@ -392,10 +452,21 @@ a{
 .opacity-text{
     opacity: 0.5;
 }
+.show-href:hover, .edit-href:hover{
+    opacity:1;
+}
+.show-href, .edit-href{
+    margin: 10px 0;
+}
+
 .image-with-overlay-label {
     position: relative;
 }
-
+.top-label{
+    width: 100px !important;
+    font-size: 16px !important;
+    background-color: #7b8e1f !important;
+}
 .image-with-overlay-label .overlay-label {
     background-color: #fcab01;
     display: inline-block;
@@ -430,4 +501,97 @@ a{
 .login-data{
     padding: 5px;
 }
+.no-content{
+    margin:  0;
+    padding: 60px 0;
+    text-align: center;
+}
+.messages-item{
+    width: 80%;
+    margin: auto;
+}
+.subject-list a{
+    color: black;
+}
+.messages-container{
+    width: 987px;
+    margin: 20px auto;
+}
+.messages-photo img{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+.messages-content div{
+    margin: 10px 20px;
+}
+.messages-content{
+    width: 600px;
+    height: 150px;
+}
+.review-rating{
+    text-align: right;
+}
+#appbundle_review_rating{
+    display: inline-block;
+}
+.attention-header{
+    text-align: center;
+    color: #fcab01;
+    font-size: 12px;
+    margin: 20px 0;
+}
+.search-form{
+    width: 900px;
+    margin: auto;
+    text-align: center;
+}
+.price-label {
+    height: 45px;
+    line-height: 45px;
+}
+.ad-row .left-block{
+    height: 53px;
+    line-height: 53px;
+}
+.search-form .col1, .search-form .col2,.search-form .col3{
+    width: 300px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.search-form .col1, .search-form .col2, .search-form .col3{
+    float: left;
+}
+.search-form .col3{
+    width: 200px;
 
+}
+.extra-search-container .col3{
+    line-height: 89px; 
+}
+.ad-row{
+    width: 90%;
+    margin: auto;
+}
+.ad-edit-container .underlined-block{
+    margin: 10px auto;
+    padding: 0;
+}
+.ad-edit-content{
+    margin: 20px 0;
+}
+.register-success, .register-success-head{
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.register-success-head{
+    font-weight: bold;
+    font-size: 15px;
+    margin: 50px 0;
+}
+.white-orange-href:hover{
+    color: #fcab01;
+}
+.adquery-edit .messages-content{
+    width:300px;
+}

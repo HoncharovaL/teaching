@@ -12,17 +12,17 @@
                     {{ form_row(form.stype)}}
                 </div>
             </div>
-            <div class="subject-list embedded-form">
+            <div class="subject-list embedded-form ">
                 <div class="form-collection-container" data-only-input="true" data-count="{{ form.subjects|length }}" data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
                     {% for subject in form.subjects %}
                         <div class="form-collection-element">
                             {{ form_errors(subject) }}
-                            {{ form_widget(subject.subject) }}   
+                            <div class="">{{ form_widget(subject.subject) }}</div>
                         </div>                     
                     {% endfor %}
                 </div>
                 <div>
-                    <a href="#" class="add-new-element" >Добавить дисциплину</a>
+                    <a href="#" class=" black-href add-new-element" >Добавить дисциплину</a>
                 </div>
             </div>
 
