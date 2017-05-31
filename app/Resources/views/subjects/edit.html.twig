@@ -5,12 +5,13 @@
     <div class="popup-content">
         {{ form_start(edit_form, {'action':path('subjects_edit',{'idSubject':app.request.get('idSubject')})}) }}
         {{ form_widget(edit_form) }}
-    </div>
-    <div class="buttons-container">
-        <input class="save-button right" type="submit" value="Сохранить" />
+        
+            <input class="save-button right" type="submit" value="Сохранить" />
+        
         {{ form_end(edit_form) }}
         {{ form_start(delete_form) }}
         <input class="delete-button left" type="submit" value="Удалить">
         {{ form_end(delete_form) }}
-    </div> 
+    </div>
+        
 </div>
