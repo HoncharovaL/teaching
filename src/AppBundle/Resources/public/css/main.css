@@ -581,3 +581,6 @@ a{
 .white-orange-href:hover{
     color: #fcab01;
 }
+.adquery-edit .messages-content{
+    width:300px;
+}
