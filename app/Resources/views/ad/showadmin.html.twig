@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class='ad-full-container'>
+        <div class='photo-block left-block image-with-overlay-label'>
+            <span class="overlay-label">{{ ad.user.rating }}</span>
+            {% if ad.user.photo %}
+                <img src="{{photo_path}}{{ad.user.photo}}">
+            {% else %}
+                <img src="{{ asset('bundles/app/img/no-img.png') }}">
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class='teacher-phone'>{{ ad.user.phone }}</div>
+            {%endif%}
+        </div>
+        <div class='info-block right-block ad-info'>
+            <div class='ad-head'>
+                <div class='left-col'>
+                    <div class="teacher-name">{{ ad.user }}</div>
+                    <div class="ad-subject">{{ ad.subject}}</div>
+                </div>
+                <div class='right-col'>
+                    <div class='ad-date'>{% if ad.adate %}{{ ad.adate|date('d-m-Y') }}{% endif %}</div>
+                </div>
+            </div>
+            <div>
+                <div class='teacher-content'>
+                    {{ ad.user.about }}
+                </div>
+                <div class='teacher-footer'>
+                    <div class='teacher-education cell'>
+                        {{ ad.user.education }}
+                    </div>
+                    <div class='teacher-university cell'>
+                        {{ ad.user.university }}
+                    </div>
+                    <div class='teacher-experience cell'>
+                        {{ ad.user.experience }}
+                    </div>
+                </div>
+
+                <div class='ad-content'>
+                    {{ ad.adText }}
+                </div>
+                <div class='ad-footer'>
+                    <div class='ad-place cell'>
+                        <div class='ad-town'>{{ ad.town }}</div>
+                        <div class='ad-area'>{{ ad.area }}</div>
+                    </div>
+                    <div class='ad-type cell'>
+                        {{ ad.place }}
+                    </div>
+                    <div class='ad-online cell'>
+                        Уроки online
+                        {% if ad.online==1%}
+                            <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                        {%else%}
+                            <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                        {%endif%}
+                    </div>
+                    <div class='ad-price cell'>
+                        {{ ad.price }} {{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+  <div class="buttons-container">
+            {{ form_start(confirm_form) }}
+            <input class="save-button right" type="submit" value="Подтвердить">
+            {{ form_end(confirm_form) }}
+            {{ form_start(delete_form) }}
+            <input class="delete-button left" type="submit" value="Удалить">
+            {{ form_end(delete_form) }}
+        </div> 
+    </div>
+{% endblock %}

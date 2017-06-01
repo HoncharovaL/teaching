@@ -34,6 +34,23 @@ class AdController extends Controller
             'ads' => $ads,
         ));
     }
+    
+    /**
+     * Lists all ad entities.
+     *
+     * @Route("/adadmin", name="ad_adadmin")
+     * @Method("GET")
+     */
+    public function adadminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ads = $em->getRepository('AppBundle:Ad')->findBy(['state' => '1']);
+
+        return $this->render('ad/adadmin.html.twig', array(
+            'ads' => $ads,
+        ));
+    }
 
     /**
      * Creates a new ad entity.
@@ -64,6 +81,22 @@ class AdController extends Controller
         ));
     }
 
+     /**
+     * Finds and displays a ad entity.
+     *
+     * @Route("/{idAd}", name="ad_showadmin")
+     * @Method({"GET", "POST"})
+     */
+    public function showadminAction(Ad $ad,Request $request1)
+    {   $deleteForm = $this->createDeleteForm($ad);
+        $confirmForm = $this->createConfirmForm($ad);
+        return $this->render('ad/showadmin.html.twig', array(
+            'ad' => $ad,
+            'delete_form' => $deleteForm->createView(),
+            'confirm_form' => $confirmForm->createView(),
+        ));
+   
+    }
     /**
      * Finds and displays a ad entity.
      *
@@ -204,5 +237,41 @@ class AdController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+     /**
+     * Creates a form to confirm a ad entity.
+     *
+     * @param Ad $ad The ad entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createConfirmForm(Ad $ad)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('ad_confirm', array('idAd' => $ad->getIdad())))
+            ->setMethod('POST')
+            ->getForm()
+        ;
+    }
+    
+    /**
+     * Displays a form to edit an existing adQuery entity.
+     *
+     * @Route("/{idAd}/confirm", name="ad_confirm")
+     * @Method("POST")
+     */
+    public function confirmAction(Request $request, Ad $ad)
+    {
+       $createform = $this->createConfirmForm($ad);
+       $createform->handleRequest($request);
+
+        if ($createform->isSubmitted() && $createform->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $ad->setState(3);
+            $em->flush($ad);
+        }
+
+            return $this->redirectToRoute('ad_adadmin');
     }
 }

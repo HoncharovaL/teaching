@@ -34,29 +34,29 @@ class Messages
     private $idMes;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id_sender", referencedColumnName="id_user")
+     * @ORM\JoinColumn(name="id_sender", referencedColumnName="id")
      * })
      */
     private $sender;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id_recipient", referencedColumnName="id_user")
+     * @ORM\JoinColumn(name="id_recipient", referencedColumnName="id")
      * })
      */
     private $recipient;
-    function getRecipient(): \AppBundle\Entity\Users {
+    function getRecipient(){
         return $this->recipient;
     }
 
-    function setRecipient(\AppBundle\Entity\Users $recipient) {
+    function setRecipient($recipient) {
         $this->recipient = $recipient;
     }
 
@@ -119,11 +119,11 @@ class Messages
         return $this->idMes;
     }
 
-       function getSender(): \AppBundle\Entity\Users {
+       function getSender() {
         return $this->sender;
     }
 
-    function setSender(\AppBundle\Entity\Users $sender) {
+    function setSender($sender) {
         $this->sender = $sender;
     }
 }

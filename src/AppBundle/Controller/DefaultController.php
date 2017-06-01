@@ -18,8 +18,9 @@ class DefaultController extends Controller
         $form = $this->createForm('AppBundle\Form\SearchType', $search);
         $form->handleRequest($request);
         $qb = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Ad')->createQueryBuilder('n');
-        $qb->select('n,c')->leftJoin('n.subject', 'c')->orderBy('n.top','DESC');
-        $i=0;
+     //$qb->select('n,c')->innerJoin('n.subject', 'c')->orderBy('n.top','DESC');
+        
+       /* $i=0;
          if ($search->search) {
                $qb->Where($qb->expr()->like('c.subject', $qb->expr()->literal('%' . $search->search . '%')));
                $qb->orWhere($qb->expr()->like('n.adText', $qb->expr()->literal('%' . $search->search . '%')));
@@ -73,7 +74,7 @@ class DefaultController extends Controller
                 else  
             $qb->andWhere('n.currency='. $search->currency);
         }
-   
+   */
         $ads = $qb->getQuery()->getResult();
  
         return $this->render('default/index.html.twig', array(

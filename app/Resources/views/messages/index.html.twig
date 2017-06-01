@@ -4,30 +4,16 @@
     <h1>Messages list</h1>
 
     <table>
-        <thead>
-            <tr>
-                <th>Message</th>
-                <th>Datemes</th>
-                <th>Idmes</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+
         <tbody>
         {% for message in messages %}
             <tr>
-                <td><a href="{{ path('messages_show', { 'idMes': message.idMes }) }}">{{ message.message }}</a></td>
                 <td>{% if message.dateMes %}{{ message.dateMes|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ message.idMes }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('messages_show', { 'idMes': message.idMes }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('messages_edit', { 'idMes': message.idMes }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{ message.sender }}</td>
+                <td>{{ message.sender }}</td>
+                <td>{{ message.recipient }}</td>
+                <td>{{ message.message }}</td>
+                
             </tr>
         {% endfor %}
         </tbody>
