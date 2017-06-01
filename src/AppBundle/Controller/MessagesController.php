@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Messages;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use DateTime;
 
 /**
  * Message controller.
@@ -22,9 +24,11 @@ class MessagesController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $messages = $em->getRepository('AppBundle:Messages')->findAll();
+        $qb = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Messages')->createQueryBuilder('n');
+        $qb->select('distinct c.id, c.name, c.surname')->innerJoin('n.sender', 'c')->innerJoin('n.recipient', 'r');
+        $qb->Where('c.id!='. $this->getUser()->getId());
+        $qb->AndWhere('r.id='. $this->getUser()->getId());
+        $messages= $qb->getQuery()->getResult();
 
         return $this->render('messages/index.html.twig', array(
             'messages' => $messages,
@@ -61,15 +65,33 @@ class MessagesController extends Controller
      * Finds and displays a message entity.
      *
      * @Route("/{idMes}", name="messages_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Messages $message)
-    {
-        $deleteForm = $this->createDeleteForm($message);
+    public function showAction(String $idMes,Request $request)
+    {    $em = $this->getDoctrine()->getManager();
+         $query1 = $em->createQuery('SELECT p FROM AppBundle:Messages p WHERE (p.sender=?1 and p.recipient=?2) or (p.sender=?2 and p.recipient=?1)');
+         $query1->setParameter(1,$idMes);
+         $query1->setParameter(2,$this->getUser()->getId());
+         $messages = $query1->getResult();      
+        $message = new Messages();
+        $form = $this->createForm('AppBundle\Form\MessagesType', $message);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $dt = new DateTime();
+            $message->setDateMes($dt);
+            $recipient = $em->getRepository('AppBundle:User')->findOneBy(['id' =>$idMes]);
+            $message->setRecipient($recipient);
+            $message->setSender($this->getUser());
+            $em->persist($message);
+            $em->flush();
+            return $this->redirectToRoute('messages_show', array('idMes' =>$idMes));
+        }
         return $this->render('messages/show.html.twig', array(
+            'messages' => $messages,
             'message' => $message,
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $form->createView(),
         ));
     }
 

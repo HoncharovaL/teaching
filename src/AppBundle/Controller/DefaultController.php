@@ -21,6 +21,7 @@ class DefaultController extends Controller
         $qb->select('n,c')->innerJoin('n.subject', 'c')->orderBy('n.top','DESC');
         $qb->Where('n.state=3');
          if ($search->search) {
+               $qb->orWhere($qb->expr()->like('c.subject', $qb->expr()->literal('%' . $search->search . '%')));
                $qb->orWhere($qb->expr()->like('n.adText', $qb->expr()->literal('%' . $search->search . '%')));
         } ;
         if ($search->town) {

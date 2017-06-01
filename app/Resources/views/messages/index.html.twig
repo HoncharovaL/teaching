@@ -8,20 +8,11 @@
         <tbody>
         {% for message in messages %}
             <tr>
-                <td>{% if message.dateMes %}{{ message.dateMes|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ message.sender }}</td>
-                <td>{{ message.sender }}</td>
-                <td>{{ message.recipient }}</td>
-                <td>{{ message.message }}</td>
-                
+                <td>{{ message.name }} {{ message.surname }}</td>
             </tr>
+            <a class="detail-href" href="{{path("messages_show", { 'idMes': message.id })}}">Подробнее...</a>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('messages_new') }}">Create a new message</a>
-        </li>
-    </ul>
 {% endblock %}

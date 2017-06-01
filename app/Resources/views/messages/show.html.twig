@@ -1,36 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Message</h1>
+    <h1>Messages list</h1>
 
     <table>
+
         <tbody>
+        {% for message in messages %}
             <tr>
-                <th>Message</th>
+               <td>{{ message.dateMes|date('Y-m-d') }}</td>
+                <td>{{ message.sender }} </td>
                 <td>{{ message.message }}</td>
             </tr>
-            <tr>
-                <th>Datemes</th>
-                <td>{% if message.dateMes %}{{ message.dateMes|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Idmes</th>
-                <td>{{ message.idMes }}</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('messages_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('messages_edit', { 'idMes': message.idMes }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <h1>Message edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
 {% endblock %}

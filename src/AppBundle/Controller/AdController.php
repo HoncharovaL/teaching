@@ -114,7 +114,7 @@ class AdController extends Controller
             $query1 = $em->createQuery('SELECT count(p) FROM AppBundle:Review p WHERE p.idAd=?1 and p.user=?2');
             $query1->setParameter(1,$ad->getIdAd());
             $query1->setParameter(2,$this->getUser());
-            $review = $query1->getSingleScalarResult();
+            $review = $query1->getScalarResult();
             if ($review>0) {$confirm=3; } 
             }
             }

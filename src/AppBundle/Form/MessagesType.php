@@ -13,7 +13,7 @@ class MessagesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('message')->add('dateMes')->add('sender')->add('recipient');
+        $builder->add('message');
     }
     
     /**
