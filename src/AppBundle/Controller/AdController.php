@@ -53,28 +53,6 @@ class AdController extends Controller
             'ads' => $ads,
         ));
     }
-/**
-     * Lists all ad entities.
-     *
-     * @Route("/adservadmin", name="ad_adservadmin")
-     * @Method("GET")
-     */
-    public function adservadminAction()
-    {$em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-    'SELECT p
-    FROM AppBundle:Ad p
-    WHERE p.state=3
-    and p.dateServ is null and p.services is not null and p.ispay is null');//->setParameter('price', 19.99);
-    $ads = $query->getResult();
-      //  
-
-      //  $ads = $em->getRepository('AppBundle:Ad')->findBy(['state' => '3', 'dateServ'=>'null']);
-
-        return $this->render('ad/adservadmin.html.twig', array(
-            'ads' => $ads,
-        ));
-    }
     /**
      * Creates a new ad entity.
      *
@@ -104,24 +82,7 @@ class AdController extends Controller
         ));
     }
 
-     /**
-     * Finds and displays a ad entity.
-     *
-     * @Route("/{idAd}", name="ad_showadmin")
-     * @Method({"GET", "POST"})
-     */
-    public function showadminAction(Ad $ad,Request $request1)
-    {   $deleteForm = $this->createDeleteForm($ad);
-        $confirmForm = $this->createConfirmForm($ad);
-        $correctForm = $this->createCorrectForm($ad);
-        return $this->render('ad/showadmin.html.twig', array(
-            'ad' => $ad,
-            'delete_form' => $deleteForm->createView(),
-            'confirm_form' => $confirmForm->createView(),
-            'correct_form' => $correctForm->createView(),
-        ));
-   
-    }
+    
     /**
      * Finds and displays a ad entity.
      *
@@ -141,7 +102,7 @@ class AdController extends Controller
         $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.idAd=?1 and p.user=?2');
             $query1->setParameter(1,$ad->getIdAd());
             $query1->setParameter(2,$this->getUser());
-            $confirm = $query1->getSingleScalarResult();
+            $confirm = $query1->getScalarResult();
             if ($confirm==null) 
                {
                 $confirm=2;
@@ -203,7 +164,24 @@ class AdController extends Controller
         
         
     }
-
+ /**
+     * Finds and displays a ad entity.
+     *
+     * @Route("/showadmin/{idAd}", name="ad_showadmin")
+     * @Method({"GET", "POST"})
+     */
+    public function showadminAction(Ad $ad,Request $request1)
+    {   $deleteForm = $this->createDeleteForm($ad);
+        $confirmForm = $this->createConfirmForm($ad);
+        $correctForm = $this->createCorrectForm($ad);
+        return $this->render('ad/showadmin.html.twig', array(
+            'ad' => $ad,
+            'delete_form' => $deleteForm->createView(),
+            'confirm_form' => $confirmForm->createView(),
+            'correct_form' => $correctForm->createView(),
+        ));
+   
+    }
     /**
      * Displays a form to edit an existing ad entity.
      *
@@ -371,7 +349,10 @@ class AdController extends Controller
        $createform->handleRequest($request);
         if ($createform->isSubmitted() && $createform->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $dt = new DateTime();$final=clone $dt;$final->add(new DateInterval("P1M"));
+            $dt = new DateTime();
+            //$start = new DateTime("2010-12-11", new DateTimeZone("UTC"));
+            $final=clone $dt;
+            $final->add(new DateInterval("P1M"));
             //$final = date("Y-m-d", strtotime("+1 month", $dt));
             $ad->setDateServ($final);
             $ad->setIspay(1);
