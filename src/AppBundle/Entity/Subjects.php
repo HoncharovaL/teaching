@@ -99,5 +99,18 @@ class Subjects
        public function __toString() {
        return $this->getSubject();
     }
+    /**
+     * @var \AppBundle\Entity\Ad
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ad", mappedBy="subject", cascade={"ALL"}, orphanRemoval=true)
+     */
+    private $ad = [];
+    function getAd() {
+        return $this->ad;
+    }
+
+    function setAd($ad) {
+        $this->ad = $ad;
+    }
 }
 
