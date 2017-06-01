@@ -99,16 +99,21 @@
                     <input class="save-button" type="submit" value="Сохранить" />
                 </div>
             </div>
-
-
-        </div>
+         </div>
         {{ form_end(edit_form) }}
         <div class="buttons-container">
+            <div class="right">
+                {{ form_start(pay_form) }}
+                <input class="delete-button" type="submit" value="Оплатить">
+                {{ form_end(pay_form) }}
+            </div>
+            
             <div class="right">
                 {{ form_start(delete_form) }}
                 <input class="delete-button" type="submit" value="Удалить">
                 {{ form_end(delete_form) }}
             </div>
+            
         </div>
     </div>
 {% endblock %}

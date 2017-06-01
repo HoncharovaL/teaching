@@ -5,11 +5,13 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Ad;
 use AppBundle\Entity\AdQuery;
 use AppBundle\Entity\Review;
+use AppBundle\Entity\Messages;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use DateTime;
+use DateInterval;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 /**
  * Ad controller.
@@ -51,7 +53,28 @@ class AdController extends Controller
             'ads' => $ads,
         ));
     }
+/**
+     * Lists all ad entities.
+     *
+     * @Route("/adservadmin", name="ad_adservadmin")
+     * @Method("GET")
+     */
+    public function adservadminAction()
+    {$em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+    'SELECT p
+    FROM AppBundle:Ad p
+    WHERE p.state=3
+    and p.dateServ is null and p.services is not null and p.ispay is null');//->setParameter('price', 19.99);
+    $ads = $query->getResult();
+      //  
 
+      //  $ads = $em->getRepository('AppBundle:Ad')->findBy(['state' => '3', 'dateServ'=>'null']);
+
+        return $this->render('ad/adservadmin.html.twig', array(
+            'ads' => $ads,
+        ));
+    }
     /**
      * Creates a new ad entity.
      *
@@ -90,10 +113,12 @@ class AdController extends Controller
     public function showadminAction(Ad $ad,Request $request1)
     {   $deleteForm = $this->createDeleteForm($ad);
         $confirmForm = $this->createConfirmForm($ad);
+        $correctForm = $this->createCorrectForm($ad);
         return $this->render('ad/showadmin.html.twig', array(
             'ad' => $ad,
             'delete_form' => $deleteForm->createView(),
             'confirm_form' => $confirmForm->createView(),
+            'correct_form' => $correctForm->createView(),
         ));
    
     }
@@ -188,6 +213,7 @@ class AdController extends Controller
     public function editAction(Request $request, Ad $ad)
     {
         $deleteForm = $this->createDeleteForm($ad);
+        $payForm = $this->createPayForm($ad);
         $editForm = $this->createForm('AppBundle\Form\AdType', $ad);
         $editForm->handleRequest($request);
         
@@ -200,6 +226,7 @@ class AdController extends Controller
             'ad' => $ad,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'pay_form' => $payForm->createView(),
         ));
     }
 
@@ -273,5 +300,84 @@ class AdController extends Controller
         }
 
             return $this->redirectToRoute('ad_adadmin');
+    }
+     /**
+     * Creates a form to correct a ad entity.
+     *
+     * @param Ad $ad The ad entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCorrectForm(Ad $ad)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('ad_correct', array('idAd' => $ad->getIdad())))
+            ->setMethod('POST')
+            ->getForm()
+        ;
+    }
+    
+    /**
+     * Displays a form to edit an existing adQuery entity.
+     *
+     * @Route("/{idAd}/correct", name="ad_correct")
+     * @Method("POST")
+     */
+    public function correctAction(Request $request, Ad $ad)
+    {
+       $createform = $this->createCorrectForm($ad);
+       $createform->handleRequest($request);
+       $message = new Messages();
+        if ($createform->isSubmitted() && $createform->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $ad->setState(0);
+            $em->flush($ad);
+            $dt = new DateTime();
+            $message->setDateMes($dt);
+            $message->setSender($this->getUser());
+            $message->setRecipient($ad->getUser());
+            $message->setMessage('Ваше объявление возвращено для корректировки');
+            $em->persist($message);
+            $em->flush($message);
+        }
+
+            return $this->redirectToRoute('ad_adadmin');
+    }
+     /**
+     * Creates a form to pay a ad entity.
+     *
+     * @param Ad $ad The ad entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createPayForm(Ad $ad)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('ad_pay', array('idAd' => $ad->getIdad())))
+            ->setMethod('POST')
+            ->getForm()
+        ;
+    }
+    
+    /**
+     * Displays a form to edit an existing adQuery entity.
+     *
+     * @Route("/{idAd}/pay", name="ad_pay")
+     * @Method("POST")
+     */
+    public function payAction(Request $request, Ad $ad)
+    {
+       $createform = $this->createPayForm($ad);
+       $createform->handleRequest($request);
+        if ($createform->isSubmitted() && $createform->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $dt = new DateTime();$final=clone $dt;$final->add(new DateInterval("P1M"));
+            //$final = date("Y-m-d", strtotime("+1 month", $dt));
+            $ad->setDateServ($final);
+            $ad->setIspay(1);
+            $em->flush($ad);
+            }
+
+             return $this->redirectToRoute('ad_show', array('idAd' => $ad->getIdad()));
     }
 }

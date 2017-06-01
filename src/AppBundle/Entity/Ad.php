@@ -72,7 +72,7 @@ class Ad
     /**
      * @var \AppBundle\Entity\AdServices
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AdServices", inversedBy="ad")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AdServices")
      * @ORM\JoinColumn(name="id_services", referencedColumnName="id_services")
      */
 
