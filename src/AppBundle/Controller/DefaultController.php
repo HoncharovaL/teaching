@@ -18,60 +18,32 @@ class DefaultController extends Controller
         $form = $this->createForm('AppBundle\Form\SearchType', $search);
         $form->handleRequest($request);
         $qb = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Ad')->createQueryBuilder('n');
-     $qb->select('n,c')->innerJoin('n.subject', 'c')->orderBy('n.top','DESC');
-        
-        $i=0;
+        $qb->select('n,c')->innerJoin('n.subject', 'c')->orderBy('n.top','DESC');
+        $qb->Where('n.state=3');
          if ($search->search) {
-               $qb->Where($qb->expr()->like('c.subject', $qb->expr()->literal('%' . $search->search . '%')));
                $qb->orWhere($qb->expr()->like('n.adText', $qb->expr()->literal('%' . $search->search . '%')));
-               $i++;
         } ;
         if ($search->town) {
-            if($i==0) {
-                $qb->Where($qb->expr()->like('n.town', $qb->expr()->literal('%' . $search->town . '%')));
-                $i++;
-            }
-                else  $qb->andWhere($qb->expr()->like('n.town', $qb->expr()->literal('%' . $search->town . '%')));
+               $qb->andWhere($qb->expr()->like('n.town', $qb->expr()->literal('%' . $search->town . '%')));
         }
       
         if ($search->area) {
-            if($i==0) {
-                $qb->Where($qb->expr()->like('n.area', $qb->expr()->literal('%' . $search->area . '%')));
-                $i++;
-            }
-                else 
                 $qb->andWhere($qb->expr()->like('n.area', $qb->expr()->literal('%' . $search->area . '%')));
         }
           
         if ($search->place) 
-        {   if($i==0) {
-                $qb->Where('n.place='. $search->place);
-                $i++;
-            }
-                else $qb->andWhere('n.place='. $search->place);
+        {   $qb->andWhere('n.place='. $search->place);
         }
         if ($search->pricemin) 
-            {   if($i==0) {
-                $qb->Where('n.price>='. $search->pricemin);
-                $i++;
-            }
-                else   
+            {     
             $qb->andWhere('n.price>='. $search->pricemin);
         }
         if ($search->pricemax)
-           {   if($i==0) {
-                  $qb->Where('n.price<='. $search->pricemax);  
-                $i++;
-            }
-                else  
+           {
             $qb->andWhere('n.price<='. $search->pricemax);  
            }
         if ($search->currency) 
-        {   if($i==0) {
-                  $qb->andWhere('n.currency='. $search->currency); 
-                $i++;
-            }
-                else  
+        {   
             $qb->andWhere('n.currency='. $search->currency);
         }
    
