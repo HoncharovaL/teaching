@@ -48,7 +48,7 @@ class AdServicesController extends Controller
             $em->persist($adService);
             $em->flush();
 
-            return $this->redirectToRoute('adservices_show', array('idServices' => $adService->getIdservices()));
+            return $this->redirectToRoute('adservices_index');
         }
 
         return $this->render('adservices/new.html.twig', array(
@@ -88,7 +88,7 @@ class AdServicesController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('adservices_edit', array('idServices' => $adService->getIdservices()));
+            return $this->redirectToRoute('adservices_index');
         }
 
         return $this->render('adservices/edit.html.twig', array(
