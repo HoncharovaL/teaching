@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
         <div class="subjecttype-container">
             <div class="orange-header">
                 <div class="list-text-container">Дисциплины</div>
@@ -9,7 +8,7 @@
             </div>
             <div class="subjecttype-list">
                 {% for subjectType in subjectTypes %}  
-                    <div class="subjecttype-item" >
+                    <div class="subjecttype-item underlined-block" >
                         <div class="subjecttype-name">
                             <div class="list-text-container">
                                 <a  class="black-href" onclick="$('#subject-list-{{loop.index}}').toggleClass('hidden')">
@@ -40,5 +39,5 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
+
 {% endblock %}

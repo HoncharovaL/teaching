@@ -15,6 +15,10 @@ input[type="text"], textarea, select, input[type="password"], input[type="email"
     width: 250px;
     margin: 5px;
 }
+.services-edit .full-size-field{
+    width: 90% !important;
+    margin: 10px auto;
+}
 .ad-row select {
     width: 194px;   
 }

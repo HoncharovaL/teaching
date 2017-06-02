@@ -72,7 +72,7 @@ a{
     z-index: 1;
 }
 .dropdownbtn{
-    width: 105px;
+    width: 150px;
 }
 .dropdownbtn:hover .dropdown-content{
     display: block;
@@ -80,7 +80,7 @@ a{
 .dropdown-content .dropdown-item{
     padding: 5px 0;
     border: 1px #f2f2f2 solid;
-    width: 105px;
+    width: 150px;
     display: block;
 }
 .dropdown-content .dropdown-item:hover{
@@ -241,6 +241,16 @@ a{
     color:white;
     padding: 15px 20px;
 }
+.services-item .list-button-container{
+    height: 50px;
+    line-height: 50px;
+}
+.services-text{
+    padding: 5px 0;
+}
+.services-about{
+    width: 80%;
+}
 .ad-container:after,
 .subjecttype-name:after,
 .subject-item:after,
@@ -253,7 +263,8 @@ a{
 .messages-item:after,
 .search-form:after,
 .extra-search-form:after,
-.ad-row:after{
+.ad-row:after,
+.services-item:after{
     content: '.';
     float: none;
     display: block;
@@ -261,6 +272,7 @@ a{
     clear: both;
     visibility: hidden;
 }
+
 .ad-full-container .teacher-content, .ad-full-container .ad-content{
     height: 125px;
 }
@@ -286,7 +298,7 @@ a{
     margin-bottom: 5px;
 }
 .info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container,
-.messages-container{
+.messages-container, .services-container, .services-edit-container{
     background-color: white;
     padding-bottom: 20px;
 }
@@ -372,7 +384,8 @@ a{
 
 .subjecttype-container,
 .subjecttype-edit-container,
-.ad-edit-container{
+.ad-edit-container,
+.services-container{
     width: 400px;
     margin: 30px auto;
 }
@@ -404,7 +417,7 @@ a{
     padding: 10px;
     border-bottom: 1px #f2f2f2 solid;
 }
-.subject-list .subject-item{
+.subject-list .subject-item, .services-item{
     padding-top: 10px;
     padding-left: 15px;
 }
@@ -434,7 +447,7 @@ a{
 .buttons-container .right{
     float: right;
 }
-.subject-edit{
+.subject-edit, .services-edit{
     width: 500px;
 }
 .buttons-container{

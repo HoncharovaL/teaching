@@ -1,39 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Справочник сервисов</h1>
+    <div class="services-container">
+        <div class="orange-header">
+            <div class="list-text-container">Типы размещений</div>
+            <div class="list-button-container "><a class="colorbox-ajax-form" href="{{ path('adservices_new') }}">+</a></div>
+        </div>
+        <div class="services-list">
+            {% for service in adServices %}  
+                <div class="services-item">
+                    <div class="services-about list-text-container">
+                        <div class="services-text">
+                            <a  class="black-href" onclick="$('#services-list-{{loop.index}}').toggleClass('hidden')">
+                                {{service.services}}
+                            </a>
+                        </div>
+                        <div class="services-text">
+                            <span class="opacity-text">Цена:</span>{{ service.price }}
+                        </div>
+                        <div class="services-text hidden services-description" id="services-list-{{loop.index}}">                        
+                            <span class="opacity-text">Описание:</span>{{ service.description }}
+                        </div>
+                    </div>
+                    <div class="list-button-container">
+                        <a class="colorbox-ajax-form" href="{{ path('adservices_edit', { 'idServices': service.idServices })}}">
+                            <img class="edit-image"src="{{asset('bundles/app/img/edit.png')}}">
+                        </a>
+                    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Сервис</th>
-                <th>Стоимость</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for adService in adServices %}
-            <tr>
-                <td><a href="{{ path('adservices_show', { 'idServices': adService.idServices }) }}">{{ adService.services }}</a></td>
-                <td>{{ adService.price }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('adservices_show', { 'idServices': adService.idServices }) }}">Подробнее</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('adservices_edit', { 'idServices': adService.idServices }) }}">Корректировать</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('adservices_new') }}">Новый сервис</a>
-        </li>
-    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
