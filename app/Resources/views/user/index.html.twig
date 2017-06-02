@@ -4,33 +4,27 @@
     <h1>Users list</h1>
 
     <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Patronymic</th>
-                <th>Surname</th>
-                <th>Photo</th>
-                <th>Phone</th>
-                <th>About</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
         <tbody>
+             {{ form_start(form)}}
+                <div class="col1">
+                    <div class="search-area">
+                        {{ form_widget(form.search, {'attr':{'placeholder':"Имя"}})}}
+                    </div>
+                                    <div class="col3">
+                    <input class="save-button" type="submit" value="Поиск" />
+                </div>
+                </div>
+                    {{ form_end(form)}}
         {% for user in users %}
             <tr>
                 <td>{{ user.name }}</td>
                 <td>{{ user.patronymic }}</td>
                 <td>{{ user.surname }}</td>
                 <td> <img src="{{photo_path}}{{user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
-                <td>{{ user.phone }}</td>
-                <td>{{ user.about }}</td>
                 <td>
                     <ul>
                         <li>
                             <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
