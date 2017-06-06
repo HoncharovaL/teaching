@@ -30,8 +30,8 @@ class AdType extends AbstractType
                 ->add('value', ChoiceType::class, ['label' => 'Ед.времени', 'choices' => ['мин.' => 'мин.', 'час.' => 'час.']])
                 ->add('subject', EntityType::class, ['label' => 'Дисциплина', 'class' => Subjects::class])
                 ->add('online', ChoiceType::class, ['label' => 'Удаленно', 'choices' => ['Да' => '1', 'Нет' => '0']])
-                ->add('services', EntityType::class, ['label' => 'Услуга', 'required'=> false, 'class' => AdServices::class])
-                ->add('state', ChoiceType::class, ['label' => 'Состояние объявления', 'choices' => ['В работе' => '0', 'Опубликовать' => '1']]);
+                ->add('services', EntityType::class, ['label' => 'Услуга', 'required'=> false, 'class' => AdServices::class]);
+                //->add('state', ChoiceType::class, ['label' => 'Состояние объявления', 'choices' => ['В работе' => '0', 'На публикацию' => '1', 'Опубликовано' => '3']]);
                  
     }
     

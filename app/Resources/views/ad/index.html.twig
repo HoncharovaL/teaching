@@ -31,12 +31,22 @@
                         <div class="ad-content">
                             <div class='date opacity-text'>{{ ad.adate|date('Y-m-d') }}</div>
                             <div class='ad-description'>{{ ad.adText }}</div>
+                            <div>Статус объявления:</div>
+                            {%if ad.state==0%}
+                            <div> В работе</div>
+                            {%elseif ad.state==1%}
+                            <div> Ожидает публикации</div>
+                            {%else%}
+                             <div> Опубликовано</div>
+                            {%endif%}
                             <div class='show-href opacity-text'>
                                 <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
                             </div>
+
                             <div class="edit-href opacity-text">
                                 <a class="detail-href" href="{{ path('ad_edit', { 'idAd': ad.idAd }) }}">Редактировать...</a>
                             </div>
+
                         </div>
                         <div class="ad-footer">
                             <div class="ad-place cell">
