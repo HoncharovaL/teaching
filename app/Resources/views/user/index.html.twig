@@ -1,37 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Users list</h1>
 
-    <table>
-        <tbody>
-             {{ form_start(form)}}
-                <div class="col1">
-                    <div class="search-area">
-                        {{ form_widget(form.search, {'attr':{'placeholder':"Имя"}})}}
-                    </div>
-                                    <div class="col3">
-                    <input class="save-button" type="submit" value="Поиск" />
-                </div>
-                </div>
-                    {{ form_end(form)}}
+    <div class="">
+        {{ form_start(form)}}
+        <div class="search-container text-center">            
+            {{ form_widget(form.search, {'attr':{'placeholder':"Имя"}})}}     
+            <input class="save-button" type="submit" value="Поиск" />            
+        </div>
+        {{ form_end(form)}}
+    </div>
+    <div class="users-container">
         {% for user in users %}
-            <tr>
-                <td>{{ user.name }}</td>
-                <td>{{ user.patronymic }}</td>
-                <td>{{ user.surname }}</td>
-                <td> <img src="{{photo_path}}{{user.photo}}" alt="user" style="width:304px;height:228px;"> </td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="user-item">
+                <div class='photo-block left-block image-with-overlay-label'>
+                    <span class="overlay-label">{{ user.rating }}</span>
+                    {% if user.photo %}
+                        <img src="{{photo_path}}{{user.photo}}">
+                    {% else %}
+                        <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class='teacher-phone'>{{ user.phone }}</div>
+                    {%endif%}
+                </div>
+                <div class='info-block right-block '>
+                    <div class='ad-head'>
+                        <div class='left-col'>
+                            <div class="teacher-name"><a href="{{path('user_show', {'id': user.id})}}">{{ user }}</a></div>
+                        </div>
+
+                    </div>
+                    <div >
+                        <div class='teacher-content'>
+                            {{ user.about }}
+                        </div>
+                        <div class='teacher-footer'>
+                            <div class='teacher-education cell'>
+                                {{ user.education }}
+                            </div>
+                            <div class='teacher-university cell'>
+                                {{ user.university }}
+                            </div>
+                            <div class='teacher-experience cell'>
+                                {{ user.experience }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+
+    </div>
 
 
 {% endblock %}

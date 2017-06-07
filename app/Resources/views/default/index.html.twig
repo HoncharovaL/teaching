@@ -79,6 +79,11 @@
                         {% else %}
                             <img src="{{ asset('bundles/app/img/no-img.png') }}">
                         {% endif %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <div class='teacher-phone'>{{ ad.user.phone }}</div>
+                            {%else%}
+                                <div class="no-phone">Видеть номер преподавателя могут только зарегистрированные пользователи.</div>
+                        {%endif%}
                     </div>
                     <div class="info-block ad-info right-block">
                         <div class="ad-head">    

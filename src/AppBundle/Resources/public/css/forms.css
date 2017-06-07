@@ -11,6 +11,9 @@ input[type="text"], textarea, select, input[type="password"], input[type="email"
     padding-top: 8px;
     padding-bottom: 8px;
 }
+textarea{
+    height: 100px;
+}
 .search-form input[type="text"], .search-form select {
     width: 250px;
     margin: 5px;

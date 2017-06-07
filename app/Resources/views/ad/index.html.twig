@@ -9,7 +9,7 @@
     <div>
         {% if ads | length %}
             {% for ad in ads %}
-                <div class="ad-container ">
+                <div class="ad-container">
                     <div class="photo-block image-with-overlay-label left-block">
                         {% if ad.user.photo %}
                             <img src="{{photo_path}}{{ad.user.photo}}">

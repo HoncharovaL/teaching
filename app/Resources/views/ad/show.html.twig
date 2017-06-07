@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class='ad-full-container'>
-        
+
         <div class='photo-block left-block image-with-overlay-label'>
             <span class="overlay-label">{{ ad.user.rating }}</span>
             {% if ad.user.photo %}
@@ -12,6 +12,8 @@
             {% endif %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <div class='teacher-phone'>{{ ad.user.phone }}</div>
+            {%else%}
+                <div class="no-phone">Видеть номер преподавателя могут только зарегистрированные пользователи.</div>
             {%endif%}
         </div>
         <div class='info-block right-block ad-info'>
