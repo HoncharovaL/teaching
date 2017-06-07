@@ -236,6 +236,18 @@ a{
 .blue-href:hover{
     color: #247298;
 }
+.yellow-href{
+    color: #facb01;
+}
+.yellow-href:hover{
+    color: #d7a806;
+}
+.red-href{
+    color: #DD1144;
+}
+.red-href:hover{
+    color: #A10608;
+}
 .text-buttons{
     padding: 20px 0;
 }
@@ -412,7 +424,7 @@ a{
     color: #7b8e1f;
     width: 127px;
 }
-.edit-image, .view-image, .delete-image, .new-image{
+.edit-image, .view-image, .delete-image, .new-image, .sent-image, .pay-image, .save-image{
     width: 15px;
     height: 15px;
     object-fit: contain; 
@@ -428,9 +440,10 @@ a{
 .subjecttype-edit-container,
 .ad-edit-container,
 .services-container{
-    width: 400px;
+    width: 525px;
     margin: 30px auto;
 }
+
 .subjecttype-edit-container{
     text-align: center;
 }
@@ -568,7 +581,7 @@ a{
 }
 
 .right-message .message-block{
-   float: right;
+    float: right;
 }
 .left-message .message-block{
     float: left;
@@ -676,4 +689,9 @@ a{
 }
 .adquery-edit .messages-content{
     width:300px;
+}
+button{
+    cursor: pointer;
+    border: 0;
+    background: white;
 }
