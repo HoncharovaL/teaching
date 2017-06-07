@@ -2,9 +2,6 @@
 
 {% block body %}
     <div class="correspondence-container">
-        <div class="orange-header text-center">
-            Переписка
-        </div>
         <div class="messages-container">
             {% for message in messages %}
                 <div class="messages-item  underlined-block">                   
@@ -49,7 +46,4 @@
             {{ form_end(edit_form) }}
         </div> 
     </div>
-
-
-
 {% endblock %}
