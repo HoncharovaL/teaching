@@ -15,13 +15,14 @@
             {% if messages | length%}
                 {% for message in messages %}
                     <div class="user-messages-item messages-item underlined-block">
-                        {#<div class="left-block messages-photo">
-                            {% if message.user.photo %}
-                                <img src="{{photo_path}}{{message.user.photo}}" >
-                            {%else%}
-                                <img src="{{ asset('bundles/app/img/no-img.png') }}" >
-                            {%endif%}
-                        </div>#}
+                        <div class="left-block messages-photo">
+                        {% if message.photo %}
+                            <img src="{{photo_path}}{{message.photo}}">
+                        {% else %}
+                            <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                        {% endif %}
+                        </div>
+                        
                         <div class="right-block messages-content">
                             <div class="user-name">{{ message.name }} {{ message.surname  }}</div>
                             <div class="opacity-text show-href">

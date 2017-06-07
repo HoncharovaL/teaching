@@ -25,7 +25,7 @@ class MessagesController extends Controller
     public function indexAction()
     {
         $qb = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Messages')->createQueryBuilder('n');
-        $qb->select('distinct c.id, c.name, c.surname')->innerJoin('n.sender', 'c')->innerJoin('n.recipient', 'r');
+        $qb->select('distinct c.id, c.name, c.surname, c.photo')->innerJoin('n.sender', 'c')->innerJoin('n.recipient', 'r');
         $qb->Where('c.id!='. $this->getUser()->getId());
         $qb->AndWhere('r.id='. $this->getUser()->getId());
         $messages= $qb->getQuery()->getResult();
