@@ -26,10 +26,10 @@
                 <div class="underlined-block user-about">
                     <div class="about">{{ user.about }}</div>
                     {%if app.user.id==user.id %}
-                        <div class="text-button">
+                        <div class="text-buttons">
                             <a class="green-href" href="{{ path('user_edit', { 'id': user.id }) }}">
-                                <img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}">
-                                Редактировать
+                                <div class="left-block"><img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}"></div>
+                                <div class="left-block">Редактирование</div>
                             </a> 
                         </div>
                     {%endif%}

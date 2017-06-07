@@ -230,8 +230,20 @@ a{
 .green-href:hover{
     color: #415403;
 }
-.text-button{
+.blue-href{
+    color: #67b5d9;
+}
+.blue-href:hover{
+    color: #247298;
+}
+.text-buttons{
     padding: 20px 0;
+}
+.text-buttons .left{
+    float: left;
+}
+.text-buttons .right{
+    float: right;
 }
 .photo-block img{
     width: 100%;
@@ -261,6 +273,8 @@ a{
     width: 80%;
 }
 .ad-container:after,
+.text-buttons:after,
+.ad-date-status:after,
 .subjecttype-name:after,
 .subject-item:after,
 .buttons-container:after,
@@ -343,6 +357,9 @@ a{
     margin: 30px 20px;
     height: 200px;
 }
+.ads-container .ad-content{
+    height: 100px;
+}
 
 .detail-href, .black-href{
 
@@ -400,6 +417,7 @@ a{
     height: 15px;
     object-fit: contain; 
 }
+
 .yes-no-image{
     width: 12px;
     height: 12px;
