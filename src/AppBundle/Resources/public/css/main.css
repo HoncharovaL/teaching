@@ -511,9 +511,10 @@ a{
     height: 30px;
     line-height: 30px;
 }
-.login-data{
+.login-data, .message-data{
     padding: 5px;
 }
+
 .no-content{
     margin:  0;
     padding: 60px 0;
@@ -523,6 +524,27 @@ a{
     width: 80%;
     margin: auto;
 }
+
+.right-message .message-block{
+   float: right;
+}
+.left-message .message-block{
+    float: left;
+}
+.right-message .main-info{
+    text-align: right;
+}
+.left-message .main-info{
+    text-align: left;
+}
+.gray-div{
+    max-width: 500px;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #f2f2f2;
+    border-radius: 3px;
+}
+
 .subject-list a{
     color: black;
 }
@@ -533,6 +555,11 @@ a{
 .messages-photo img{
     width: 150px;
     height: 150px;
+    object-fit: contain;
+}
+.message-block img{
+    width: 80px;
+    height: 80px;
     object-fit: contain;
 }
 .messages-content div{
