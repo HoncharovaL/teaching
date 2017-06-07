@@ -77,15 +77,7 @@
                     {{ form_widget(edit_form.durability) }}{{ form_widget(edit_form.value) }}
                 </div>
             </div>
-
-            <div class="ad-row">
-                <div class="left-block">
-                    Состояние объявления
-                </div>
-                <div class="right-block">
-                    {{ form_widget(edit_form.state) }}
-                </div>
-            </div>
+            
             <div class="ad-row underlined-block">
                 <div class="left-block">
                     Тип размещения
@@ -102,6 +94,11 @@
          </div>
         {{ form_end(edit_form) }}
         <div class="buttons-container">
+            <div class="right">
+                {{ form_start(pay_form) }}
+                <input class="delete-button" type="submit" value="На публикацию">
+                {{ form_end(pay_form) }}
+            </div> 
             <div class="right">
                 {{ form_start(pay_form) }}
                 <input class="delete-button" type="submit" value="Оплатить">

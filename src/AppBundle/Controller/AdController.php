@@ -70,6 +70,7 @@ class AdController extends Controller
             $dt = new DateTime();
             $ad->setAdate($dt);
             $ad->setUser($this->getUser());
+            $ad->setState (0);
             $em->persist($ad);
             $em->flush();
 
@@ -192,10 +193,12 @@ class AdController extends Controller
     {
         $deleteForm = $this->createDeleteForm($ad);
         $payForm = $this->createPayForm($ad);
+        $sendform=$this->createSendForm($ad);
         $editForm = $this->createForm('AppBundle\Form\AdType', $ad);
         $editForm->handleRequest($request);
         
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $ad->setState (0); 
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('ad_edit', array('idAd' => $ad->getIdad()));
@@ -205,6 +208,7 @@ class AdController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'pay_form' => $payForm->createView(),
+            'send_form' => $payForm->createView(),
         ));
     }
 
@@ -356,6 +360,41 @@ class AdController extends Controller
             //$final = date("Y-m-d", strtotime("+1 month", $dt));
             $ad->setDateServ($final);
             $ad->setIspay(1);
+            if($ad->getId_services()==2) $ad->setTop (1);
+            $em->flush($ad);
+            }
+
+             return $this->redirectToRoute('ad_show', array('idAd' => $ad->getIdad()));
+    }
+     /**
+     * Creates a form to send a ad entity.
+     *
+     * @param Ad $ad The ad entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createSendForm(Ad $ad)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('ad_send', array('idAd' => $ad->getIdad())))
+            ->setMethod('POST')
+            ->getForm()
+        ;
+    }
+    
+    /**
+     * Displays a form to edit an existing adQuery entity.
+     *
+     * @Route("/{idAd}/send", name="ad_send")
+     * @Method("POST")
+     */
+    public function sendAction(Request $request, Ad $ad)
+    {
+       $createform = $this->createSendForm($ad);
+       $createform->handleRequest($request);
+        if ($createform->isSubmitted() && $createform->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $ad->setStare(1);
             $em->flush($ad);
             }
 
