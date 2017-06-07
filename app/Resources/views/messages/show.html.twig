@@ -1,25 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Messages list</h1>
+    <div class="correspondence-container">
+        <div class="messages-container">
+            {% for message in messages %}
+                <div class="messages-item  underlined-block">                   
+                    <div class="{{message.sender.id==app.user.id ? 'right-message' : 'left-message'}}">
 
-    <table>
+                        <div class="messages-photo message-block ">
+                            {% if message.sender.photo %}
+                                <img src="{{photo_path}}{{message.sender.photo}}">
+                            {% else %}
+                                <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                            {% endif %}
+                        </div>
+                        <div class="message-block" >
+                            <div class="message-data message-sender main-info">
+                                {{ message.sender }}
+                            </div>  
+                            <div class="message-data message-content gray-div">
+                                {{ message.message }}
+                            </div>  
+                            <div class="opacity-text message-data main-info">
+                                {{ message.dateMes|date('Y-m-d') }}
+                            </div>
+                        </div>
+                    </div>
 
-        <tbody>
-        {% for message in messages %}
-            <tr>
-               <td>{{ message.dateMes|date('Y-m-d') }}</td>
-                <td>{{ message.sender }} </td>
-                <td>{{ message.message }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h1>Message edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="messages-container">
+            <div class="orange-header text-center">Отправить сообщение пользователю:</div>
+            {{ form_start(edit_form)}}
+            <div class='messages-item underlined-block'>                        
+                <div class="form-horizontal">
+                    
+                    <div class="message-field full-size-field">{{ form_widget(edit_form.message)}}</div>
+                </div>
+                <div class="buttons-container">
+                    <div class="text-center">
+                        <input class="save-button" type="submit" value="Отправить" />
+                    </div>
+                </div>
+            </div>
+            {{ form_end(edit_form) }}
+        </div> 
+    </div>
 {% endblock %}

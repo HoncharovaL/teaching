@@ -1,23 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Messages list</h1>
+    <div class="user-messages-container">
 
-    <table>
-
-        <tbody>
-        {% for message in messages %}
-            <tr>
-                {% if message.photo %}
+        <div class="user-messages-list messages-container">
+            <div class="orange-header text-center">
+                Сообщения
+            </div>
+            <div class="buttons-container">
+                <div class="right">
+                    <a class="save-button" href="{{path("user_index")}}">Найти пользователя</a>
+                </div>
+            </div>
+            {% if messages | length%}
+                {% for message in messages %}
+                    <div class="user-messages-item messages-item underlined-block">
+                        <div class="left-block messages-photo">
+                        {% if message.photo %}
                             <img src="{{photo_path}}{{message.photo}}">
                         {% else %}
                             <img src="{{ asset('bundles/app/img/no-img.png') }}">
                         {% endif %}
-                <td>{{ message.name }} {{ message.surname }}</td>
-            </tr>
-            <a class="detail-href" href="{{path("messages_show", { 'idMes': message.id })}}">Подробнее...</a>
-        {% endfor %}
-        </tbody>
-    </table>
-<a class="detail-href" href="{{path("user_index")}}">Найти пользователя</a>
+                        </div>
+                        
+                        <div class="right-block messages-content">
+                            <div class="user-name">{{ message.name }} {{ message.surname  }}</div>
+                            <div class="opacity-text show-href">
+                                <a class="detail-href" href="{{path("messages_show", { 'idMes': message.id })}}">Перейти к переписке...</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor%}
+            {% else %}
+                <div class="no-content underlined-block">
+                    У вас пока нет cообщений.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+
 {% endblock %}

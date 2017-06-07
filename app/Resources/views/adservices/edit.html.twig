@@ -1,21 +1,23 @@
-{% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Корректировка сервиса</h1>
+<div class="popup services-edit">
+    <div class="popup-header">
+        <div class="text">Редактировать</div>
+    </div>
+    <div class="popup-content text-center form-horizontal">
+        {{ form_start(edit_form, {'action':path('adservices_edit',{'idServices':app.request.get('idServices')})}) }}
+        <div class="services-main">
+            {{ form_widget(edit_form.services) }}
+            {{ form_widget(edit_form.price) }}
+        </div>
+        <div class="services-description full-size-field">
+            {{ form_widget(edit_form.description) }}
+        </div>
+        <input class="save-button right" type="submit" value="Сохранить" />
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Сохранить" />
-    {{ form_end(edit_form) }}
+        {{ form_end(edit_form) }}
+        {{ form_start(delete_form) }}
+        <input class="delete-button left" type="submit" value="Удалить">
+        {{ form_end(delete_form) }}
+    </div>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('adservices_index') }}">К списку</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Удалить">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}

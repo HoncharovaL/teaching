@@ -1,16 +1,18 @@
-{% extends 'base.html.twig' %}
+<div class="popup services-edit">
+    <div class="popup-header">
+        <div class="text">Редактировать</div>
+    </div>
+    <div class="popup-content text-center form-horizontal">
+        {{ form_start(form, {'action':path('adservices_new')}) }}
+        <div class="services-main">
+            {{ form_widget(form.services, {'attr':{'placeholder':"Название услуги"}}) }}
+            {{ form_widget(form.price, {'attr':{'placeholder':"Цена"}}) }}
+        </div>
+        <div class="services-description full-size-field">
+            {{ form_widget(form.description, {'attr':{'placeholder':"Описание"}}) }}
+        </div>
+        <input class="save-button right" type="submit" value="Сохранить" />
+        {{ form_end(form) }}
+    </div>
 
-{% block body %}
-    <h1>Создание сервиса</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Сохранить" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('adservices_index') }}">К списку</a>
-        </li>
-    </ul>
-{% endblock %}
+</div>

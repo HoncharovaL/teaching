@@ -72,7 +72,7 @@ a{
     z-index: 1;
 }
 .dropdownbtn{
-    width: 105px;
+    width: 150px;
 }
 .dropdownbtn:hover .dropdown-content{
     display: block;
@@ -80,7 +80,7 @@ a{
 .dropdown-content .dropdown-item{
     padding: 5px 0;
     border: 1px #f2f2f2 solid;
-    width: 105px;
+    width: 150px;
     display: block;
 }
 .dropdown-content .dropdown-item:hover{
@@ -214,26 +214,59 @@ a{
     float:right;
 }
 .photo-block{
+    text-align: center;
     width: 30%;
 }
 .info-block{
     width: 68%;
 }
-.ad-container, .ad-edit-container, .user-container, .user-edit-container, .ad-full-container{
+.ad-container, .ads-container, .ad-edit-container, .user-container, .user-edit-container, .ad-full-container, .users-container{
     width: 1000px;
     margin: 20px auto;
 }
-
+.green-href{
+    color: #7b8e1f;
+}
+.green-href:hover{
+    color: #415403;
+}
+.blue-href{
+    color: #67b5d9;
+}
+.blue-href:hover{
+    color: #247298;
+}
+.yellow-href{
+    color: #facb01;
+}
+.yellow-href:hover{
+    color: #d7a806;
+}
+.red-href{
+    color: #DD1144;
+}
+.red-href:hover{
+    color: #A10608;
+}
+.text-buttons{
+    padding: 20px 0;
+}
+.text-buttons .left{
+    float: left;
+}
+.text-buttons .right{
+    float: right;
+}
 .photo-block img{
     width: 100%;
-    max-height: 380px;
-    object-fit: contain; 
-    -o-object-fit: contain; /* Fit logo fro opera browser */
-    object-position: top; /* Set logo position */
-    -o-object-position: top;
+    overflow: hidden;
+}
+.user-item .photo-block img{
+    max-width: 100%;
+    height: 327px;
 }
 .user-about{
-    height: 100px;
+    height: 162px;
 }
 .ad-head{
     background-color: #facb01;
@@ -241,7 +274,19 @@ a{
     color:white;
     padding: 15px 20px;
 }
+.services-item .list-button-container{
+    height: 50px;
+    line-height: 50px;
+}
+.services-text{
+    padding: 5px 0;
+}
+.services-about{
+    width: 80%;
+}
 .ad-container:after,
+.text-buttons:after,
+.ad-date-status:after,
 .subjecttype-name:after,
 .subject-item:after,
 .buttons-container:after,
@@ -253,7 +298,9 @@ a{
 .messages-item:after,
 .search-form:after,
 .extra-search-form:after,
-.ad-row:after{
+.ad-row:after,
+.services-item:after,
+.user-item:after{
     content: '.';
     float: none;
     display: block;
@@ -262,8 +309,12 @@ a{
     visibility: hidden;
 }
 .ad-full-container .teacher-content, .ad-full-container .ad-content{
-    height: 125px;
+    height: 42px;
 }
+.message-field{
+    margin-top: 20px;
+}
+
 .left-col, .right-col{
     display: inline-block;
     height: 40px;
@@ -286,14 +337,16 @@ a{
     margin-bottom: 5px;
 }
 .info-block, .subjecttype-container, .footer, .subjecttype-edit-container, .ad-edit-container,
-.messages-container{
+.messages-container, .services-container, .services-edit-container{
     background-color: white;
     padding-bottom: 20px;
 }
-.ad-info, .messages-container {
+.ad-info, .messages-container, .user-item .info-block {
     padding-bottom: 0;
 }
-
+.user-item .info-block {
+    margin-bottom: 30px;
+}
 .teacher-phone{
     width: 300px;
     height:50px;
@@ -302,12 +355,24 @@ a{
     color:white;
     font-size: 16px;
     font-weight: bold; 
-    background-color: #fcab01;
+    background-color: #facb01;
+}
+.no-phone{
+    text-align: center;
+    color:white;
+    width: 300px;
+    height:50px;
+    line-height: 25px;
+    background-color: #facb01;
 }
 .ad-content, .teacher-content{
     margin: 30px 20px;
     height: 200px;
 }
+.ads-container .ad-content{
+    height: 100px;
+}
+
 .detail-href, .black-href{
 
     color:black;
@@ -359,11 +424,12 @@ a{
     color: #7b8e1f;
     width: 127px;
 }
-.edit-image, .view-image, .delete-image, .new-image{
+.edit-image, .view-image, .delete-image, .new-image, .sent-image, .pay-image, .save-image{
     width: 15px;
     height: 15px;
     object-fit: contain; 
 }
+
 .yes-no-image{
     width: 12px;
     height: 12px;
@@ -372,10 +438,12 @@ a{
 
 .subjecttype-container,
 .subjecttype-edit-container,
-.ad-edit-container{
-    width: 400px;
+.ad-edit-container,
+.services-container{
+    width: 525px;
     margin: 30px auto;
 }
+
 .subjecttype-edit-container{
     text-align: center;
 }
@@ -404,7 +472,7 @@ a{
     padding: 10px;
     border-bottom: 1px #f2f2f2 solid;
 }
-.subject-list .subject-item{
+.subject-list .subject-item, .services-item{
     padding-top: 10px;
     padding-left: 15px;
 }
@@ -434,7 +502,7 @@ a{
 .buttons-container .right{
     float: right;
 }
-.subject-edit{
+.subject-edit, .services-edit{
     width: 500px;
 }
 .buttons-container{
@@ -468,7 +536,7 @@ a{
     background-color: #7b8e1f !important;
 }
 .image-with-overlay-label .overlay-label {
-    background-color: #fcab01;
+    background-color: #facb01;
     display: inline-block;
     width: 50px;
     height: 30px;
@@ -498,9 +566,10 @@ a{
     height: 30px;
     line-height: 30px;
 }
-.login-data{
+.login-data, .message-data{
     padding: 5px;
 }
+
 .no-content{
     margin:  0;
     padding: 60px 0;
@@ -510,6 +579,27 @@ a{
     width: 80%;
     margin: auto;
 }
+
+.right-message .message-block{
+    float: right;
+}
+.left-message .message-block{
+    float: left;
+}
+.right-message .main-info{
+    text-align: right;
+}
+.left-message .main-info{
+    text-align: left;
+}
+.gray-div{
+    max-width: 500px;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #f2f2f2;
+    border-radius: 3px;
+}
+
 .subject-list a{
     color: black;
 }
@@ -520,6 +610,11 @@ a{
 .messages-photo img{
     width: 150px;
     height: 150px;
+    object-fit: contain;
+}
+.message-block img{
+    width: 80px;
+    height: 80px;
     object-fit: contain;
 }
 .messages-content div{
@@ -594,4 +689,9 @@ a{
 }
 .adquery-edit .messages-content{
     width:300px;
+}
+button{
+    cursor: pointer;
+    border: 0;
+    background: white;
 }
