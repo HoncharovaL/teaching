@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="buttons-container">
-        <div class="right">
-            <a class="save-button" href="{{ path('ad_new') }}">Создать</a>
-        </div>
-    </div> 
-    <div>
+    <div class="ads-container">
+        <div class="buttons-container">
+            <div class="right">
+                <a class="save-button" href="{{ path('ad_new') }}">Создать</a>
+            </div>
+        </div> 
         {% if ads | length %}
             {% for ad in ads %}
                 <div class="ad-container">
@@ -16,7 +16,6 @@
                         {% else %}
                             <img src="{{ asset('bundles/app/img/no-img.png') }}">
                         {% endif %}
-
                     </div>
                     <div class="info-block ad-info right-block">
                         <div class="ad-head">    
@@ -33,11 +32,11 @@
                             <div class='ad-description'>{{ ad.adText }}</div>
                             <div>Статус объявления:</div>
                             {%if ad.state==0%}
-                            <div> В работе</div>
+                                <div> В работе</div>
                             {%elseif ad.state==1%}
-                            <div> Ожидает публикации</div>
+                                <div> Ожидает публикации</div>
                             {%else%}
-                             <div> Опубликовано</div>
+                                <div> Опубликовано</div>
                             {%endif%}
                             <div class='show-href opacity-text'>
                                 <a class="detail-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">Подробнее...</a>
@@ -84,6 +83,6 @@
                 </div>
             {% endif %}
         </div>
+    </div>
 
-
-    {% endblock %}
+{% endblock %}

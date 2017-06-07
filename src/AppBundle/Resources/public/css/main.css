@@ -220,11 +220,19 @@ a{
 .info-block{
     width: 68%;
 }
-.ad-container, .ad-edit-container, .user-container, .user-edit-container, .ad-full-container, .users-container{
+.ad-container, .ads-container, .ad-edit-container, .user-container, .user-edit-container, .ad-full-container, .users-container{
     width: 1000px;
     margin: 20px auto;
 }
-
+.green-href{
+    color: #7b8e1f;
+}
+.green-href:hover{
+    color: #415403;
+}
+.text-button{
+    padding: 20px 0;
+}
 .photo-block img{
     width: 100%;
     overflow: hidden;

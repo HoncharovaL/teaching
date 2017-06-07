@@ -25,16 +25,17 @@
                 </div>
                 <div class="underlined-block user-about">
                     <div class="about">{{ user.about }}</div>
+                    {%if app.user.id==user.id %}
+                        <div class="text-button">
+                            <a class="green-href" href="{{ path('user_edit', { 'id': user.id }) }}">
+                                <img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}">
+                                Редактировать
+                            </a> 
+                        </div>
+                    {%endif%}
                 </div>
-                {%if app.user.id==user.id %}
-                <div class="buttons-container">
-                    <div class="right">
-                        <a class="edit-button" href="{{ path('user_edit', { 'id': user.id }) }}">Редактировать</a>
-                    </div>
-                </div>
-                {%endif%}
-            </div>
-        </div>
+            </div>            
+        </div>                
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}    
             {%if app.user.id!=user.id %}
                 <div class="messages-container">
