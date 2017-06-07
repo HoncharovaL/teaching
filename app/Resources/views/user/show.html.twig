@@ -25,30 +25,37 @@
                 </div>
                 <div class="underlined-block user-about">
                     <div class="about">{{ user.about }}</div>
-
                 </div>
+                {%if app.user.id==user.id %}
                 <div class="buttons-container">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}    
-                    {%if app.user.id!=user.id %}
-                     <div class="right">
-                    <h1>Написать пользователю</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Отправить сообщение" />
-    {{ form_end(edit_form) }}
-    </div>
-    {%else%}
-        <div class="right">
-                        <a class="edit-button" href="{{ path('messages_index')}}">Сообщения</a>
-                    </div>
                     <div class="right">
                         <a class="edit-button" href="{{ path('user_edit', { 'id': user.id }) }}">Редактировать</a>
                     </div>
-    {%endif%}
-    {%endif%}
                 </div>
+                {%endif%}
             </div>
         </div>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}    
+            {%if app.user.id!=user.id %}
+                <div class="messages-container">
+                    {{ form_start(edit_form)}}
+                    <div class='messages-item underlined-block'>                        
+                        <div class="form-horizontal">
+                            <div class="opacity-text text-center">Отправить сообщение пользователю:</div>
+                            <div class="review-comment full-size-field">{{ form_widget(edit_form.message)}}</div>
+                        </div>
+                        <div class="buttons-container">
+                            <div class="text-center">
+                                <input class="save-button" type="submit" value="Отправить" />
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(edit_form) }}
+                </div>                
+            {%endif%}
+        {%else%}
+            <div class="attention-header"> ! Только зарегистрированные пользователю могут обмениваться сообщениями! </div>
+        {%endif%}
     </div>
+</div>
 {% endblock %}
