@@ -8,6 +8,11 @@
         <tbody>
         {% for message in messages %}
             <tr>
+                {% if message.photo %}
+                            <img src="{{photo_path}}{{message.photo}}">
+                        {% else %}
+                            <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                        {% endif %}
                 <td>{{ message.name }} {{ message.surname }}</td>
             </tr>
             <a class="detail-href" href="{{path("messages_show", { 'idMes': message.id })}}">Подробнее...</a>
