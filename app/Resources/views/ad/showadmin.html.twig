@@ -15,11 +15,11 @@
         </div>
         <div class='info-block right-block ad-info'>
             <div class='ad-head'>
-                <div class='left-col'>
+                <div class='left-block'>
                     <div class="teacher-name"><a href="{{path('user_show', {'id': ad.user.id})}}">{{ ad.user }}</a></div>
                     <div class="ad-subject">{{ ad.subject}}</div>
                 </div>
-                <div class='right-col'>
+                <div class='right-block'>
                     <div class='ad-date'>{% if ad.adate %}{{ ad.adate|date('d-m-Y') }}{% endif %}</div>
                 </div>
             </div>

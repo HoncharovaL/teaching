@@ -314,19 +314,6 @@ a{
 .message-field{
     margin-top: 20px;
 }
-
-.left-col, .right-col{
-    display: inline-block;
-    height: 40px;
-}
-.left-col{
-    float: left;
-    width: 80%;    
-}
-.right-col{
-    float: right;
-    text-align: center;
-}
 .teacher-name, .ad-date{
     font-size: 14px;
     margin-bottom: 12px; 
@@ -413,16 +400,16 @@ a{
 }
 
 .ad-footer .ad-type{
-    width:150px;
+    width:125px;
 }
 .ad-footer .ad-online{
-    width: 150px;
+    width: 125px;
 }
 .ad-footer .ad-price{
     font-size: 16px;
     font-weight: bold;
     color: #7b8e1f;
-    width: 127px;
+    width: 177px;
 }
 .edit-image, .view-image, .delete-image, .new-image, .sent-image, .pay-image, .save-image{
     width: 15px;
