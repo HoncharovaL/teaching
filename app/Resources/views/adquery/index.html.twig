@@ -3,29 +3,36 @@
 {% block body %}
     <div class=" query-container ">
 
-        <div class="query-list messages-container">
+        <div class="white-container wide-container short-block">
             <div class="orange-header text-center">
                 Запросы на подтверждение
             </div>
             {% if adQueries | length%}
                 {% for adQuery in adQueries %}
-                    <div class="query-item messages-item underlined-block">
-                        <div class="left-block messages-photo">
-                            {% if adQuery.user.photo %}
-                                <img src="{{photo_path}}{{adQuery.user.photo}}" >
-                            {%else%}
-                                <img src="{{ asset('bundles/app/img/no-img.png') }}" >
-                            {%endif%}
-                        </div>
-                        <div class="right-block messages-content">
-                            <div class="user-name"><a class="black-href" href="{{path('user_show', {'id': adQuery.user.id})}}">{{ adQuery.user }}</a></div>
-                            <div class="theme"><span class="opacity-text">Тема:</span>{{ adQuery.ad }}</div>
-                            <div class="query-text">{{ adQuery.queryText }}</div>
-                            {%if adQuery.confirm==0%}
-                            <div class="show-href opacity-text"><a class="detail-href colorbox-ajax-form" href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">Подробнее...</a></div>
-                            {%else%}
-                            <div class="opacity-text">Это Ваш ученик</div>
-                            {%endif%}
+                    <div class="messages-item underlined-block">
+                        <div class="block">
+                            <div class="left-block messages-photo">
+                                {% if adQuery.user.photo %}
+                                    <img src="{{photo_path}}{{adQuery.user.photo}}" >
+                                {%else%}
+                                    <img src="{{ asset('bundles/app/img/no-img.png') }}" >
+                                {%endif%}
+                            </div>
+                            <div class="right-block messages-content">
+                                <div class="message-row"><a class="black-href" href="{{path('user_show', {'id': adQuery.user.id})}}">{{ adQuery.user }}</a></div>
+                                <div class="message-row"><span class="opacity-text">Предмет :</span>{{ adQuery.ad }}</div>
+                                <div class="message-row">{{ adQuery.queryText }}</div>
+                                {%if adQuery.confirm==0%}
+                                    <div class="text-buttons">
+                                    <a class="blue-href left colorbox-ajax-form" href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">
+                                        <div class="left-block"><img class="view-image" src="{{asset('bundles/app/img/view.png')}}"></div>
+                                        <div class="left-block">Просмотр</div>
+                                    </a>                                    
+                                    </div>
+                                {%else%}
+                                    <div class="opacity-text">Это Ваш ученик</div>
+                                {%endif%}
+                            </div>
                         </div>
                     </div>
                 {% endfor%}

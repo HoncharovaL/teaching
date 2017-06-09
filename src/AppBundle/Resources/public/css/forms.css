@@ -14,6 +14,11 @@ input[type="text"], textarea, select, input[type="password"], input[type="email"
 textarea{
     height: 100px;
 }
+button{
+    cursor: pointer;
+    border: 0;
+    background: white;
+}
 .search-form input[type="text"], .search-form select {
     width: 250px;
     margin: 5px;

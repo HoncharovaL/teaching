@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="user-edit-container">
+    <div class="wide-container">
+        <div class="block">
             {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
             <div class="photo-block left-block">
                 {% if user.photo %}
@@ -11,7 +11,7 @@
                 {% endif %}
                 {{ form_widget(edit_form.photoFile)}}
             </div>
-            <div class="info-block right-block">
+            <div class="info-block white-container right-block">
                 <div class="underlined-block form-block">
                     <div class="surname">{{ form_row(edit_form.surname)}}</div>
                     <div class="name">{{ form_row(edit_form.name)}}</div>  
@@ -32,8 +32,6 @@
                     </div>
                 </div>
             </div>
-
-
             {{ form_end(edit_form) }}
         </div>
     </div>

@@ -1,75 +1,74 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-
-        <div class="header-bottom">
-            <div class="howsmart-head">
-                <div>HOWSMART.UA</div>
-                <div>Лучшие репетиторы Украины</div>                
-            </div>
-            <div class="howsmart-about">
-                <div>Нужен репетитор?</div>
-                <div>С помощью howsmart ищите репетитора в своем городе или учитесь онлайн.</div>
-                <div>Мы поможем вам стать умнее!</div>
-            </div>
+    <div class="header-bottom colored-container">
+        <div class="howsmart-head">
+            <div>HOWSMART.UA</div>
+            <div>Лучшие репетиторы Украины</div>                
         </div>
-        {{ form_start(form)}}
-        <div class="serrated-yellow search-container">    
-            <div class="search-form">
-                <div class="col1">
-                    <div class="search-area">
-                        {{ form_widget(form.search, {'attr':{'placeholder':"Предмет"}})}}
-                    </div>
-                </div>
-                <div class="col2">
-                    <div class="search-area">
-                        {{ form_widget(form.town, {'attr':{'placeholder':"Город"}})}}   
-                    </div>
-                </div>
-                <div class="col3">
-                    <div class="search-area">
-                        <input class="save-button" type="submit" value="Поиск" />
-                    </div>
-                </div>              
-                <a class="extra-search-button" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a> 
-            </div>
-
+        <div class="howsmart-about">
+            <div>Нужен репетитор?</div>
+            <div>С помощью howsmart ищите репетитора в своем городе или учитесь онлайн.</div>
+            <div>Мы поможем вам стать умнее!</div>
         </div>
-        <div class="extra-search-container hidden">
-            <div class="search-form">
-                <div class="col1">
-                    <div class="search-area">
-                        {{ form_widget(form.area, {'attr':{'placeholder':"Область"}})}}
-                    </div>
-                    <div class="search-place">
-                        {{ form_widget(form.place, {'placeholder':"Место проведения"})}}
-                    </div>
+    </div>
+    {{ form_start(form)}}
+    <div class="serrated-yellow search-container">    
+        <div class="search-form block">
+            <div class="col1">
+                <div class="search-area">
+                    {{ form_widget(form.search, {'attr':{'placeholder':"Предмет"}})}}
                 </div>
-                <div class="col2">
-                    <div class="search-price">
-                        <span class="opacity-text price-label">Цена:</span>
-                        <span class=" min">
-                            {{ form_widget(form.pricemin, {'attr':{'placeholder':"от"}})}}
-                        </span>
-                        <span class="max">
-                            {{ form_widget(form.pricemax, {'attr':{'placeholder':"до"}})}}
-                        </span>
-                    </div>
-                    <div class="search-currency">
-                        {{ form_widget(form.currency, {'placeholder':"Валюта"})}}
-                    </div>
-
+            </div>
+            <div class="col2">
+                <div class="search-area">
+                    {{ form_widget(form.town, {'attr':{'placeholder':"Город"}})}}   
                 </div>
-                <div class="col3">
+            </div>
+            <div class="col3">
+                <div class="search-area">
                     <input class="save-button" type="submit" value="Поиск" />
                 </div>
+            </div>              
+            <a class="dashed-href" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a> 
+        </div>
+
+    </div>
+    <div class="extra-search-container hidden">
+        <div class="search-form block">
+            <div class="col1">
+                <div class="search-area">
+                    {{ form_widget(form.area, {'attr':{'placeholder':"Область"}})}}
+                </div>
+                <div class="search-place">
+                    {{ form_widget(form.place, {'placeholder':"Место проведения"})}}
+                </div>
+            </div>
+            <div class="col2">
+                <div class="search-price">
+                    <span class="opacity-text price-label">Цена:</span>
+                    <span class=" min">
+                        {{ form_widget(form.pricemin, {'attr':{'placeholder':"от"}})}}
+                    </span>
+                    <span class="max">
+                        {{ form_widget(form.pricemax, {'attr':{'placeholder':"до"}})}}
+                    </span>
+                </div>
+                <div class="search-currency">
+                    {{ form_widget(form.currency, {'placeholder':"Валюта"})}}
+                </div>
+
+            </div>
+            <div class="col3">
+                <input class="save-button" type="submit" value="Поиск" />
             </div>
         </div>
-        {{ form_end(form) }}
-        <div class="ad-list serrated-gray">
-            {% for ad in ads %}
-                <div class="ad-container ">
+    </div>
+    {{ form_end(form) }}
+    <div class="serrated-gray">
+        {% for ad in ads %}
+            <div class="wide-container">
+                <div class="block">
                     <div class="photo-block image-with-overlay-label left-block">
                         {% if ad.top==1 %}
                             <span class="overlay-label top-label"> В ТОПе </span>                            
@@ -85,7 +84,7 @@
                             <div class="no-phone">Видеть номер преподавателя могут только зарегистрированные пользователи.</div>
                         {%endif%}
                     </div>
-                    <div class="info-block ad-info right-block">
+                    <div class="info-block white-container short-block right-block">
                         <div class="ad-head">    
                             <div class='left-block'>
                                 <div class="teacher-name"><a href="{{path('user_show', {'id': ad.user.id})}}">{{ ad.user }}</a></div>
@@ -104,7 +103,7 @@
                                     <div class="left-block">Просмотр</div>
                                 </a> 
                             </div>
-                            
+
                         </div>
                         <div class="ad-footer">
                             <div class="ad-place cell">
@@ -130,29 +129,26 @@
 
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-        <div class="place-cv">
-            <div class="place-cv-text">
-                <div class="place-cv-head">
-                    Разместите своё резюме!
-                </div>
-                <div>
-                    Ученики смогут найти вас и предложить отличную работу.
-                </div>
             </div>
-            {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-                <div class="place-cv-button">
-                    <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
-                </div>
-            {%else%}
-                <div class="place-cv-button">
-                    <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
-                </div>
-            {%endif%}
+        {% endfor %}
+    </div>
+    <div class="place-cv colored-container">
+        <div class="place-cv-text">
+            <div class="place-cv-head">
+                Разместите своё резюме!
+            </div>
+            <div>
+                Ученики смогут найти вас и предложить отличную работу.
+            </div>
         </div>
-        <div class="cities-container">
-
-        </div>
+        {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+            <div class="place-cv-button">
+                <a class="green-button" href="{{ path('user_show', { 'id': app.user.getId() }) }}">Создать резюме</a>
+            </div>
+        {%else%}
+            <div class="place-cv-button">
+                <a class="green-button" href="{{ path("fos_user_security_login") }}">Создать резюме</a>
+            </div>
+        {%endif%}
     </div>
 {% endblock %}

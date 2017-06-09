@@ -1,43 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="subjecttype-edit-container" >
-            {{ form_start(form) }}
-            <div class="orange-header">
-                <div>Редактирование</div>
+    <div class="white-container narrow-container text-center" >
+        {{ form_start(form) }}
+        <div class="orange-header">
+            <div>Редактирование</div>
+        </div>
+        <div class="underlined-block">
+            <div class="text-center">
+                {{ form_row(form.stype)}}
             </div>
-            <div class="underlined-block">
-                <div class="text-center">
-                    {{ form_row(form.stype)}}
-                </div>
+        </div>
+        <div class="subject-list embedded-form ">
+            <div class="form-collection-container" data-only-input="true" data-count="{{ form.subjects|length }}" data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
+                {% for subject in form.subjects %}
+                    <div class="form-collection-element">
+                        {{ form_errors(subject) }}
+                        <div class="">{{ form_widget(subject.subject) }}</div>
+                    </div>                     
+                {% endfor %}
             </div>
-            <div class="subject-list embedded-form ">
-                <div class="form-collection-container" data-only-input="true" data-count="{{ form.subjects|length }}" data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
-                    {% for subject in form.subjects %}
-                        <div class="form-collection-element">
-                            {{ form_errors(subject) }}
-                            <div class="">{{ form_widget(subject.subject) }}</div>
-                        </div>                     
-                    {% endfor %}
-                </div>
-                <div>
-                    <a href="#" class=" black-href add-new-element" >Добавить дисциплину</a>
-                </div>
+            <div>
+                <a href="#" class=" black-href add-new-element" >Добавить дисциплину</a>
             </div>
+        </div>
 
-            {% do form.subjects.setRendered %}
-            <div class="buttons-container">
-                <input class="save-button right" type="submit" value="Сохранить"/>
+        {% do form.subjects.setRendered %}
+        <div class="buttons-container">
+            <input class="save-button right" type="submit" value="Сохранить"/>
 
-                {{ form_end(form) }}  
-                {% if delete_form is defined %}
-                    {{ form_start(delete_form) }}
-                    <input class="delete-button left" type="submit" value="Удалить">
-                    {{ form_end(delete_form) }}
-                {% endif %}
+            {{ form_end(form) }}  
+            {% if delete_form is defined %}
+                {{ form_start(delete_form) }}
+                <input class="delete-button left" type="submit" value="Удалить">
+                {{ form_end(delete_form) }}
+            {% endif %}
 
-            </div>
         </div>
     </div>
 {% endblock %}
@@ -64,12 +62,12 @@
 
                 // create a new list element and add it to the list
                 var newLi = $('<div class="form-collection-element"></div>').html(newWidget);
-                
+
                 if (list.data('onlyInput')) {
                     var input = newLi.find('input');
                     newLi.html('').append(input);
                 }
-                
+
                 newLi.appendTo(list);
 
                 addDeleteLink(newLi);

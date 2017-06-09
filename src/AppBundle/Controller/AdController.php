@@ -100,7 +100,7 @@ class AdController extends Controller
         $form = $this->createForm('AppBundle\Form\ReviewUserType', $comment);
         $form->handleRequest($request1);
         //0-запрос на подтверждение отправлен, ответ не получен,1-запрос подтвержден, но оценка не оставлена,2-запрос не отправлен,3-оценка оставлена
-        $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.idAd=?1 and p.user=?2');
+        $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.ad=?1 and p.user=?2');
             $query1->setParameter(1,$ad->getIdAd());
             $query1->setParameter(2,$this->getUser());
             $confirm = $query1->getResult();

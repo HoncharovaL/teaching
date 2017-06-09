@@ -1,62 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="user-container">
+    <div class="wide-container">
         <div class="user-item">
-            <div class="photo-block left-block image-with-overlay-label">
-                <span class="overlay-label">{{ user.rating }}</span>
-                {% if user.photo %}
-                    <img src="{{photo_path}}{{user.photo}}">
-                {% else %}
-                    <img src="{{ asset('bundles/app/img/no-img.png') }}">
-                {% endif %}
-            </div>
-            <div class="info-block right-block">
-                <div class="underlined-block user-name">
-                    <div class="surname"><span class="opacity-text">Фамилия:</span>{{ user.surname }}</div>
-                    <div class="name"><span class="opacity-text">Имя:</span>{{ user.name }}</div>  
-                    <div class="patronymic"><span class="opacity-text">Отчество:</span>{{ user.patronymic }}</div>
-                    <div class="phone"><span class="opacity-text">Телефон: </span>{{ user.phone }}</div>
+            <div class="block">
+                <div class="photo-block left-block image-with-overlay-label">
+                    <span class="overlay-label">{{ user.rating }}</span>
+                    {% if user.photo %}
+                        <img src="{{photo_path}}{{user.photo}}">
+                    {% else %}
+                        <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                    {% endif %}
                 </div>
-                <div class="underlined-block user-education">
-                    <div class="education"><span class="opacity-text">Образование: </span>{{ user.education}}</div>
-                    <div class="university"><span class="opacity-text">Учебное заведение: </span>{{ user.university }}</div>
-                    <div class="experience"><span class="opacity-text">Опыт работы: </span>{{ user.experience }}</div>
-                </div>
-                <div class="underlined-block user-about">
-                    <div class="about">{{ user.about }}</div>
-                    {%if app.user.id==user.id %}
-                        <div class="text-buttons">
-                            <a class="green-href" href="{{ path('user_edit', { 'id': user.id }) }}">
-                                <div class="left-block"><img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}"></div>
-                                <div class="left-block">Редактирование</div>
-                            </a> 
-                        </div>
-                    {%endif%}
-                </div>
-            </div>            
-        </div>                
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}    
-            {%if app.user.id!=user.id %}
-                <div class="messages-container">
-                    <div class="orange-header text-center">Отправить сообщение пользователю:</div>
-                    {{ form_start(edit_form)}}
-                    <div class='messages-item underlined-block'>                        
-                        <div class="form-horizontal">
-                            <div class="message-field full-size-field">{{ form_widget(edit_form.message)}}</div>
-                        </div>
-                        <div class="buttons-container">
-                            <div class="text-center">
-                                <input class="save-button" type="submit" value="Отправить" />
+                <div class="info-block white-container short-block right-block">
+                    <div class="underlined-block user-name">
+                        <div class="surname"><span class="opacity-text">Фамилия:</span>{{ user.surname }}</div>
+                        <div class="name"><span class="opacity-text">Имя:</span>{{ user.name }}</div>  
+                        <div class="patronymic"><span class="opacity-text">Отчество:</span>{{ user.patronymic }}</div>
+                        <div class="phone"><span class="opacity-text">Телефон: </span>{{ user.phone }}</div>
+                    </div>
+                    <div class="underlined-block user-education">
+                        <div class="education"><span class="opacity-text">Образование: </span>{{ user.education}}</div>
+                        <div class="university"><span class="opacity-text">Учебное заведение: </span>{{ user.university }}</div>
+                        <div class="experience"><span class="opacity-text">Опыт работы: </span>{{ user.experience }}</div>
+                    </div>
+                    <div class="underlined-block user-about">
+                        <div class="about">{{ user.about }}</div>
+                        {%if app.user.id==user.id %}
+                            <div class="text-buttons">
+                                <a class="green-href" href="{{ path('user_edit', { 'id': user.id }) }}">
+                                    <div class="left-block"><img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}"></div>
+                                    <div class="left-block">Редактирование</div>
+                                </a> 
+                            </div>
+                        {%endif%}
+                    </div>
+                </div>            
+            </div>                
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}    
+                {%if app.user.id!=user.id %}
+                    <div class="white-container wide-container short-block">
+                        <div class="orange-header text-center">Отправить сообщение пользователю:</div>
+                        {{ form_start(edit_form)}}
+                        <div class='messages-item underlined-block'>                        
+                            <div class="form-horizontal">
+                                <div class="message-field full-size-field">{{ form_widget(edit_form.message)}}</div>
+                            </div>
+                            <div class="buttons-container">
+                                <div class="text-center">
+                                    <input class="save-button" type="submit" value="Отправить" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {{ form_end(edit_form) }}
-                </div>                
+                        {{ form_end(edit_form) }}
+                    </div>                
+                {%endif%}
+            {%else%}
+                <div class="attention-header"> ! Только зарегистрированные пользователю могут обмениваться сообщениями! </div>
             {%endif%}
-        {%else%}
-            <div class="attention-header"> ! Только зарегистрированные пользователю могут обмениваться сообщениями! </div>
-        {%endif%}
+        </div>
     </div>
 </div>
 {% endblock %}

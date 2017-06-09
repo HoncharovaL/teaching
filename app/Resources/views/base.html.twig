@@ -11,10 +11,10 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="container"> 
+        <div class="main-container"> 
             {% block all %}
                 {% block header %}
-                    <div class="header-container">
+                    <div class="header-container colored-container">
                         <div class="header-logo">
                             <a href="{{path("homepage")}}">
                                 <img class="logo-header" src="{{ asset('bundles/app/img/logo-white.png') }}">
@@ -72,7 +72,7 @@
                 {% block body %}
                 {% endblock %}
                 {% block footer %}
-                    <div class="footer">
+                    <div class="footer white-container">
                         <img class="logo-footer" src="{{ asset('bundles/app/img/logo-orange.png') }}">
                     </div>
                 {% endblock %}

@@ -1,100 +1,102 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class='ad-full-container'>
-
-        <div class='photo-block left-block image-with-overlay-label'>
-            <span class="overlay-label">{{ ad.user.rating }}</span>
-            {% if ad.user.photo %}
-                <img src="{{photo_path}}{{ad.user.photo}}">
-            {% else %}
-                <img src="{{ asset('bundles/app/img/no-img.png') }}">
-            {% endif %}
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <div class='teacher-phone'>{{ ad.user.phone }}</div>
-            {%else%}
-                <div class="no-phone">Видеть номер преподавателя могут только зарегистрированные пользователи.</div>
-            {%endif%}
-        </div>
-        <div class='info-block right-block ad-info'>
-            <div class='ad-head'>
-                <div class='left-block'>
-                    <div class="teacher-name"><a href="{{path('user_show', {'id': ad.user.id})}}">{{ ad.user }}</a></div>
-                    <div class="ad-subject">{{ ad.subject}}</div>
-                </div>
-                <div class='right-block'>
-                    <div class='ad-date'>{% if ad.adate %}{{ ad.adate|date('d-m-Y') }}{% endif %}</div>
-                </div>
+    <div class='ad-full-container wide-container'>
+        <div class="block">
+            <div class='photo-block left-block image-with-overlay-label'>
+                <span class="overlay-label">{{ ad.user.rating }}</span>
+                {% if ad.user.photo %}
+                    <img src="{{photo_path}}{{ad.user.photo}}">
+                {% else %}
+                    <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class='teacher-phone'>{{ ad.user.phone }}</div>
+                {%else%}
+                    <div class="no-phone">Видеть номер преподавателя могут только зарегистрированные пользователи.</div>
+                {%endif%}
             </div>
-            <div>
-                <div class='teacher-content'>
-                    {{ ad.user.about }}
-                </div>
-                <div class='teacher-footer'>
-                    <div class='teacher-education cell'>
-                        {{ ad.user.education }}
+            <div class='info-block white-container short-block right-block'>
+                <div class='ad-head'>
+                    <div class='left-block'>
+                        <div class="teacher-name"><a href="{{path('user_show', {'id': ad.user.id})}}">{{ ad.user }}</a></div>
+                        <div class="ad-subject">{{ ad.subject}}</div>
                     </div>
-                    <div class='teacher-university cell'>
-                        {{ ad.user.university }}
-                    </div>
-                    <div class='teacher-experience cell'>
-                        {{ ad.user.experience }}
+                    <div class='right-block'>
+                        <div class='ad-date'>{% if ad.adate %}{{ ad.adate|date('d-m-Y') }}{% endif %}</div>
                     </div>
                 </div>
+                <div>
+                    <div class='teacher-content'>
+                        {{ ad.user.about }}
+                    </div>
+                    <div class='teacher-footer'>
+                        <div class='teacher-education cell'>
+                            {{ ad.user.education }}
+                        </div>
+                        <div class='teacher-university cell'>
+                            {{ ad.user.university }}
+                        </div>
+                        <div class='teacher-experience cell'>
+                            {{ ad.user.experience }}
+                        </div>
+                    </div>
 
-                <div class='ad-content'>
-                    {{ ad.adText }}
-                </div>
-                <div class='ad-footer'>
-                    <div class='ad-place cell'>
-                        <div class='ad-town'>{{ ad.town }}</div>
-                        <div class='ad-area'>{{ ad.area }}</div>
+                    <div class='ad-content'>
+                        {{ ad.adText }}
                     </div>
-                    <div class='ad-type cell'>
-                        {{ ad.place }}
-                    </div>
-                    <div class='ad-online cell'>
-                        Уроки online
-                        {% if ad.online==1%}
-                            <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
-                        {%else%}
-                            <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
-                        {%endif%}
-                    </div>
-                    <div class='ad-price cell'>
-                        {{ ad.price }} {{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
+                    <div class='ad-footer'>
+                        <div class='ad-place cell'>
+                            <div class='ad-town'>{{ ad.town }}</div>
+                            <div class='ad-area'>{{ ad.area }}</div>
+                        </div>
+                        <div class='ad-type cell'>
+                            {{ ad.place }}
+                        </div>
+                        <div class='ad-online cell'>
+                            Уроки online
+                            {% if ad.online==1%}
+                                <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                            {%else%}
+                                <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                            {%endif%}
+                        </div>
+                        <div class='ad-price cell'>
+                            {{ ad.price }} {{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
-
         </div>
     </div>
 
     <div class='review-container'>
         <div class='orange-header text-center'> Отзывы: </div>
-        <div class="messages-container">
+        <div class="white-container wide-container short-block">
             {% if comments | length%}
 
                 {% for comments in comments %}
                     <div class="messages-item underlined-block">
-                        <div class='left-block messages-photo'>
-                            {% if comments.user.photo %}
-                                <img src="{{photo_path}}{{comments.user.photo}}" >
-                            {%else%}
-                                <img src="{{ asset('bundles/app/img/no-img.png') }}" >
-                            {%endif%}
+                        <div class="block">
+                            <div class='left-block messages-photo'>
+                                {% if comments.user.photo %}
+                                    <img src="{{photo_path}}{{comments.user.photo}}" >
+                                {%else%}
+                                    <img src="{{ asset('bundles/app/img/no-img.png') }}" >
+                                {%endif%}
 
+                            </div>
+                            <div class="messages-content right-block">
+                                <div >{{comments.rdate|date("m.d.Y")}}</div>
+                                <div >{{comments.user.name}}</div>
+                                <div ><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
+                                <div >{{comments.review}}</div>
+
+                            </div>
                         </div>
-                        <div class="messages-content right-block">
-                            <div >{{comments.rdate|date("m.d.Y")}}</div>
-                            <div >{{comments.user.name}}</div>
-                            <div ><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
-                            <div >{{comments.review}}</div>
-
-                        </div>
-
                     </div>
                 {% endfor %}
 

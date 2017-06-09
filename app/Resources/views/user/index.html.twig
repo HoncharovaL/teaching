@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
     <div class="">
         {{ form_start(form)}}
         <div class="search-container text-center">            
@@ -10,9 +9,9 @@
         </div>
         {{ form_end(form)}}
     </div>
-    <div class="users-container">
-        {% for user in users %}
-            <div class="user-item">
+    {% for user in users %}
+        <div class="user-item wide-container">
+            <div class="block">
                 <div class='photo-block left-block image-with-overlay-label'>
                     <span class="overlay-label">{{ user.rating }}</span>
                     {% if user.photo %}
@@ -24,7 +23,7 @@
                         <div class='teacher-phone'>{{ user.phone }}</div>
                     {%endif%}
                 </div>
-                <div class='info-block right-block '>
+                <div class='info-block white-container short-block right-block '>
                     <div class='ad-head'>
                         <div class='left-block'>
                             <div class="teacher-name"><a href="{{path('user_show', {'id': user.id})}}">{{ user }}</a></div>
@@ -50,9 +49,6 @@
                     </div>
                 </div>
             </div>
-        {%endfor%}
-
-    </div>
-
-
+        </div>
+    {%endfor%}
 {% endblock %}

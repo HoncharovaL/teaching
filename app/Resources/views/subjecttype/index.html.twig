@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <div class="subjecttype-container">
+        <div class="white-container narrow-container">
             <div class="orange-header">
                 <div class="list-text-container">Дисциплины</div>
                 <div class="list-button-container"><a href="{{ path('subjecttype_new') }}">+</a></div>
@@ -9,7 +9,7 @@
             <div class="subjecttype-list">
                 {% for subjectType in subjectTypes %}  
                     <div class="subjecttype-item" >
-                        <div class="subjecttype-name">
+                        <div class="list-item block">
                             <div class="list-text-container">
                                 <a  class="black-href" onclick="$('#subject-list-{{loop.index}}').toggleClass('hidden')">
                                     {{ subjectType.stype }}
@@ -23,7 +23,7 @@
                         </div>
                         <div id="subject-list-{{loop.index}}" class="subject-list hidden">
                             {% for subj in subjectType.subjects %}
-                                <div class="subject-item">
+                                <div class="indent-item block">
                                     <div class="list-text-container">
                                         {{subj.subject}}
                                     </div>

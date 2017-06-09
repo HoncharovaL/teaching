@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="correspondence-container">
-        <div class="messages-container">
+        <div class="white-container wide-container short-block">
             {% for message in messages %}
                 <div class="messages-item  underlined-block">                   
                     <div class="{{message.sender.id==app.user.id ? 'right-message' : 'left-message'}}">
@@ -18,7 +18,7 @@
                             <div class="message-data message-sender main-info">
                                 {{ message.sender }}
                             </div>  
-                            <div class="message-data message-content gray-div">
+                            <div class="message-data message-content bordered-div">
                                 {{ message.message }}
                             </div>  
                             <div class="opacity-text message-data main-info">
@@ -30,7 +30,7 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="messages-container">
+        <div class="white-container wide-container short-block">
             <div class="orange-header text-center">Отправить сообщение пользователю:</div>
             {{ form_start(edit_form)}}
             <div class='messages-item underlined-block'>                        

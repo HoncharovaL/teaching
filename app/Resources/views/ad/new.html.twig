@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="ad-edit-container">
+    <div class="narrow-container white-container">
         {{ form_start(form) }}
         <div class="orange-header text-center">
             Создание
@@ -87,13 +87,11 @@
                 </div>
             </div>
             <div class="buttons-container">
-                <div class="right">
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
+                <div class="right">                    
                     <input class="save-button" type="submit" value="Создать" />
-                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}
