@@ -107,7 +107,7 @@
             {% if is_granted('IS_AUTHENTICATED_FULLY') and notuser %}
                 {% if confirm==1 %}
                     {{ form_start(form)}}
-                    <div class='review-form messages-item underlined-block'>
+                    <div class="review-form messages-item underlined-block">
                         <div class="review-rating">
                             <span class="opacity-text">Оценка:</span>
                             {{ form_widget(form.rating)}}
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     {{ form_end(form) }}
-                {%elseif confirm==2%}
+                {% elseif confirm==2 %}
                     <div class="messages-item underlined-block form-horizontal">
                         <div class="attention-header">
                             ! Чтобы получить возможность оценки преподавателя необходимо получить подтверждение о том, что Вы являетесь его учеником !
@@ -139,19 +139,19 @@
                         </div>
                         {{ form_end(query_form) }}
                     </div>
-                {%elseif confirm==0%}
+                {% elseif confirm==0 %}
                     <div class="messages-item underlined-block">
                         <div class="attention-header">
                             Преподаватель еще не подтвердил, что Вы являетесь его учеником.
                         </div>
                     </div>
-                {%elseif confirm==3%}
+                {% elseif confirm==3 %}
                     <div class="messages-item underlined-block">
                         <div class="attention-header">
                             Вы уже оставили свой отзыв.
                         </div>
                     </div>
-                {%endif%}
+                {% endif %}
             {%endif%}
         </div>
     </div>
