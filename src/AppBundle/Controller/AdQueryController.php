@@ -22,6 +22,7 @@ class AdQueryController extends Controller
      */
     public function indexAction()
     {
+   
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:AdQuery');
         $query = $repository->createQueryBuilder('p')

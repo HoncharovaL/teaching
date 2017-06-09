@@ -103,21 +103,18 @@ class AdController extends Controller
         $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.idAd=?1 and p.user=?2');
             $query1->setParameter(1,$ad->getIdAd());
             $query1->setParameter(2,$this->getUser());
-            $confirm = $query1->getScalarResult();
-            if ($confirm==null) 
-               {
-                $confirm=2;
-                }
-            else 
-            {
-            if($confirm==1)
-            {
-            $query1 = $em->createQuery('SELECT count(p) FROM AppBundle:Review p WHERE p.idAd=?1 and p.user=?2');
-            $query1->setParameter(1,$ad->getIdAd());
-            $query1->setParameter(2,$this->getUser());
-            $review = $query1->getScalarResult();
-            if ($review>0) {$confirm=3; } 
-            }
+            $confirm = $query1->getResult();
+            if ($confirm==null) $confirm=2;
+            else if(isset($confirm[0]['confirm']))
+            {$confirm=$confirm[0]['confirm'];
+             if($confirm==1)
+                 {
+                    $query1 = $em->createQuery('SELECT count(p) FROM AppBundle:Review p WHERE p.idAd=?1 and p.user=?2');
+                    $query1->setParameter(1,$ad->getIdAd());
+                    $query1->setParameter(2,$this->getUser());
+                    $review = $query1->getSingleScalarResult();
+                        if ($review>0) {$confirm=3; }
+                 }
             }
             $notuser=true;
             if($this->getUser()==$ad->getUser()) {$notuser=false;}

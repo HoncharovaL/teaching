@@ -43,13 +43,20 @@ class AdQuery
     private $idQuery;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_ad", type="bigint")
+     * @var \AppBundle\Entity\Ad
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad", inversedBy="adQuery")
+     * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")
      */
-    private $idAd;
+    private $ad;
+    function getAd() {
+        return $this->ad;
+    }
 
-    function getIdAd() {
+    function setAd( $ad) {
+        $this->ad = $ad;
+    }
+
+        function getIdAd() {
         return $this->idAd;
     }
 
