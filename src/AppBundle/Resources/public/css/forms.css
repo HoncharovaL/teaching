@@ -23,6 +23,7 @@ button{
     margin: 5px 15px;
     line-height: 50px;
 }
+
 .search-form input[type="text"], .search-form select {
     width: 250px;
     margin: 5px;
@@ -119,21 +120,28 @@ textarea {
 }
 
 .fileContainer {
-    overflow: hidden;
     position: relative;
-    background: #ccc;
-    color: #fff;
-    float: left;
+
+    color: #7b8e1f;
+    float: right;
     border: none;
-    padding: 8px 32px;
     text-decoration: none;
-    margin: 4px 2px;
     cursor: pointer;
-    font-size: 14px;
+}
+.fileContainer:before{
+    display: inline-block;
+    content: '.';
+    color: #000\9;
+    width: 15px;
+    height: 15px;
+    background-image:  url(../img/sent.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .fileContainer:hover {
-    background: #7b8e1f;
+    color: #415403;
 }
 
 .fileContainer [type=file] {

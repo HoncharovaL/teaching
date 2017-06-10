@@ -181,10 +181,13 @@ body{
     margin: 20px 0;
 }
 .user-about{
-    height: 162px;
+    height: 150px;
+}
+.user-about-text{
+    height: 110px;
 }
 .list-item{
-    padding-top: 10px;
+    padding-top: 20px;
 }
 .st-name{
     width: 300px;
@@ -411,10 +414,10 @@ a{
     height: 200px;
 }
 .ad-content{
-    height: 138px;
+    height: 196px;
 }
 .ads-container .ad-content{
-    height: 100px;
+    height: 36px;
 }
 .detail-href, .black-href{
 

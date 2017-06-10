@@ -4,7 +4,7 @@
     <div class="correspondence-container">
         <div class="white-container wide-container short-block">
             {% for message in messages %}
-                <div class="messages-item  underlined-block">                   
+                <div class="messages-item block underlined-block">                   
                     <div class="{{message.sender.id==app.user.id ? 'right-message' : 'left-message'}}">
 
                         <div class="messages-photo message-block ">
@@ -15,8 +15,8 @@
                             {% endif %}
                         </div>
                         <div class="message-block" >
-                            <div class="message-data message-sender main-info">
-                                {{ message.sender }}
+                            <div class="message-data message-sender main-info detail-href">
+                                <a class="black-href opacity-text" href="{{path('user_show', {'id': message.sender.id})}}">{{ message.sender }}</a>
                             </div>  
                             <div class="message-data message-content bordered-div">
                                 {{ message.message }}

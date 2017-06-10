@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="wide-container ads-container">
-        <div class="text-buttons">
-            <a class="green-href right-block" href="{{ path('ad_new') }}">
-                <div class="left-block"><img class="new-image" src="{{asset('bundles/app/img/new.png')}}"></div>
-                <div class="left-block">Новое объявление</div>
-            </a> 
+    <div class="header-bottom colored-container">
+        <div class="howsmart-head">
+            <div>Разместите своё резюме!</div>             
         </div>
+        <div class="howsmart-about">
+            <div>Ученики смогут найти вас и предложить отличную работу.</div>
+            <div class="buttons-container">
+            {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                <a class="green-button" href="{{ path('ad_new') }}">Создать резюме</a>
+            {%endif%}
+            </div>
+        </div>
+
+    </div>
+    <div class="wide-container ads-container serrated-gray">
         {% if ads | length %}
             {% for ad in ads %}
                 <div class="wide-container">

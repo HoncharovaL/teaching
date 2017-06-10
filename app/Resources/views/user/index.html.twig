@@ -1,54 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="">
+    <div class="header-bottom colored-container">
+        <div class="howsmart-head">
+            <div>HOWSMART.UA</div>
+            <div>Лучшие репетиторы Украины</div>                
+        </div>
         {{ form_start(form)}}
-        <div class="search-container text-center">            
+        <div class=" howsmart-about search-container"> 
+            <div>Поиск репетитора</div>
             {{ form_widget(form.search, {'attr':{'placeholder':"Имя"}})}}     
             <input class="save-button" type="submit" value="Поиск" />            
         </div>
         {{ form_end(form)}}
     </div>
-    {% for user in users %}
-        <div class="user-item wide-container">
-            <div class="block">
-                <div class='photo-block left-block image-with-overlay-label'>
-                    <span class="overlay-label">{{ user.rating }}</span>
-                    {% if user.photo %}
-                        <img src="{{photo_path}}{{user.photo}}">
-                    {% else %}
-                        <img src="{{ asset('bundles/app/img/no-img.png') }}">
-                    {% endif %}
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <div class='teacher-phone'>{{ user.phone }}</div>
-                    {%endif%}
-                </div>
-                <div class='info-block white-container short-block right-block '>
-                    <div class='ad-head'>
-                        <div class='left-block'>
-                            <div class="teacher-name"><a href="{{path('user_show', {'id': user.id})}}">{{ user }}</a></div>
-                        </div>
-
+    <div class="serrated-gray">
+        {% for user in users %}
+            <div class="user-item wide-container">
+                <div class="block">
+                    <div class='photo-block left-block image-with-overlay-label'>
+                        <span class="overlay-label">{{ user.rating }}</span>
+                        {% if user.photo %}
+                            <img src="{{photo_path}}{{user.photo}}">
+                        {% else %}
+                            <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                        {% endif %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <div class='teacher-phone'>{{ user.phone }}</div>
+                        {%endif%}
                     </div>
-                    <div >
-                        <div class='teacher-content'>
-                            {{ user.about }}
-                        </div>
-                        <div class='teacher-footer'>
-                            <div class='teacher-education cell'>
-                                {{ user.education }}
+                    <div class='info-block white-container short-block right-block '>
+                        <div class='ad-head'>
+                            <div class='left-block'>
+                                <div class="teacher-name"><a href="{{path('user_show', {'id': user.id})}}">{{ user }}</a></div>
                             </div>
-                            <div class='teacher-university cell'>
-                                {{ user.university }}
-                            </div>
-                            <div class='teacher-experience cell'>
-                                {{ user.experience }}
-                            </div>
-                        </div>
 
+                        </div>
+                        <div >
+                            <div class='teacher-content'>
+                                {{ user.about }}
+                            </div>
+                            <div class='teacher-footer'>
+                                <div class='teacher-education cell'>
+                                    {{ user.education }}
+                                </div>
+                                <div class='teacher-university cell'>
+                                    {{ user.university }}
+                                </div>
+                                <div class='teacher-experience cell'>
+                                    {{ user.experience }}
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {%endfor%}
+        {%endfor%}
+    </div>
 {% endblock %}

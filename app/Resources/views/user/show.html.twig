@@ -14,7 +14,16 @@
                 </div>
                 <div class="info-block white-container short-block right-block">
                     <div class="underlined-block user-name">
-                        <div class="surname"><span class="opacity-text">Фамилия:</span>{{ user.surname }}</div>
+                        <div class="surname">
+                            <span class="opacity-text">Фамилия:</span>
+                            {{ user.surname }}
+                            {%if app.user.id==user.id %}
+                                <a class="green-href right-block" href="{{ path('user_edit', { 'id': user.id }) }}">
+                                    <div class="left-block"><img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}"></div>
+                                    <div class="left-block">Редактирование</div>
+                                </a> 
+                            {%endif%}
+                        </div>
                         <div class="name"><span class="opacity-text">Имя:</span>{{ user.name }}</div>  
                         <div class="patronymic"><span class="opacity-text">Отчество:</span>{{ user.patronymic }}</div>
                         <div class="phone"><span class="opacity-text">Телефон: </span>{{ user.phone }}</div>
@@ -24,17 +33,11 @@
                         <div class="university"><span class="opacity-text">Учебное заведение: </span>{{ user.university }}</div>
                         <div class="experience"><span class="opacity-text">Опыт работы: </span>{{ user.experience }}</div>
                     </div>
-                    <div class="underlined-block user-about">
-                        <div class="about">{{ user.about }}</div>
-                        {%if app.user.id==user.id %}
-                            <div class="text-buttons">
-                                <a class="green-href" href="{{ path('user_edit', { 'id': user.id }) }}">
-                                    <div class="left-block"><img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}"></div>
-                                    <div class="left-block">Редактирование</div>
-                                </a> 
-                            </div>
-                        {%endif%}
+                    <div class="user-about indent-item">
+                        <div class="user-about-text">{{ user.about }}</div>
+
                     </div>
+
                 </div>            
             </div>                
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}    
