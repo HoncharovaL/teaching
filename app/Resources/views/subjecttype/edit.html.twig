@@ -30,24 +30,24 @@
         {% do form.subjects.setRendered %}
         <div class="right-block">
             <button type="submit" class="blue-href" >
-                <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/save.png')}}"/></div>
+                <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/save-blue.png')}}"/></div>
                 <div class="left-block">Сохранить</div>
             </button>  
         </div>
         <div class="right-block">
             <a href="#" data-container="subjects-list" class="green-href add-new-element right-block">
-                    <img class="button-image" src="{{asset('bundles/app/img/new.png')}}"/>
-                    Добавить дисциплину
+                <img class="button-image" src="{{asset('bundles/app/img/new.png')}}"/>
+                Добавить дисциплину
             </a>
         </div>
         {{ form_end(form) }}  
         {% if delete_form is defined %}
             {{ form_start(delete_form) }}
             <div class="right-block">
-            <button type="submit" class="red-href" >
+                <button type="submit" class="red-href" >
                     <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/delete.png')}}"/></div>
                     <div class="left-block">Удалить</div>  
-            </button>
+                </button>
             </div>
             {{ form_end(delete_form) }}
         {% endif %}

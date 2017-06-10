@@ -475,7 +475,7 @@ a{
     width: 500px;
 }
 .subject-edit{
-    width: 385px;
+    width: 385px !important;
 }
 .subject-list a{
     color: black;
