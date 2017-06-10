@@ -27,7 +27,7 @@
             </div>
             <div class="col3">
                 <div class="search-area">
-                    <input class="save-button" type="submit" value="Поиск" />
+                    <input class="green-submit" type="submit" value="Поиск" />
                 </div>
             </div>              
             <a class="dashed-href" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a> 
@@ -60,7 +60,7 @@
 
             </div>
             <div class="col3">
-                <input class="save-button" type="submit" value="Поиск" />
+                <input class="green-submit" type="submit" value="Поиск" />
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             <div class="wide-container">
                 <div class="block">
                     <div class="photo-block image-with-overlay-label left-block">
-                        {% if ad.top==1 %}
+                        {% if ad.services.idServices ==1 %}
                             <span class="overlay-label top-label"> В ТОПе </span>                            
                         {% endif %}
                         {% if ad.user.photo %}
@@ -99,7 +99,7 @@
                                 <span class="opacity-text">{{ ad.adate|date('d-m-Y') }}</span>
                                 <a class="blue-href right-block" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">
                                     <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/view.png')}}"></div>
-                                    <div class="left-block">Просмотр</div>
+                                    <div class="left-block big-text">Просмотр</div>
                                 </a> 
                             </div>
                             <div class='ad-description'>{{ ad.adText }}</div>

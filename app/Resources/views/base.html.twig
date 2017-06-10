@@ -45,10 +45,6 @@
                                         <div class=" dropdown-item">
                                             <a class="menu-href" href="{{ path('messages_index')}}">Сообщения</a>
                                         </div> 
-                                        <div class=" dropdown-item">
-                                            <a class='menu-href' href="{{ path("fos_user_security_logout") }}">Выход</a> 
-                                        </div> 
-
                                         {% if is_granted('ROLE_ADMIN')%}
                                             <div class="dropdown-item">
                                                 <a class='menu-href' href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
@@ -60,6 +56,11 @@
                                                 <a class='menu-href' href="{{ path('adservices_index') }}">Справочник услуг</a>
                                             </div>
                                         {%endif%}
+                                        <div class=" dropdown-item">
+                                            <a class='menu-href' href="{{ path("fos_user_security_logout") }}">Выход</a> 
+                                        </div> 
+
+
                                     </div>
                                 </div> 
                             {% else %}

@@ -16,6 +16,9 @@ body{
 .opacity-text{
     opacity: 0.5;
 }
+.big-text{
+    font-size: 14px;
+}
 .list-item{
     padding-top: 20px;
 }
@@ -43,7 +46,7 @@ body{
     margin: 20px auto; 
 }
 .thin-container{
-    width: 425px;
+    width: 405px;
     margin: 20px auto; 
 }
 .short-block{
