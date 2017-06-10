@@ -47,7 +47,7 @@ class AdQuery
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ad", inversedBy="adQuery")
      * @ORM\JoinColumn(name="id_ad", referencedColumnName="id_ad")
      */
-    private $ad;
+    private $idAd;
     function getAd() {
         return $this->ad;
     }

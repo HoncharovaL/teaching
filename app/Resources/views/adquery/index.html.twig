@@ -19,7 +19,7 @@
                         </div>
                         <div class="right-block messages-content">
                             <div class="user-name"><a class="black-href" href="{{path('user_show', {'id': adQuery.user.id})}}">{{ adQuery.user }}</a></div>
-                            <div class="theme"><span class="opacity-text">Тема:</span>{{ adQuery.ad }}</div>
+                            <div class="theme"><span class="opacity-text">Тема:</span>{{ adQuery.idAd }}</div>
                             <div class="query-text">{{ adQuery.queryText }}</div>
                             {%if adQuery.confirm==0%}
                             <div class="show-href opacity-text"><a class="detail-href colorbox-ajax-form" href="{{ path('adquery_show', { 'idQuery': adQuery.idQuery }) }}">Подробнее...</a></div>
