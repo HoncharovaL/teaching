@@ -47,7 +47,7 @@ class AdController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ads = $em->getRepository('AppBundle:Ad')->findBy(['state' => '1']);
+    $ads = $em->getRepository('AppBundle:Ad')->findBy(['state' => '1']);
 
         return $this->render('ad/adadmin.html.twig', array(
             'ads' => $ads,
@@ -100,7 +100,7 @@ class AdController extends Controller
         $form = $this->createForm('AppBundle\Form\ReviewUserType', $comment);
         $form->handleRequest($request1);
         //0-запрос на подтверждение отправлен, ответ не получен,1-запрос подтвержден, но оценка не оставлена,2-запрос не отправлен,3-оценка оставлена
-        $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.ad=?1 and p.user=?2');
+        $query1 = $em->createQuery('SELECT p.confirm FROM AppBundle:AdQuery p WHERE p.idAd=?1 and p.user=?2');
             $query1->setParameter(1,$ad->getIdAd());
             $query1->setParameter(2,$this->getUser());
             $confirm = $query1->getResult();
@@ -205,7 +205,7 @@ class AdController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'pay_form' => $payForm->createView(),
-            'send_form' => $payForm->createView(),
+            'send_form' => $sendform->createView(),
         ));
     }
 
@@ -391,7 +391,7 @@ class AdController extends Controller
        $createform->handleRequest($request);
         if ($createform->isSubmitted() && $createform->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $ad->setStare(1);
+            $ad->setState(1);
             $em->flush($ad);
             }
 

@@ -9,7 +9,7 @@
             <div>Ученики смогут найти вас и предложить отличную работу.</div>
             <div class="buttons-container">
             {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-                <a class="green-button" href="{{ path('ad_new') }}">Создать резюме</a>
+                <a class="green-button" href="{{ path('ad_new') }}">Создать объявление</a>
             {%endif%}
             </div>
         </div>
