@@ -13,7 +13,7 @@
         </div>
     </div>
     {{ form_start(form)}}
-    <div class="serrated-yellow search-container">    
+    <div class="serrated-yellow search-container text-center">    
         <div class="search-form block">
             <div class="col1">
                 <div class="search-area">
@@ -25,11 +25,14 @@
                     {{ form_widget(form.town, {'attr':{'placeholder':"Город"}})}}   
                 </div>
             </div>
-            <div class="col3">
+            <div class="col3 ">
                 <div class="search-area">
                     <input class="green-submit" type="submit" value="Поиск" />
                 </div>
-            </div>              
+            </div>    
+
+        </div>
+        <div class="center-block">
             <a class="dashed-href" onclick="$('.extra-search-container').toggleClass('hidden')">расширенный поиск</a> 
         </div>
 

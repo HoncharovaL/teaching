@@ -90,10 +90,10 @@
 
                             </div>
                             <div class="messages-content right-block">
-                                <div >{{comments.rdate|date("m.d.Y")}}</div>
-                                <div >{{comments.user.name}}</div>
-                                <div ><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
-                                <div >{{comments.review}}</div>
+                                <div class="message-data opacity-text">{{comments.rdate|date("m.d.Y")}}</div>
+                                <div class="message-data">{{comments.user.name}}</div>
+                                <div class="message-data"><span class="opacity-text">Оценка:</span>{{comments.rating}}</div>
+                                <div class="message-data">{{comments.review}}</div>
 
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                             <div class="review-comment full-size-field">{{ form_widget(form.review)}}</div>
                         </div>
                         <div class="buttons-container">
-                            <div class="right">
+                            <div class="right-block">
                                 <input class="green-submit" type="submit" value="Отправить" />
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             {{ form_widget(query_form.queryText)}}
                         </div>
                         <div class="buttons-container">
-                            <div class="right">
+                            <div class="right-block">
                                 <input class="green-submit" type="submit" value="Отправить" />
                             </div>
                         </div>
