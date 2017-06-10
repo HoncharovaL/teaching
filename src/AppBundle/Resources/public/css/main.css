@@ -24,11 +24,19 @@ body{
 }
 .wide-container{
     width: 1000px;
-    margin: 20px auto;
+    margin: 30px auto;
+}
+.narrow-container{
+   width: 525px;
+    margin: 20px auto; 
+}
+.thin-container{
+    width: 425px;
+    margin: 20px auto; 
 }
 .white-container{
     background-color: white;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 .colored-container, .orange-header, .popup-header, .login-container{
     color: white;
@@ -178,6 +186,13 @@ body{
 .list-item{
     padding-top: 10px;
 }
+.st-name{
+    width: 300px;
+    margin: 0 auto;
+}
+.label{
+    line-height: 50px;
+}
 .indent-item{
     padding-top: 10px;
     padding-left: 15px;
@@ -188,35 +203,35 @@ a{
     cursor: pointer;   
 }
 .green-href{
-    color: #7b8e1f;
+    color: #7b8e1f !important;
 }
 .green-href:hover{
-    color: #415403;
+    color: #415403 !important;
 }
 .blue-href{
-    color: #67b5d9;
+    color: #67b5d9 !important;
 }
 .blue-href:hover{
-    color: #247298;
+    color: #247298 !important;
 }
 .yellow-href{
-    color: #facb01;
+    color: #facb01 !important;
 }
 .yellow-href:hover{
-    color: #d7a806;
+    color: #d7a806 !important;
 }
 .red-href{
-    color: #DD1144;
+    color: #DD1144 !important;
 }
 .red-href:hover{
-    color: #A10608;
+    color: #A10608 !important;
 }
 .dashed-href{
     display: inline-block;
     border-bottom:  1px white dashed;
 }
 .text-buttons{
-    padding: 20px 0;
+    padding: 20px 10px;
 }
 .text-buttons .left{
     float: left;
@@ -395,6 +410,9 @@ a{
     margin: 30px 20px;
     height: 200px;
 }
+.ad-content{
+    height: 138px;
+}
 .ads-container .ad-content{
     height: 100px;
 }
@@ -449,7 +467,7 @@ a{
     color: #7b8e1f;
     width: 177px;
 }
-.edit-image, .view-image, .delete-image, .new-image, .sent-image, .pay-image, .save-image{
+.edit-image, .view-image, .delete-image, .new-image, .sent-image, .pay-image, .save-image, .back-image, .search-image{
     width: 15px;
     height: 15px;
     object-fit: contain; 
@@ -460,10 +478,7 @@ a{
     height: 12px;
     object-fit: contain; 
 }
-.narrow-container{
-   width: 525px;
-    margin: 20px auto; 
-}
+
 .orange-header{
     height: 50px;
     background-color: #facb01;
@@ -488,7 +503,9 @@ a{
 .underlined-block{
     padding: 10px;
     border-bottom: 1px #f2f2f2 solid;
-}.image-with-overlay-label {
+    margin-bottom: 10px; 
+}
+.image-with-overlay-label {
     position: relative;
 }
 .top-label{

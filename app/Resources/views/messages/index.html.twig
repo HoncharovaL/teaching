@@ -7,10 +7,11 @@
             <div class="orange-header text-center">
                 Сообщения
             </div>
-            <div class="buttons-container">
-                <div class="right">
-                    <a class="save-button" href="{{path("user_index")}}">Найти пользователя</a>
-                </div>
+            <div class="text-buttons">
+                <a class="green-href right" href="{{ path('user_index') }}">
+                    <div class="left-block"><img class="search-image" src="{{asset('bundles/app/img/search.png')}}"></div>
+                    <div class="left-block">Поиск пользователей</div>
+                </a> 
             </div>
             {% if messages | length%}
                 {% for message in messages %}

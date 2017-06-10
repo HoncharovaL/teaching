@@ -19,6 +19,10 @@ button{
     border: 0;
     background: white;
 }
+.form-collection-element{
+    margin: 5px 15px;
+    line-height: 50px;
+}
 .search-form input[type="text"], .search-form select {
     width: 250px;
     margin: 5px;

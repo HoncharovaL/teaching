@@ -97,13 +97,12 @@
                         <div class="ad-content">
                             <div class='date opacity-text'>{{ ad.adate|date('d-m-Y') }}</div>
                             <div class='ad-description'>{{ ad.adText }}</div>
-                            <div class="text-buttons">
-                                <a class="blue-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">
-                                    <div class="left-block"><img class="view-image" src="{{asset('bundles/app/img/view.png')}}"></div>
-                                    <div class="left-block">Просмотр</div>
-                                </a> 
-                            </div>
-
+                        </div>
+                        <div class="text-buttons">
+                            <a class="blue-href" href="{{ path('ad_show', { 'idAd': ad.idAd }) }}">
+                                <div class="left-block"><img class="view-image" src="{{asset('bundles/app/img/view.png')}}"></div>
+                                <div class="left-block">Просмотр</div>
+                            </a> 
                         </div>
                         <div class="ad-footer">
                             <div class="ad-place cell">

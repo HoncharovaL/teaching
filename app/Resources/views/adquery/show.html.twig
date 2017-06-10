@@ -15,20 +15,27 @@
                         {%endif%}
                     </div>
                     <div class="left-block messages-content">
-                        <div class="user-name">{{ adQuery.user }}</div>
-                        <div class="query-text">{{ adQuery.queryText }}</div>
+                        <div class="user-name opacity-text message-row">{{ adQuery.user }}</div>
+                        <div class="query-text message-row">{{ adQuery.queryText }}</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="buttons-container">
+        <div class="text-buttons">
             {{ form_start(confirm_form) }}
-            <input class="save-button right" type="submit" value="Подтвердить">
+            <button type="submit" class="green-href right-block" >
+                <div class="left-block"><img class="yes-no-image" src="{{asset('bundles/app/img/yes.png')}}"/></div>
+                <div class="left-block">Подтвердить</div>
+            </button>
             {{ form_end(confirm_form) }}
             {{ form_start(delete_form) }}
-            <input class="delete-button left" type="submit" value="Удалить">
+            <button type="submit" class="red-href left-block" >
+                <div class="left-block"><img class="yes-no-image" src="{{asset('bundles/app/img/no.png')}}"/></div>
+                <div class="left-block">Отклонить</div>
+            </button>
             {{ form_end(delete_form) }}
-        </div> 
+        </div>
+        
     </div>
 </div>
 
