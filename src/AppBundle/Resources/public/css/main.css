@@ -58,6 +58,9 @@ body{
     background-color: white;
     padding-bottom: 30px;
 }
+.peach-container{
+    background-color: #fbfbe5;
+}
 .colored-container, .orange-header, .popup-header, .login-container{
     color: white;
 }
