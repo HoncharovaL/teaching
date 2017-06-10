@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="services-container">
+    <div class="white-container narrow-container short-block">
         <div class="orange-header">
             <div class="list-text-container">Типы размещений</div>
             <div class="list-button-container "><a class="colorbox-ajax-form" href="{{ path('adservices_new') }}">+</a></div>
         </div>
         <div class="services-list">
             {% for service in adServices %}  
-                <div class="services-item  underlined-block">
+                <div class="services-item block indent-item underlined-block">
                     <div class="services-about list-text-container">
                         <div class="services-text">
                             <a  class="black-href" onclick="$('#services-list-{{loop.index}}').toggleClass('hidden')">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="list-button-container">
                         <a class="colorbox-ajax-form" href="{{ path('adservices_edit', { 'idServices': service.idServices })}}">
-                            <img class="edit-image"src="{{asset('bundles/app/img/edit.png')}}">
+                            <img class="button-image"src="{{asset('bundles/app/img/edit.png')}}">
                         </a>
                     </div>
 

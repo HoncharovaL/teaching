@@ -4,63 +4,69 @@
     <div>
         {% if ads | length %}
             {% for ad in ads %}
-                <div class="ad-container ">
-                    <div class="photo-block image-with-overlay-label left-block">
-                        {% if ad.user.photo %}
-                            <img src="{{photo_path}}{{ad.user.photo}}">
-                        {% else %}
-                            <img src="{{ asset('bundles/app/img/no-img.png') }}">
-                        {% endif %}
-                        
-                    </div>
-                    <div class="info-block ad-info right-block">
-                        <div class="ad-head">    
-                            <div class='left-col'>
-                                <div class="teacher-name">{{ ad.user }}</div>
-                                <div class="ad-subject">{{ ad.subject}}</div>
-                            </div>
-                            <div class='right-col'>
-                                <div class="teacher-rating">{{ ad.user.rating}}</div>
-                            </div>
+                <div class="wide-container ad-admin-container">
+                    <div class=" block">
+                        <div class="photo-block image-with-overlay-label left-block">
+                            {% if ad.user.photo %}
+                                <img src="{{photo_path}}{{ad.user.photo}}">
+                            {% else %}
+                                <img src="{{ asset('bundles/app/img/no-img.png') }}">
+                            {% endif %}
+
                         </div>
-                        <div class="ad-content">
-                            <div class='date opacity-text'>{{ ad.adate|date('Y-m-d') }}</div>
-                            <div class='ad-description'>{{ ad.adText }}</div>
-                            <div class='show-href opacity-text'>
-                                <a class="detail-href" href="{{ path('ad_showadmin', { 'idAd': ad.idAd }) }}">Подробнее...</a>
+                        <div class="info-block white-container short-block right-block">
+                            <div class="ad-head block">    
+                                <div class='left-block'>
+                                    <div class="teacher-name">{{ ad.user }}</div>
+                                    <div class="ad-subject">{{ ad.subject}}</div>
+                                </div>
+                                <div class='right-block'>
+                                    <div class="teacher-rating">{{ ad.user.rating}}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ad-footer">
-                            <div class="ad-place cell">
-                                <div class='ad-town'>{{ ad.town }}</div>
-                                <div class='ad-area'>{{ ad.area }}</div>
-                            </div>     
-                            <div class="ad-type cell">
-                                {{ad.place}}
+                            <div class=" ad-content">
+                                <div class='date block'>
+                                    <div class="opacity-text left-block">{{ ad.adate|date('Y-m-d') }}</div>
+                                    <a class="blue-href right-block" href="{{ path('ad_showadmin', { 'idAd': ad.idAd }) }}">
+                                    <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/view.png')}}"></div>
+                                    <div class="left-block">Просмотр</div>
+                                </a> 
+                                </div>
+                                
+                                <div class='ad-description'>{{ ad.adText }}</div>
                             </div>
-                            <div class="ad-online cell">
-                                Уроки online
-                                {% if ad.online==1%}
-                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
-                                {%else%}
-                                    <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
-                                {%endif%}
-                            </div>
-                            <div class="ad-price cell">
-                                {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
-                            </div>
-                            <div class="cell ad-service">
-                                Тип размещения: {{ ad.services }}
-                            </div>
-                            <div class="cell ad-servdate">
-                                Действителен до: {% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}
+                            <div class="ad-footer">
+                                <div class="ad-place cell">
+                                    <div class='ad-town'>{{ ad.town }}</div>
+                                    <div class='ad-area'>{{ ad.area }}</div>
+                                </div>     
+                                <div class="ad-type cell">
+                                    {{ad.place}}
+                                </div>
+                                <div class="ad-online cell">
+                                    Уроки online
+                                    {% if ad.online==1%}
+                                        <img class="yes-no-image" src="{{ asset('bundles/app/img/yes.png') }}">
+                                    {%else%}
+                                        <img class="yes-no-image" src="{{ asset('bundles/app/img/no.png') }}">
+                                    {%endif%}
+                                </div>
+                                <div class="ad-price cell">
+                                    {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
+                                </div>
+                                <div class="cell ad-service">
+                                    Тип размещения: {{ ad.services }}
+                                </div>
+                                <div class="cell ad-servdate">
+                                    Действителен до: {% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         {%else%}
-            <div class="messages-container">
+            <div class="white-container wide-container short-block">
                 <div class='no-content underlined-block'>
                     Нет заявок на публикацию объявлений.
                 </div>

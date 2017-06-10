@@ -1,44 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="subjecttype-edit-container" >
-            {{ form_start(form) }}
-            <div class="orange-header">
-                <div>Редактирование</div>
-            </div>
-            <div class="underlined-block">
-                <div class="text-center">
-                    {{ form_row(form.stype)}}
+    <div class="white-container thin-container text-center" >
+        {{ form_start(form) }}
+        <div class="orange-header">
+            <div>Редактирование</div>
+        </div>
+        <div class="underlined-block block">
+            <div class="st-name">
+                <div class="left-block label opacity-text">
+                    Предмет :
                 </div>
-            </div>
-            <div class="subject-list embedded-form ">
-                <div class="form-collection-container" data-only-input="true" data-count="{{ form.subjects|length }}" data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
-                    {% for subject in form.subjects %}
-                        <div class="form-collection-element">
-                            {{ form_errors(subject) }}
-                            <div class="">{{ form_widget(subject.subject) }}</div>
-                        </div>                     
-                    {% endfor %}
+                <div class="right-block">
+                    {{ form_widget(form.stype)}}
                 </div>
-                <div>
-                    <a href="#" class=" black-href add-new-element" >Добавить дисциплину</a>
-                </div>
-            </div>
-
-            {% do form.subjects.setRendered %}
-            <div class="buttons-container">
-                <input class="save-button right" type="submit" value="Сохранить"/>
-
-                {{ form_end(form) }}  
-                {% if delete_form is defined %}
-                    {{ form_start(delete_form) }}
-                    <input class="delete-button left" type="submit" value="Удалить">
-                    {{ form_end(delete_form) }}
-                {% endif %}
-
             </div>
         </div>
+        <div id="subjects-list" class="subject-list embedded-form underlined-block ">
+            <div class="form-collection-container" data-only-input="true" data-count="{{ form.subjects|length }}" data-prototype="{{ form_widget(form.subjects.vars.prototype)|e }}">
+                {% for subject in form.subjects %}
+                    <div class="form-collection-element">
+                        {{ form_errors(subject) }}
+                        {{ form_widget(subject.subject) }}
+                    </div>                     
+                {% endfor %}
+            </div>
+        </div>
+
+        {% do form.subjects.setRendered %}
+        <div class="right-block">
+            <button type="submit" class="blue-href" >
+                <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/save-blue.png')}}"/></div>
+                <div class="left-block">Сохранить</div>
+            </button>  
+        </div>
+        <div class="right-block">
+            <a href="#" data-container="subjects-list" class="green-href add-new-element right-block">
+                <img class="button-image" src="{{asset('bundles/app/img/new.png')}}"/>
+                Добавить дисциплину
+            </a>
+        </div>
+        {{ form_end(form) }}  
+        {% if delete_form is defined %}
+            {{ form_start(delete_form) }}
+            <div class="right-block">
+                <button type="submit" class="red-href" >
+                    <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/delete.png')}}"/></div>
+                    <div class="left-block">Удалить</div>  
+                </button>
+            </div>
+            {{ form_end(delete_form) }}
+        {% endif %}
+
+
     </div>
 {% endblock %}
 
@@ -50,10 +64,15 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.embedded-form .add-new-element').on('click', function (e) {
+            $('.add-new-element').on('click', function (e) {
                 e.preventDefault();
-
                 var list = $(this).parents('.embedded-form').find('.form-collection-container');
+
+                if ($(this).data('container')) {
+                    list = $('#' + $(this).data('container')).find('.form-collection-container');
+                }
+
+
 
                 // grab the prototype template
                 var newWidget = list.attr('data-prototype');
@@ -64,12 +83,12 @@
 
                 // create a new list element and add it to the list
                 var newLi = $('<div class="form-collection-element"></div>').html(newWidget);
-                
+
                 if (list.data('onlyInput')) {
                     var input = newLi.find('input');
                     newLi.html('').append(input);
                 }
-                
+
                 newLi.appendTo(list);
 
                 addDeleteLink(newLi);
@@ -81,7 +100,7 @@
             });
 
             function addDeleteLink($formLi) {
-                var $removeLi = $('<a href="#">Удалить</a>');
+                var $removeLi = $('<a href="#"><img class="button-image" src="{{asset('bundles/app/img/delete.png')}}"/></a>');
                 $formLi.append($removeLi);
 
                 $removeLi.on('click', function (e) {

@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="user-edit-container">
+    <div class="wide-container">
+        <div class="block">
             {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
             <div class="photo-block left-block">
                 {% if user.photo %}
@@ -11,7 +11,7 @@
                 {% endif %}
                 {{ form_widget(edit_form.photoFile)}}
             </div>
-            <div class="info-block right-block">
+            <div class="info-block white-container right-block">
                 <div class="underlined-block form-block">
                     <div class="surname">{{ form_row(edit_form.surname)}}</div>
                     <div class="name">{{ form_row(edit_form.name)}}</div>  
@@ -26,14 +26,13 @@
                 <div class="underlined-block full-size-field form-block">
                     <div class="about">{{ form_widget(edit_form.about, {'attr': {'placeholder': edit_form.about.vars.label} })}}</div>
                 </div>
-                <div class="buttons-container">
-                    <div class="right">
-                        <input class="save-button" type="submit" value="Сохранить" />
-                    </div>
+                <div class="text-buttons">
+                    <button type="submit" class="green-href right-block" >
+                        <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/save-green.png')}}"/></div>
+                        <div class="left-block big-text">Сохранить</div>
+                    </button> 
                 </div>
             </div>
-
-
             {{ form_end(edit_form) }}
         </div>
     </div>

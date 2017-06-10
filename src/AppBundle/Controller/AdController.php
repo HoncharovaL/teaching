@@ -47,7 +47,7 @@ class AdController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ads = $em->getRepository('AppBundle:Ad')->findBy(['state' => '1']);
+    $ads = $em->getRepository('AppBundle:Ad')->findBy(['state' => '1']);
 
         return $this->render('ad/adadmin.html.twig', array(
             'ads' => $ads,
@@ -205,7 +205,7 @@ class AdController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'pay_form' => $payForm->createView(),
-            'send_form' => $payForm->createView(),
+            'send_form' => $sendform->createView(),
         ));
     }
 
@@ -391,7 +391,7 @@ class AdController extends Controller
        $createform->handleRequest($request);
         if ($createform->isSubmitted() && $createform->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $ad->setStare(1);
+            $ad->setState(1);
             $em->flush($ad);
             }
 

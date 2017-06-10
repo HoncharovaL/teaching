@@ -6,14 +6,24 @@ input[type="text"], textarea, select, input[type="password"], input[type="email"
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 12px 20px;
+}
+#appbundle_adservices_services{
+    width: 66%;
 }
 textarea{
     height: 100px;
 }
+button{
+    cursor: pointer;
+    border: 0;
+    background: white;
+}
+.form-collection-element{
+    margin: 5px 15px;
+    line-height: 50px;
+}
+
 .search-form input[type="text"], .search-form select {
     width: 250px;
     margin: 5px;
@@ -42,7 +52,7 @@ textarea {
     resize: none;
 }
 
-.save-button {
+.green-submit {
     width:150px;
     background-color: #7b8e1f;
     border: none;
@@ -52,34 +62,6 @@ textarea {
     margin: 5px 20px;
     cursor: pointer;
     font-size: 14px;
-}
-
-.delete-button {
-    width:150px;
-    background-color: #ccc;
-    border: none;
-    color: white !important;
-    padding: 8px 32px;
-    text-decoration: none;
-    margin: 5px 20px;
-    cursor: pointer;
-    font-size: 14px;
-}
-.edit-button{
-    width:150px;
-    background-color: #fcab01;
-    border: none;
-    color: white !important;
-    padding: 8px 32px;
-    text-decoration: none;
-    margin: 5px 20px;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 50px;
-}
-
-.delete-button:hover {
-    background: #fcab01;
 }
 .popup-content{
     text-align: center;
@@ -110,21 +92,28 @@ textarea {
 }
 
 .fileContainer {
-    overflow: hidden;
     position: relative;
-    background: #ccc;
-    color: #fff;
-    float: left;
-    border: none;
-    padding: 8px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
     font-size: 14px;
+    color: #7b8e1f;
+    border: none;
+    float: right;
+    text-decoration: none;
+    cursor: pointer;
+}
+.fileContainer:before{
+    display: inline-block;
+    content: '.';
+    color: #000\9;
+    width: 14px;
+    height: 15px;
+    background-image:  url(../img/sent.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .fileContainer:hover {
-    background: #7b8e1f;
+    color: #415403;
 }
 
 .fileContainer [type=file] {

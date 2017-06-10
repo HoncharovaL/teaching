@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="ad-edit-container">
+    <div class="narrow-container white-container">
         {{ form_start(edit_form) }}
         <div class="orange-header text-center">
             Редактирование
@@ -88,33 +88,30 @@
             </div>
         </div>
         <button type="submit" class="blue-href left-block" >
-            <div class="left-block"><img class="save-image" src="{{asset('bundles/app/img/save.png')}}"/></div>
+            <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/save-blue.png')}}"/></div>
             <div class="left-block">Сохранить</div>
         </button> 
 
         {{ form_end(edit_form) }}
 
-        {{ form_start(pay_form) }}
+        {{ form_start(send_form) }}
         <button type="submit" class="green-href left-block" >
-            <div class="left-block"><img class="sent-image" src="{{asset('bundles/app/img/sent.png')}}"/></div>
+            <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/sent.png')}}"/></div>
             <div class="left-block">На публикацию</div>
         </button>
-        {{ form_end(pay_form) }}
+        {{ form_end(send_form) }}
 
         {{ form_start(pay_form) }}
         <button type="submit" class="yellow-href left-block" >
-            <div class="left-block"><img class="pay-image" src="{{asset('bundles/app/img/pay.png')}}"/></div>
+            <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/pay.png')}}"/></div>
             <div class="left-block">Оплатить</div>
         </button>
         {{ form_end(pay_form) }}
         {{ form_start(delete_form) }}
         <button type="submit" class="red-href left-block" >
-            <div class="left-block"><img class="delete-image" src="{{asset('bundles/app/img/delete.png')}}"/></div>
+            <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/delete.png')}}"/></div>
             <div class="left-block">Удалить</div>
         </button>
         {{ form_end(delete_form) }}
-
-
-
     </div>
 {% endblock %}
