@@ -9,12 +9,24 @@ body{
     color: black;
     background-color: #f2f2f2;
 }
+/*text types*/
 .text-center{
     text-align: center;
 }
 .opacity-text{
     opacity: 0.5;
 }
+.list-item{
+    padding-top: 20px;
+}
+.label{
+    line-height: 50px;
+}
+.indent-item{
+    padding-top: 10px;
+    padding-left: 15px;
+}
+/*blocks and containers types*/
 .hidden{
     display: none;
 }
@@ -34,6 +46,14 @@ body{
     width: 425px;
     margin: 20px auto; 
 }
+.short-block{
+    padding-bottom: 0 !important;
+}
+.underlined-block{
+    padding: 10px;
+    border-bottom: 1px #f2f2f2 solid;
+    margin-bottom: 10px; 
+}
 .white-container{
     background-color: white;
     padding-bottom: 30px;
@@ -42,19 +62,6 @@ body{
     color: white;
 }
 .serrated-yellow {
-    position: relative;
-    z-index: 1;
-    padding: 40px 20px;
-    margin-top: -5px;
-    border-top: 5px solid transparent;
-    background-image: linear-gradient(#facb01, #facb01), linear-gradient(to bottom right, transparent 50.5%, #facb01 50.5%), linear-gradient(to bottom left, transparent 50.5%, #facb01 50.5%);
-    background-repeat: repeat, repeat-x, repeat-x;
-    background-position: 0 0, 10px 0, 10px 0;
-    background-size: auto auto, 10px 10px, 10px 10px;
-    background-clip: padding-box, border-box, border-box;
-    background-origin: padding-box, border-box, border-box, border-box, border-box;
-}
-.serrated-orange {
     position: relative;
     z-index: 1;
     padding: 40px 20px;
@@ -80,8 +87,9 @@ body{
     background-clip: padding-box, border-box, border-box;
     background-origin: padding-box, border-box, border-box, border-box, border-box;
 }
-.short-block{
-    padding-bottom: 0;
+.extra-search-container{
+    padding: 40px 20px;
+    background-color: #fcab01;
 }
 .block:after,
 .ad-row:after,
@@ -94,6 +102,7 @@ body{
     clear: both;
     visibility: hidden;
 }
+/*floating blocks*/
 .left-block, .right-block{
     display: inline-block;
     margin: 0 5px;
@@ -104,6 +113,7 @@ body{
 .right-block{
     float:right;
 }
+/*overlay labels*/
 .image-with-overlay-label {
     position: relative;
 }
@@ -127,6 +137,7 @@ body{
     left: 0;
     top: 10px;
 }
+/*photo block settings*/
 .photo-block{
     text-align: center;
     width: 30%;
@@ -157,14 +168,29 @@ body{
     max-width: 100%;
     height: 327px;
 }
+/*info block settings*/
 .info-block{
     width: 68%;
 }
+.user-about{
+    height: 122px;
+}
+/*ads settings*/
 .ad-head{
     background-color: #facb01;
     height: 40px;
     color:white;
     padding: 15px 20px;
+}
+.ad-content, .teacher-content{
+    margin: 30px 20px;
+    height: 200px;
+}
+.ad-content{
+    height: 196px;
+}
+.ads-container .ad-content{
+    height: 36px;
 }
 .ad-full-container .teacher-content, .ad-full-container .ad-content{
     height: 42px;
@@ -180,30 +206,75 @@ body{
 .ad-edit-content{
     margin: 20px 0;
 }
-.user-about{
-    height: 150px;
+.ad-description{
+    margin: 20px 0;
 }
-.user-about-text{
-    height: 110px;
+
+.ad-footer, .teacher-footer{
+    height: 52px;
+    width: 100%;
 }
-.list-item{
-    padding-top: 20px;
-}
-.st-name{
-    width: 300px;
-    margin: 0 auto;
-}
-.label{
+.ad-footer .cell, .teacher-footer .cell{
+    display: inline-table;
+    float: left;
+    border: 1px #f2f2f2 solid;
+    height: 50px;
+    border-collapse: collapse;
+    text-align: center;
     line-height: 50px;
 }
-.indent-item{
-    padding-top: 10px;
-    padding-left: 15px;
+.ad-footer .ad-place{
+    line-height: 25px;
+    text-align: right;
+    width: 249px;
 }
+.ad-footer .ad-service, .ad-footer .ad-servdate{
+    width: 339px;
+}
+.ad-place .ad-town, .ad-place .ad-area{
+    padding-right: 10px;
+}
+.ad-footer .ad-type{
+    width:125px;
+}
+.ad-footer .ad-online{
+    width: 125px;
+}
+.yes-no-image{
+    width: 12px;
+    height: 12px;
+    object-fit: contain; 
+}
+.ad-footer .ad-price{
+    font-size: 16px;
+    font-weight: bold;
+    color: #7b8e1f;
+    width: 177px;
+}
+.teacher-name, .ad-date{
+    font-size: 14px;
+    margin-bottom: 12px; 
+}
+.teacher-rating{
+    height: 25px;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+.teacher-footer .cell{
+    width: 225px;
+}
+.teacher-footer .teacher-education{
+    width: 227px;
+}
+
+/*hrefs settings*/
 a{
     color: white;
     text-decoration: none;
     cursor: pointer;   
+}
+.detail-href, .black-href{
+    color:black;
 }
 .green-href{
     color: #7b8e1f !important;
@@ -233,6 +304,7 @@ a{
     display: inline-block;
     border-bottom:  1px white dashed;
 }
+/*buttons settings*/
 .text-buttons{
     padding: 20px 10px;
 }
@@ -247,15 +319,18 @@ a{
     margin: 20px 0;
     height: 50px;
 }
-.buttons-container .left, .buttons-container .right{
-    display: inline-block;
+.button-image{
+    width: 15px;
+    height: 15px;
+    object-fit: contain; 
+}
+/*headers*/
+.orange-header{
     height: 50px;
-}
-.buttons-container .left{
-    float: left;
-}
-.buttons-container .right{
-    float: right;
+    background-color: #facb01;
+    width: 100%;
+    line-height: 50px;
+    font-size: 14px;
 }
 .header-container{
     background-image: url(../img/header-top.png);
@@ -277,6 +352,28 @@ a{
     height: 35px;
     object-fit: contain; 
 }
+.header-bottom{
+    display: block;
+    background-image: url(../img/header-bottom.png);
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+    height: 323px;
+}
+.header-bottom .howsmart-about, .header-bottom .howsmart-head{
+    padding-left: 700px;
+    padding-bottom: 20px;
+}
+.header-bottom .howsmart-head{
+    padding-top: 75px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.howsmart-about div, .howsmart-head div {
+    margin: 10px 0;
+}
+
+/*menu settings*/
 .header-container .menu-container{
     width: 790px;
     height: 45px;
@@ -321,6 +418,7 @@ a{
 .dropdown-content .dropdown-item:hover{
     border:1px #facb01 solid;
 }
+/*footer settings*/
 .footer{
     height: 250px;
     width: 100%;
@@ -328,30 +426,7 @@ a{
 .footer img{
     margin: 100px 590px; 
 }
-.header-bottom{
-    display: block;
-    background-image: url(../img/header-bottom.png);
-    background-size:     cover;
-    background-repeat:   no-repeat;
-    background-position: center center;
-    height: 323px;
-}
-.header-bottom .howsmart-about, .header-bottom .howsmart-head{
-    padding-left: 700px;
-    padding-bottom: 20px;
-}
-.header-bottom .howsmart-head{
-    padding-top: 75px;
-    font-size: 30px;
-    font-weight: bold;
-}
-.howsmart-about div, .howsmart-head div {
-    margin: 10px 0;
-}
-.extra-search-container{
-    padding: 40px 20px;
-    background-color: #fcab01;
-}
+/*place cv block*/
 .place-cv{
     background-image: url(../img/place-cv.png);
     background-size:     cover;
@@ -385,7 +460,7 @@ a{
     line-height: 50px;
     padding: 10px 50px;
 }
-
+/*services and subjects lists*/
 .services-item .list-button-container{
     height: 50px;
     line-height: 50px;
@@ -396,101 +471,19 @@ a{
 .services-about{
     width: 80%;
 }
-.message-field{
-    margin-top: 20px;
+ .services-edit{
+    width: 500px;
 }
-.teacher-name, .ad-date{
-    font-size: 14px;
-    margin-bottom: 12px; 
+.subject-edit{
+    width: 385px;
 }
-.teacher-rating{
-    height: 25px;
-    font-size: 25px;
-    margin-bottom: 5px;
+.subject-list a{
+    color: black;
 }
-
-.ad-content, .teacher-content{
-    margin: 30px 20px;
-    height: 200px;
-}
-.ad-content{
-    height: 196px;
-}
-.ads-container .ad-content{
-    height: 36px;
-}
-.detail-href, .black-href{
-
-    color:black;
-}
-.ad-description{
-    margin: 20px 0;
-}
-.teacher-footer .cell{
-    width: 225px;
-}
-.teacher-footer .teacher-education{
-    width: 227px;
-}
-.ad-footer, .teacher-footer{
-    height: 52px;
-    width: 100%;
-}
-.ad-footer .cell, .teacher-footer .cell{
-    display: inline-table;
-    float: left;
-    border: 1px #f2f2f2 solid;
-    height: 50px;
-    border-collapse: collapse;
-    text-align: center;
-    line-height: 50px;
-}
-.ad-footer .ad-place{
-    line-height: 25px;
-    text-align: right;
-    width: 249px;
-
-}
-.ad-footer .ad-service, .ad-footer .ad-servdate{
-    width: 339px;
-}
-.ad-place .ad-town, .ad-place .ad-area{
-    padding-right: 10px;
-}
-
-.ad-footer .ad-type{
-    width:125px;
-}
-.ad-footer .ad-online{
-    width: 125px;
-}
-.ad-footer .ad-price{
-    font-size: 16px;
-    font-weight: bold;
-    color: #7b8e1f;
-    width: 177px;
-}
-.edit-image, .view-image, .delete-image, .new-image, .sent-image, .pay-image, .save-image, .back-image, .search-image{
-    width: 15px;
-    height: 15px;
-    object-fit: contain; 
-}
-
-.yes-no-image{
-    width: 12px;
-    height: 12px;
-    object-fit: contain; 
-}
-
-.orange-header{
-    height: 50px;
-    background-color: #facb01;
-    width: 100%;
-    line-height: 50px;
-    font-size: 14px;
-}
-.subjecttype-name{
+.st-name{
     margin-top: 10px;
+    width: 300px;
+    margin: 0 auto;
 }
 .list-text-container, .list-button-container{
     display:inline-block;
@@ -503,81 +496,51 @@ a{
     float: right;
     text-align: right;
 }
-.underlined-block{
-    padding: 10px;
-    border-bottom: 1px #f2f2f2 solid;
-    margin-bottom: 10px; 
-}
-.image-with-overlay-label {
-    position: relative;
-}
-.top-label{
-    width: 100px !important;
-    font-size: 16px !important;
-    background-color: #7b8e1f !important;
-}
-.image-with-overlay-label .overlay-label {
-    background-color: #facb01;
-    display: inline-block;
-    width: 50px;
-    height: 30px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    line-height: 30px;
-    text-align: center;
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 10px;
-}
-
+/*popup block*/
 .popup{
     width: 600px;
-}
-.popup-header{
-    background-image: url(../img/header-top.png);
-    background-size:     cover;
-    background-repeat:   no-repeat;
-    background-position: center center;
-    height: 45px;
-}
-.popup-header .text{
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    line-height: 45px;
-}
-
-.subject-edit, .services-edit{
-    width: 500px;
 }
 
 .popup-content{
     display: block;
     margin: 20px 0;
 }
-
-.login-container{
-    background-image: url(../img/login.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 389px;
-    width: 100%;
-    text-align: center;
-    padding: 100px 0;
+/*messages and reviews*/
+.messages-photo img{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
 }
-.login-container label{
+.message-field{
+    margin-top: 20px;
+}
+.message-block img{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.message-row{
+    padding: 10px;
+}
+.messages-content{
+    width: 600px;
+    height: 150px;
+}
+.adquery-edit .messages-content{
+    width:300px;
+}
+.review-rating{
+    text-align: right;
+}
+#appbundle_review_rating{
     display: inline-block;
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
 }
-.login-data, .message-data{
-    padding: 5px;
+.attention-header{
+    text-align: center;
+    color: #fcab01;
+    font-size: 12px;
+    margin: 20px 0;
 }
-
 .no-content{
     margin:  0;
     padding: 60px 0;
@@ -606,38 +569,7 @@ a{
     border: 1px solid #f2f2f2;
     border-radius: 3px;
 }
-.subject-list a{
-    color: black;
-}
-.messages-photo img{
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-}
-.message-block img{
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-}
-.message-row{
-    padding: 10px;
-}
-.messages-content{
-    width: 600px;
-    height: 150px;
-}
-.review-rating{
-    text-align: right;
-}
-#appbundle_review_rating{
-    display: inline-block;
-}
-.attention-header{
-    text-align: center;
-    color: #fcab01;
-    font-size: 12px;
-    margin: 20px 0;
-}
+/*search*/
 .search-form{
     width: 900px;
     margin: auto;
@@ -647,7 +579,6 @@ a{
     height: 45px;
     line-height: 45px;
 }
-
 .search-form .col1, .search-form .col2,.search-form .col3{
     width: 300px;
     display: inline-block;
@@ -662,6 +593,7 @@ a{
 .extra-search-container .col3{
     line-height: 89px; 
 }
+/*register and lodin*/
 .register-success, .register-success-head{
     font-size: 14px;
     margin-bottom: 20px;
@@ -674,6 +606,23 @@ a{
 .white-orange-href:hover{
     color: #fcab01;
 }
-.adquery-edit .messages-content{
-    width:300px;
+.login-container{
+    background-image: url(../img/login.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 389px;
+    width: 100%;
+    text-align: center;
+    padding: 100px 0;
 }
+.login-container label{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+}
+.login-data, .message-data{
+    padding: 5px;
+}
+

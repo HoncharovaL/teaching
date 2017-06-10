@@ -19,7 +19,7 @@
                             {{ user.surname }}
                             {%if app.user.id==user.id %}
                                 <a class="green-href right-block" href="{{ path('user_edit', { 'id': user.id }) }}">
-                                    <div class="left-block"><img class="edit-image" src="{{asset('bundles/app/img/edit.png')}}"></div>
+                                    <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/edit.png')}}"></div>
                                     <div class="left-block">Редактирование</div>
                                 </a> 
                             {%endif%}
@@ -34,10 +34,8 @@
                         <div class="experience"><span class="opacity-text">Опыт работы: </span>{{ user.experience }}</div>
                     </div>
                     <div class="user-about indent-item">
-                        <div class="user-about-text">{{ user.about }}</div>
-
+                        <div>{{ user.about }}</div>
                     </div>
-
                 </div>            
             </div>                
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}    

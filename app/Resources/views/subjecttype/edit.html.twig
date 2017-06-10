@@ -30,13 +30,13 @@
         {% do form.subjects.setRendered %}
         <div class="right-block">
             <button type="submit" class="blue-href" >
-                <div class="left-block"><img class="save-image" src="{{asset('bundles/app/img/save.png')}}"/></div>
+                <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/save.png')}}"/></div>
                 <div class="left-block">Сохранить</div>
             </button>  
         </div>
         <div class="right-block">
             <a href="#" data-container="subjects-list" class="green-href add-new-element right-block">
-                    <img class="new-image" src="{{asset('bundles/app/img/new.png')}}"/>
+                    <img class="button-image" src="{{asset('bundles/app/img/new.png')}}"/>
                     Добавить дисциплину
             </a>
         </div>
@@ -45,7 +45,7 @@
             {{ form_start(delete_form) }}
             <div class="right-block">
             <button type="submit" class="red-href" >
-                    <div class="left-block"><img class="delete-image" src="{{asset('bundles/app/img/delete.png')}}"/></div>
+                    <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/delete.png')}}"/></div>
                     <div class="left-block">Удалить</div>  
             </button>
             </div>
@@ -100,7 +100,7 @@
             });
 
             function addDeleteLink($formLi) {
-                var $removeLi = $('<a href="#"><img class="delete-image" src="{{asset('bundles/app/img/delete.png')}}"/></a>');
+                var $removeLi = $('<a href="#"><img class="button-image" src="{{asset('bundles/app/img/delete.png')}}"/></a>');
                 $formLi.append($removeLi);
 
                 $removeLi.on('click', function (e) {

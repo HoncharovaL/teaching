@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="white-container narrow-container">
+    <div class="white-container narrow-container short-block">
         <div class="orange-header">
             <div class="list-text-container">Типы размещений</div>
             <div class="list-button-container "><a class="colorbox-ajax-form" href="{{ path('adservices_new') }}">+</a></div>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="list-button-container">
                         <a class="colorbox-ajax-form" href="{{ path('adservices_edit', { 'idServices': service.idServices })}}">
-                            <img class="edit-image"src="{{asset('bundles/app/img/edit.png')}}">
+                            <img class="button-image"src="{{asset('bundles/app/img/edit.png')}}">
                         </a>
                     </div>
 

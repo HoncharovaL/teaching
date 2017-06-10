@@ -1,6 +1,6 @@
 
 <div class="popup services-edit">
-    <div class="popup-header">
+    <div class="orange-header text-center">
         <div class="text">Редактировать</div>
     </div>
     <div class="popup-content text-center form-horizontal">
@@ -12,12 +12,21 @@
         <div class="services-description full-size-field">
             {{ form_widget(edit_form.description) }}
         </div>
-        <input class="save-button right" type="submit" value="Сохранить" />
-
+        <div class="text-buttons right-block">
+            <button type="submit" class="blue-href " >
+                <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/save.png')}}"/></div>
+                <div class="left-block">Сохранить</div>
+            </button> 
+        </div>
         {{ form_end(edit_form) }}
         {{ form_start(delete_form) }}
-        <input class="delete-button left" type="submit" value="Удалить">
-        {{ form_end(delete_form) }}
+        <div class="text-buttons left-block">
+            <button type="submit" class="red-href" >
+                <div class="left-block"><img class="button-image" src="{{asset('bundles/app/img/delete.png')}}"/></div>
+                <div class="left-block">Удалить</div>
+            </button>
+            {{ form_end(delete_form) }}
+        </div>
     </div>
 </div>
 
