@@ -195,7 +195,7 @@ body{
     height: 150px;
 }
 .user-show .user-about{
-    height: auto !important;
+    height: auto;
     padding:20px 10px;
 }
 /*ads settings*/
