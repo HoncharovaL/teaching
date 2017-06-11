@@ -17,7 +17,7 @@ textarea{
 button{
     cursor: pointer;
     border: 0;
-    background: white;
+    background: none;
 }
 .form-collection-element{
     margin: 5px 15px;
@@ -38,7 +38,7 @@ button{
 .edit-price input[type="number"], .edit-price select,
 .edit-durability input[type="number"], .edit-durability select {
     width: 97px;
-    height: 37px;
+    height: 45px;
 }
 .search-price input[type="text"]{
     width: 98px;   
@@ -104,7 +104,7 @@ textarea {
     display: inline-block;
     content: '.';
     color: #000\9;
-    width: 14px;
+    width: 10px;
     height: 15px;
     background-image:  url(../img/sent.png);
     background-size: cover;

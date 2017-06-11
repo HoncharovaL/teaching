@@ -74,9 +74,9 @@
                 <div class="block">
                     <div class="photo-block image-with-overlay-label left-block">
                         {% if ad.services %}
-                        {% if ad.services.idServices ==1 %}
-                            <span class="overlay-label top-label"> В ТОПе </span>                            
-                        {% endif %}
+                            {% if ad.services.idServices ==1 %}
+                                <span class="overlay-label top-label"> В ТОПе </span>                            
+                            {% endif %}
                         {% endif %}
                         {% if ad.user.photo %}
                             <img src="{{photo_path}}{{ad.user.photo}}">
@@ -107,7 +107,8 @@
                                     <div class="left-block big-text">Просмотр</div>
                                 </a> 
                             </div>
-                            <div class='ad-description'>{{ ad.adText }}</div>
+                                    <div class='ad-description'>{{ ad.adText|length <= 300 ? ad.adText : ad.adText|slice(0, 300)~'...' }}</div>
+                            
                         </div>
                         <div class="ad-footer">
                             <div class="ad-place cell">

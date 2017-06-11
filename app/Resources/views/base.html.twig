@@ -22,7 +22,10 @@
                         </div>
                         <div class="menu-container">
                             <div class="menu-item">
-                                <a class='menu-href' href="{{ path('homepage') }}">Найти репетитора</a>
+                                <a class='menu-href' href="{{ path('homepage') }}">Объявления</a>
+                            </div>
+                            <div class="menu-item">
+                                <a class='menu-href' href="{{ path('user_index') }}">Найти репетитора</a>
                             </div>
                             <div class="menu-item">
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -36,25 +39,27 @@
                                 <div class="dropdownbtn menu-item">
                                     <a class='menu-href' href="{{ path('user_show', { 'id': app.user.getId() }) }}">Личный кабинет</a>
                                     <div class="dropdown-content">
-                                        <div class=" dropdown-item">
-                                            <a class="menu-href" href="{{ path('ad_index')}}">Объявления</a>
-                                        </div> 
+                                         
                                         <div class=" dropdown-item">
                                             <a class="menu-href" href="{{ path('adquery_index')}}">Запросы</a>
                                         </div>  
                                         <div class=" dropdown-item">
                                             <a class="menu-href" href="{{ path('messages_index')}}">Сообщения</a>
                                         </div> 
+                                        <div class=" dropdown-item">
+                                            <a class="menu-href" href="{{ path('ad_index')}}">Объявления</a>
+                                        </div>
                                         {% if is_granted('ROLE_ADMIN')%}
-                                            <div class="dropdown-item">
-                                                <a class='menu-href' href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
-                                            </div>
                                             <div class="dropdown-item">
                                                 <a class='menu-href' href="{{ path('ad_adadmin') }}">Публикация объявлений</a>
                                             </div>
                                             <div class="dropdown-item">
-                                                <a class='menu-href' href="{{ path('adservices_index') }}">Справочник услуг</a>
+                                                <a class='menu-href' href="{{ path('subjecttype_index') }}">Справочник дисциплин</a>
                                             </div>
+                                            <div class="dropdown-item">
+                                                <a class='menu-href' href="{{ path('adservices_index') }}">Справочник услуг</a>
+                                            </div>                                       
+                                            
                                         {%endif%}
                                         <div class=" dropdown-item">
                                             <a class='menu-href' href="{{ path("fos_user_security_logout") }}">Выход</a> 
