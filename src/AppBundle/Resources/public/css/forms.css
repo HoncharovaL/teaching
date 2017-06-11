@@ -9,7 +9,10 @@ input[type="text"], textarea, select, input[type="password"], input[type="email"
     padding: 12px 20px;
 }
 #appbundle_adservices_services{
-    width: 66%;
+    width: 350px;
+}
+#appbundle_adservices_price{
+    width:180px;
 }
 textarea{
     height: 100px;
@@ -19,6 +22,7 @@ button{
     border: 0;
     background: none;
 }
+
 .form-collection-element{
     margin: 5px 15px;
     line-height: 50px;
