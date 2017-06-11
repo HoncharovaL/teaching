@@ -27,7 +27,7 @@
                                 <img src="{{ asset('bundles/app/img/no-img.png') }}">
                             {% endif %}
                         </div>
-                        <div class="info-block white-container short-block right-block">
+                        <div class="info-block {{ad.services ? ad.services.idServices ==2 ? 'peach-container' : 'white-container':'white-container'}} short-block right-block">
                             <div class="ad-head">    
                                 <div class='left-block'>
                                     <div class="teacher-name">{{ ad.user }}</div>
@@ -50,7 +50,7 @@
                                         {%endif%}
                                     </div>
                                 </div>
-                                <div class='ad-description'>{{ ad.adText }}</div>
+                                <div class='ad-description'>{{ ad.adText|length <= 300 ? ad.adText : ad.adText|slice(0, 300)~'...' }}</div>
 
                             </div>
                             <div class="text-buttons">

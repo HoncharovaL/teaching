@@ -14,7 +14,7 @@
                     <div class='teacher-phone'>{{ ad.user.phone }}</div>
                 {%endif%}
             </div>
-            <div class='info-block white-container short-block right-block'>
+            <div class='info-block {{ad.services ? ad.services.idServices ==2 ? 'peach-container' : 'white-container':'white-container'}}  short-block right-block'>
                 <div class='ad-head'>
                     <div class='left-block'>
                         <div class="teacher-name"><a href="{{path('user_show', {'id': ad.user.id})}}">{{ ad.user }}</a></div>

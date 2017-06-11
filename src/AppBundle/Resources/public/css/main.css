@@ -47,7 +47,7 @@ body{
     margin: 30px auto;
 }
 .narrow-container{
-   width: 525px;
+    width: 525px;
     margin: 20px auto; 
 }
 .thin-container{
@@ -67,7 +67,11 @@ body{
     padding-bottom: 30px;
 }
 .peach-container{
-    background-color: #fbfbe5;
+    background-color:#ffffda;
+    border: 1px solid #bebe99;
+}
+.peach-container .cell{
+    border-color: #bebe99 !important;
 }
 .colored-container, .orange-header, .popup-header, .login-container{
     color: white;
@@ -151,11 +155,12 @@ body{
 /*photo block settings*/
 .photo-block{
     text-align: center;
-    width: 30%;
+    width: 29%;
 }
 .photo-block img{
-    width: 100%;
-    overflow: hidden;
+    height: 325px;
+    width: 300px;
+    object-fit: cover;
 }
 .teacher-phone{
     width: 300px;
@@ -201,10 +206,10 @@ body{
     height: 196px;
 }
 .ads-container .ad-content{
-    height: 36px;
+    height: 50px;
 }
 .ad-full-container .teacher-content, .ad-full-container .ad-content{
-    height: 42px;
+    height: auto;
 }
 .ad-admin-container .ad-content{
     height: 66px;
@@ -229,9 +234,10 @@ body{
     width: 100%;
 }
 .ad-footer .cell, .teacher-footer .cell{
-    display: inline-table;
+    display: table;
     float: left;
     border: 1px #f2f2f2 solid;
+    border-top: 2px #f2f2f2 solid;
     height: 50px;
     border-collapse: collapse;
     text-align: center;
@@ -485,7 +491,7 @@ a{
 .services-about{
     width: 80%;
 }
- .services-edit{
+.services-edit{
     width: 500px;
 }
 .subject-edit{
@@ -639,4 +645,3 @@ a{
 .login-data, .message-data{
     padding: 5px;
 }
-
