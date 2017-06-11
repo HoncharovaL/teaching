@@ -22,7 +22,10 @@
                         </div>
                         <div class="menu-container">
                             <div class="menu-item">
-                                <a class='menu-href' href="{{ path('homepage') }}">Найти репетитора</a>
+                                <a class='menu-href' href="{{ path('homepage') }}">Объявления</a>
+                            </div>
+                            <div class="menu-item">
+                                <a class='menu-href' href="{{ path('user_index') }}">Найти репетитора</a>
                             </div>
                             <div class="menu-item">
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
