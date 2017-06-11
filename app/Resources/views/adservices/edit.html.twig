@@ -6,8 +6,8 @@
     <div class="popup-content form-horizontal">
         {{ form_start(edit_form, {'action':path('adservices_edit',{'idServices':app.request.get('idServices')})}) }}
         <div class="services-main">
-            {{ form_widget(edit_form.services) }}
-            {{ form_widget(edit_form.price) }}
+            <span class="service-name">{{ form_widget(edit_form.services) }}</span>
+            <span class="service-price">{{ form_widget(edit_form.price) }}</span>
         </div>
         <div class="services-description full-size-field">
             {{ form_widget(edit_form.description) }}
