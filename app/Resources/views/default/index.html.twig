@@ -73,11 +73,9 @@
             <div class="wide-container">
                 <div class="block">
                     <div class="photo-block image-with-overlay-label left-block">
-                        {% if ad.services %}
-                            {% if ad.services.idServices ==1 %}
+                            {% if ad.top ==1 %}
                                 <span class="overlay-label top-label"> В ТОПе </span>                            
                             {% endif %}
-                        {% endif %}
                         {% if ad.user.photo %}
                             <img src="{{photo_path}}{{ad.user.photo}}">
                         {% else %}
@@ -89,7 +87,7 @@
                             <div class="no-phone">Видеть номер преподавателя могут только зарегистрированные пользователи.</div>
                         {%endif%}
                     </div>
-                    <div class="{{ad.services ? ad.services.idServices ==2 ? 'peach-container' : 'white-container':'white-container'}} info-block short-block right-block">
+                    <div class="{{ad.services ? ad.services.idServices ==1 ? 'peach-container' : 'white-container':'white-container'}} info-block short-block right-block">
                         <div class="ad-head">    
                             <div class='left-block'>
                                 <div class="teacher-name"><a href="{{path('user_show', {'id': ad.user.id})}}">{{ ad.user }}</a></div>
