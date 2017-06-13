@@ -40,7 +40,7 @@
                             <div class='teacher-content'>
                                 {{ user.about|length <= 300 ? user.about : user.about|slice(0, 300)~'...'  }}
                             </div>
-                            <div class='teacher-footer'>
+                            <div class='teacher-footer block'>
                                 <div class='teacher-education cell'>
                                     {{ user.education }}
                                 </div>

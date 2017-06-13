@@ -116,7 +116,7 @@ class SubjectsController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('subjects_index');
+        return $this->redirectToRoute('subjecttype_index');
     }
 
     /**
