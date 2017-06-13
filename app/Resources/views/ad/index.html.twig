@@ -8,9 +8,9 @@
         <div class="howsmart-about">
             <div>Ученики смогут найти вас и предложить отличную работу.</div>
             <div class="buttons-container">
-            {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-                <a class="green-button" href="{{ path('ad_new') }}">Создать объявление</a>
-            {%endif%}
+                {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                    <a class="green-button" href="{{ path('ad_new') }}">Создать объявление</a>
+                {%endif%}
             </div>
         </div>
 
@@ -64,7 +64,7 @@
                                     <div class="left-block">Редактирование</div>
                                 </a> 
                             </div>
-                            <div class="ad-footer">
+                            <div class="ad-footer block">
                                 <div class="ad-place cell">
                                     <div class='ad-town'>{{ ad.town }}</div>
                                     <div class='ad-area'>{{ ad.area }}</div>
@@ -83,11 +83,13 @@
                                 <div class="ad-price cell">
                                     {{ ad.price }}{{ ad.currency }}/{{ ad.durability }}{{ ad.value }}
                                 </div>
-                                <div class="cell ad-service">
-                                    Тип размещения: {{ ad.services }}
-                                </div>
-                                <div class="cell ad-servdate">
-                                    Действителен до: {% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}
+                                <div class="ad-footer block">
+                                    <div class="cell ad-service">
+                                        Тип размещения: {{ ad.services }}
+                                    </div>
+                                    <div class="cell ad-servdate">
+                                        Действителен до: {% if ad.dateServ %}{{ ad.dateServ|date('Y-m-d') }}{% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
