@@ -251,7 +251,7 @@ body{
     width: 249px;
 }
 .ad-footer .ad-service, .ad-footer .ad-servdate{
-    width: 339px;
+    width: 337px;
 }
 .ad-place .ad-town, .ad-place .ad-area{
     padding-right: 10px;
@@ -287,6 +287,9 @@ body{
 }
 .teacher-footer .cell{
     width: 225px;
+}
+.ad-service, .ad-servdate{
+    border: 1px solid #f2f2f2;
 }
 .teacher-footer .teacher-university{
     width: 227px;
