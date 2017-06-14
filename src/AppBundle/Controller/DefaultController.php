@@ -33,7 +33,8 @@ class DefaultController extends Controller
         }
           
         if ($search->place) 
-        {   $qb->andWhere('n.place='. $search->place);
+        {  // $qb->andWhere('n.place='. $search->place);
+			$qb->andWhere($qb->expr()->like('n.place', $qb->expr()->literal('%' . $search->place . '%')));
         }
         if ($search->pricemin) 
             {     
